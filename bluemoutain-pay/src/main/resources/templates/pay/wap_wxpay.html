@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html class="signin no-js" lang="zh_CN">
+<head>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <title>${config.siteName!}-微信WAP支付</title>
+    <meta name="keywords" content="${config.keywords!}">
+    <meta name="description" content="${config.decText!}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/layer/mobile/need/layer.css" rel="stylesheet">
+    <script src="/static/js/jquery-1.11.3.min.js"></script>
+    <script src="/static/js/qrcode.min.js"></script>
+    <script src="/static/js/qcloud_util.js"></script>
+</head>
+<body>
+<div class="col-xs-12 col-sm-10 col-md-8 col-lg-6 center-block" style="float: none;">
+    <div class="panel panel-primary">
+        <div class="panel-heading" style="text-align: center;"><h3 class="panel-title">
+            <img src="/static/images/wechat.ico">微信支付手机版
+        </h3></div>
+        <div class="list-group" style="text-align: center;">
+            <div class="list-group-item list-group-item-info">${order.title!}</div>
+            <div class="list-group-item">
+                <div class="qr-image" id="qrcode"></div>
+            </div>
+            <div class="list-group-item list-group-item-info">或复制以下链接到微信打开：</div>
+            <div class="list-group-item">
+                <a href="${model!}">${model!}</a><br>
+                <button id="copy-btn" data-clipboard-text="${model!}" class="btn btn-info btn-sm">一键复制</button>
+            </div>
+            <div class="list-group-item">
+                <small>提示：你可以将以上链接发到自己微信的聊天框（在微信顶部搜索框可以搜到自己的微信），即可点击进入支付</small>
+            </div>
+            <div class="list-group-item"><a href="weixin://" class="btn btn-primary">打开微信</a>&nbsp;
+                <a href="javascript:void(0);" onclick="loadmsg()" class="btn btn-success">检测支付状态</a></div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="/static/layer/layer.js"></script>
+<script src="/static/js/clipboard.min.js"></script>
+<script>
+
+    var clipboard = new Clipboard('#copy-btn');
+    clipboard.on('success', function(e) {
+        layer.msg('复制成功，请到微信里面粘贴');
+    });
+    clipboard.on('error', function(e) {
+        layer.msg('复制失败，请长按链接后手动复制');
+    });
+
+
+    var qrcode = new QRCode("qrcode", {
+        text: "${model!}",
+        width: 180,
+        height: 180,
+        colorDark: "#000000",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H
+    });
+
+    window.onload = loadmsg();
+
+    // 检查是否支付完成
+    function loadmsg() {
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: "/payment/wx_order_state",
+            timeout: 8000,
+            data: {oid: '${order.id!}', "times": new Date().getDate()}, //post数据
+            success: function (data, textStatus) {
+                if (data.status == 2) {
+                    layer.msg('支付成功，正在跳转中...', {icon: 16, shade: 0.01, time: 15000});
+                    window.location.href = data.backurl;
+                } else {
+                    setTimeout("loadmsg()", 1500);
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                if (textStatus == "timeout") {
+                    setTimeout("loadmsg()", 1500);
+                } else { //异常
+                    setTimeout("loadmsg()", 3000);
+                }
+            }
+        });
+    }
+
+</script>
+</html>

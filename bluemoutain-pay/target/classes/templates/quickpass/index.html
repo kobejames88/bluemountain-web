@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>${config.sitename!}</title>
+    <meta name="keywords" content="${config.keywords!}">
+    <meta name="description" content="${config.description!}">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.9">
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="/static/css/index.css">
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <script type="text/javascript" charset="utf-8" src="/static/js/jquery-1.11.3.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="https://open.mobile.qq.com/sdk/qqapi.js?_bid=152"></script>
+    <!--<script src="/static/js/qq.js"></script>-->
+</head>
+<body background="/static/images/bg1.jpg">
+<div class="container" style="padding-top:20px;">
+    <div class="col-xs-12 col-sm-10 col-lg-8 center-block" style="float: none;">
+        <div class="panel panel-primary">
+            <div class="panel-heading" style="background: linear-gradient(to right,#8ae68a,#5ccdde,#b221ff);">
+                <center>
+                    <font color="#000000">
+                        <b>${config.panel!}</b>
+                    </font>
+                </center>
+            </div>
+            <div class="panel-body">
+                <center>
+                    <div class="alert alert-success">
+                        <a href="http://wpa.qq.com/msgrd?v=3&uin=${config.kfqq!}&site=qq&menu=yes"><img
+                                class="img-circle m-b-xs"
+                                style="border: 2px solid #1281FF; margin-left:3px; margin-right:3px;"
+                                src="https://q4.qlogo.cn/headimg_dl?dst_uin=${config.kfqq!}&spec=100"
+                                width="60px" height="60px"
+                                alt="${config.sitename!}"><br>
+                        </a>
+                        ${config.gg!}
+                    </div>
+                    <form id="submitsss" action="/quickpass/pay" method="post">
+                        <input type="hidden" name="title" value="${config.panel!}">
+                        <input type="hidden" name="payType" value="1" id="fewfew">
+                        <input type="hidden" name="uid" value="${config.uid!}">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-barcode"></span> 单号:
+                            </span>
+                            <input type="text" size="30" name="outOrderId" value=""
+                                   class="form-control" id="dehwjnkdhbefiebdw" readonly/>
+                        </div>
+                        <br/>
+                        <div class="input-group">
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-shopping-cart"></span> 商品:
+                        </span>
+                            <input type="text" size="30" name="context" value="${config.liuyan!}" class="form-control"
+                                   required="required"/>
+                        </div>
+                        <br/>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-yen"></span> 金额
+                            </span>
+                            <input type="text" size="30" name="price" value="0.01" class="form-control"
+                                   required="required"/>
+                        </div>
+                        <br/>
+                        <center>
+                            <div class="alert alert-warning">选择一种方式进行支付</div>
+                        </center>
+                        <center>
+                            <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                                <div class="btn-group" role="group">
+                                    <button type="radio" name="payType1" class="btn btn-primary"
+                                            onclick="submit_ajax(2)">支付宝
+                                    </button>
+                                </div>
+                                <div class="btn-group" role="group">
+                                    <button type="radio" name="payType1" class="btn btn-danger"
+                                            onclick="submit_ajax(3)">QQ
+                                    </button>
+                                </div>
+                                <div class="btn-group" role="group">
+                                    <button type="radio" name="payType1" class="btn btn-info" onclick="submit_ajax(1)">
+                                        微信
+                                    </button>
+                                </div>
+                            </div>
+                        </center>
+                    </form>
+                </center>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-10 col-lg-8 center-block" style="float: none;">
+        <div class="panel panel-primary">
+            <div class="panel-heading" style="background: linear-gradient(to right,#b221ff,#14b7ff,#8ae68a);">
+                <center><font color="#000000"><b>历史记录</b></font></center>
+            </div>
+            <div class="table-responsive" id="table_load">
+                <%#ajax pagenode:{%>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>订单号</th>
+                        <th>支付方式</th>
+                        <th>支付金额</th>
+                        <th>状态</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <%for(o in model.items!){%>
+                    <tr>
+                        <td>${o.outOrderId!}</td>
+                        <td><%if(o.payType! ==1){%>微信<%}else if(o.payType! ==2){%>支付宝<%}else{%>QQ<%}%></b></td>
+                        <td>${o.price!}元</b></td>
+                        <td><%if(o.status! == 2){%><font color=green> 已支付</font><%}else{%><font color=red>未支付</font><%}%></td>
+                    </tr>
+                    <%}%>
+                </table>
+                <%}%>
+            </div>
+        </div>
+    </div>
+    <p style="text-align:center">&copy; Powered by <a href="${config.ym!}">${config.copy!}</a>!</p>
+    <audio autoplay="autoplay" height="100" width="100">
+        <source src="${config.music!}" type="audio/mp3"/>
+    </audio>
+</div>
+</body>
+<script>
+    function submit_ajax(id, obj) {
+        $("#fewfew").val(id);
+        $("#submitsss").submit();
+    }
+
+    $(function () {
+        $.post("/quickpass/orderid",
+            {"times": new Date().getTime()},
+            function (data) {
+                $("#dehwjnkdhbefiebdw").val(data.oid);
+            }, "json");
+    });
+
+</script>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> 查看授权信息</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
+    <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="/static/css/font.css">
+    <link rel="stylesheet" href="/static/css/xadmin.css">
+    <script type="text/javascript" charset="utf-8" src="/static/js/jquery-1.11.3.min.js"></script>
+    <script src="/static/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/static/js/xadmin.js"></script>
+</head>
+<body>
+<div class="x-body">
+    <table class="layui-table">
+        <tbody>
+        <tr>
+            <td>编号:</td>
+            <td>${model.id!}</td>
+        </tr>
+        <tr>
+            <td>顶级域名:</td>
+            <td>${model.domain!}</td>
+        </tr>
+        <tr>
+            <td>备案类型:</td>
+            <td>${model.nature!}</td>
+        </tr>
+        <tr>
+            <td>ICP主体:</td>
+            <td>${model.icp!}</td>
+        </tr>
+        <tr>
+            <td>首页地址:</td>
+            <td>${model.indexUrl!}</td>
+        </tr>
+        <tr>
+            <td>站点名称:</td>
+            <td>${model.sitename!}</td>
+        </tr>
+        <tr>
+            <td>当前网站备案号:</td>
+            <td>${model.nowIcp!}</td>
+        </tr>
+        <tr>
+            <td>名称:</td>
+            <td>${model.name1!}</td>
+        </tr>
+        <tr>
+            <td>交易域名:</td>
+            <td>${model.serach!}</td>
+        </tr>
+        <tr>
+            <td>支付授权:</td>
+            <td><%if(model.status!1 ==1 ){%>未授权<%}else{%>已授权<%}%></td>
+        </tr>
+        <tr>
+            <td>支付提示:</td>
+            <td><%if(model.payShowInfo!1 == 0 ){%>不显示<%}else{%>显示<%}%></td>
+        </tr>
+        <tr>
+            <td>操作时间:</td>
+            <td>${model.optTime!,dateFormat='yyyy-MM-dd HH:mm:ss'}</td>
+        </tr>
+        <tr>
+            <td>用户ID:</td>
+            <td>${model.uid!}</td>
+        </tr>
+        <tr>
+            <td>用户名:</td>
+            <td>${user.user!}</td>
+        </tr>
+    </table>
+    <div style="text-align: center;">
+        <button class="layui-btn layui-btn-warm" onclick="x_admin_close()">关&nbsp;&nbsp;闭</button>
+    </div>
+</div>
+</body>
+<script>
+    $(function () {
+        layui.use('laydate', function () {
+            var laydate = layui.laydate;
+
+        });
+    });
+
+</script>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html class="signin no-js" lang="zh_CN">
+<head>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <title>${config.siteName!}-支付宝扫码支付</title>
+    <meta name="keywords" content="${config.keywords!}">
+    <meta name="description" content="${config.decText!}">
+    <meta name="apple-mobile-web-app-capable" content="no">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <meta name="apple-mobile-web-app-status-bar-style" content="white">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <script src="/static/js/jquery-1.11.3.min.js"></script>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link href="/static/css/codepay/wechat_pay.css" rel="stylesheet" media="screen">
+</head>
+<body>
+<div class="body">
+    <h1 class="mod-title">
+        <span class="ico_log ico-1"></span>
+    </h1>
+    <div class="mod-ct">
+        <div class="order">
+        </div>
+        <div class="amount" id="money">￥</div>
+        <div class="qrcode-img-wrapper" data-role="qrPayImgWrapper">
+            <div data-role="qrPayImg" class="qrcode-img-area">
+                <div class="ui-loading qrcode-loading" data-role="qrPayImgLoading" style="display: none;">加载中</div>
+                <div style="position: relative;display: inline-block;">
+                    <img id="show_qrcode" alt="加载中..." src="" width="210" height="210" style="display: block;">
+                    <img onclick="$(&;#39;#use&;#39;).hide()" id="use" src="/static/images/use_1.png" style="position: absolute; top: 50%; left: 50%; width: 32px; height: 32px; margin-left: -16px; margin-top: -16px; display: none;">
+                </div>
+            </div>
+        </div>
+        <div class="time-item">
+            <div class="time-item" id="msg"><h1>付款后自动到账 未到账可联系我们</h1></div>
+            <strong id="hour_show"><s id="h"></s>0时</strong>
+            <strong id="minute_show"><s></s>05分</strong>
+            <strong id="second_show"><s></s>53秒</strong>
+        </div>
+        <div class="tip">
+            <div class="ico-scan"></div>
+            <div class="tip-text">
+                <p>请使用支付宝扫一扫</p>
+                <p>扫描二维码完成支付</p>
+            </div>
+        </div>
+        <div class="detail" id="orderDetail">
+            <dl class="detail-ct" id="desc" style="display: none;">
+                <dt>账号</dt>
+                <dd>1</dd>
+                <dt>金额</dt>
+                <dd>￥1.00</dd>
+                <dt>云端单号</dt>
+                <dd>107498381294</dd>
+                <dt>创建时间</dt>
+                <dd>2018-06-16 16:43:40</dd>
+                <dt>过期时间</dt>
+                <dd>2018-06-16 16:49:29</dd>
+            </dl>
+            <a href="javascript:void(0)" class="arrow"><i class="ico-arrow"></i></a>
+        </div>
+        <div class="tip-text">
+        </div>
+    </div>
+    <div class="foot">
+        <div class="inner">
+            <p>手机用户可保存上方二维码到手机中</p>
+            <p>在支付宝扫一扫中选择“相册”即可</p>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    var user_data={"codepay_id":${model.userID!},"type":${model.type!},"return_url":"${return_url!}","outTime":360}
+</script>
+<!--[if lt IE 8]>
+<script src="https://codepay.fateqq.com:51888/js/json3.min.js"></script>
+<![endif]-->
+<script src="/static/js/notify.js"></script>
+<script src="/static/js/codepay_util.js"></script>
+<script>
+    window.onload=function(){
+        ooo();
+        callback(${ret_str});
+    };
+
+    function ooo(){
+        setTimeout(function () {
+            $('#use').hide()
+        }, 3000);
+    }
+
+
+</script>
+</html>
+
+
+

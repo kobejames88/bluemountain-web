@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>资料修改</title>
+    <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="/static/css/font.css">
+    <link rel="stylesheet" href="/static/css/xadmin.css">
+    <script type="text/javascript" charset="utf-8" src="/static/js/jquery-1.11.3.min.js"></script>
+    <script src="/static/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/static/js/xadmin.js"></script>
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="x-nav">
+      <span class="layui-breadcrumb">
+        <a href="/admin/welcomepage">首页</a>
+        <a href="javascript:window.location.reload();">
+          <cite>资料修改</cite>
+        </a>
+      </span>
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"
+       href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
+</div>
+<div class="x-body">
+    <blockquote class="layui-elem-quote">请在此处修改您的个人资料,仔细填写,如果发现乱填乱写,虚假信息将直接封禁账户!</blockquote>
+    <fieldset class="layui-elem-field layui-col-md11 " style="margin-top: 10px;">
+        <legend>用户信息查看</legend>
+        <form class="layui-form" id="" onsubmit="return false;">
+            <div class="layui-form-item">
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label">用户ID:</label>
+                    <div class="layui-input-inline">
+                        <input type="tel" name="phone" value="${model.id!}" autocomplete="off" class="layui-input"
+                               disabled>
+                    </div>
+                </div>
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label">用户余额:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="email" value="${model.balnes!0}" autocomplete="off"
+                               class="layui-input " disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item layui-col-md11">
+                <label class="layui-form-label">商户秘钥:</label>
+                <div class="layui-input-block">
+                    <input type="text" name="title" autocomplete="" value="${model.appkey!}" class="layui-input"
+                           disabled>
+                </div>
+            </div>
+        </form>
+    </fieldset>
+    <fieldset class="layui-elem-field layui-col-md11 " style="margin-top: 10px;">
+        <legend>用户资料修改</legend>
+        <form class="layui-form" id="edit_grzl" onsubmit="return false;">
+            <input type="hidden" name="id" value="${model.id!}">
+            <div class="layui-form-item">
+                <div class="layui-inline layui-col-md5 layui-col-md-offset1">
+                    <label class="layui-form-label">登录名:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="phone" value="${model.user!}" autocomplete="off" class="layui-input"
+                               disabled>
+                    </div>
+                </div>
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label">手机:</label>
+                    <div class="layui-input-inline">
+                        <input type="number" name="phone" value="${model.phone!}" autocomplete="off"
+                               class="layui-input ">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline layui-col-md5 layui-col-md-offset1">
+                    <label class="layui-form-label">年龄:</label>
+                    <div class="layui-input-inline">
+                        <input type="number" name="age" value="${model.age!}" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label">真实姓名:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="showname" value="${model.showname!}" autocomplete="off"
+                               class="layui-input ">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline layui-col-md5 layui-col-md-offset1">
+                    <label class="layui-form-label">邮箱:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="email" value="${model.email!}" autocomplete="off" class="layui-input" disabled>
+                    </div>
+                </div>
+                <div class="layui-inline layui-col-md5 ">
+                    <label class="layui-form-label">性别:</label>
+                    <div class="layui-input-inline">
+                        <select name="sex">
+                            <option value="0"
+                            <%if(model.sex! == 0){%>selected<%}%> >男</option>
+                            <option value="1"
+                            <%if(model.sex! == 1){%>selected<%}%> >女</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline layui-col-md5 layui-col-md-offset1">
+                    <label class="layui-form-label">密码:</label>
+                    <div class="layui-input-inline">
+                        <input type="password" name="pwd" value="${model.pwd!}" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline layui-col-md5 ">
+                    <label class="layui-form-label">角色:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="" value="${roleName!}(<%if(vip.status!0 == 1){%>已开通VIP<%}else{%>未开通VIP<%}%>)" class="layui-input" readonly>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline layui-col-md5 layui-col-md-offset1">
+                    <label class="layui-form-label">支付授权域名:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="url" value="${model.url!}" autocomplete="off" class="layui-input" placeholder="例如:pay.206so.com">
+                    </div>
+                </div>
+                <div class="layui-inline layui-col-md5 ">
+                    <label class="layui-form-label">自动提现:</label>
+                    <div class="layui-input-inline">
+                        <select name="isAutoSett">
+                            <option value="1" <%if(model.isAutoSett! == 1){%>selected<%}%> >是</option>
+                            <option value="0" <%if(model.isAutoSett! == 0){%>selected<%}%> >否</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn layui-col-md-offset4" onclick="grzl_submit()">保存修改</button>
+                </div>
+            </div>
+        </form>
+    </fieldset>
+    <fieldset class="layui-elem-field layui-col-md11 " style="margin-top: 10px;">
+        <legend>收款账号设置</legend>
+        <div style="height: 20px;"></div>
+        <form class="layui-form" id="edit_sszh" onsubmit="return false;">
+            <input type="hidden" name="id" value="${model.id!}">
+            <div class="layui-form-item">
+                <div class="layui-inline layui-col-md5 layui-col-md-offset1">
+                    <label class="layui-form-label">真实姓名:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="zsname" value="${model.zsname!}" autocomplete="off"
+                               class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label">结算方式:</label>
+                    <div class="layui-input-inline" >
+                        <select name="zspaytype"  lay-filter="level">
+                            <option value="2" <%if(model.zspaytype! ==2){%>selected<%}%> >支付宝(T+0)</option>
+                            <option value="1" <%if(model.zspaytype! ==1){%>selected<%}%> >微信(T+0)</option>
+                            <option value="4" <%if(model.zspaytype! ==4){%>selected<%}%> >银行卡(T+1)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline layui-col-md5 layui-col-md-offset1">
+                    <label class="layui-form-label">收款账号:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="zspayid" value="${model.zspayid!}" autocomplete="off" class="layui-input" >
+                    </div>
+                </div>
+                <div class="layui-inline layui-col-md5 " id="select_bak_code" <%if(model.zspaytype! !=4){%>style="display: none;"<%}%>>
+                    <label class="layui-form-label">开户行:</label>
+                    <div class="layui-input-inline">
+                        <select name="cardBankCode" >
+                            <option value="1002" <%if(model.cardBankCode! == '1002'){%>selected<%}%> >工商银行</option>
+                            <option value="1005" <%if(model.cardBankCode! == '1005'){%>selected<%}%> >农业银行</option>
+                            <option value="1026" <%if(model.cardBankCode! == '1026'){%>selected<%}%> >中国银行</option>
+                            <option value="1003" <%if(model.cardBankCode! == '1003'){%>selected<%}%> >建设银行</option>
+                            <option value="1001" <%if(model.cardBankCode! == '1001'){%>selected<%}%> >招商银行</option>
+                            <option value="1066" <%if(model.cardBankCode! == '1066'){%>selected<%}%> >邮储银行</option>
+                            <option value="1020" <%if(model.cardBankCode! == '1020'){%>selected<%}%> >交通银行</option>
+                            <option value="1004" <%if(model.cardBankCode! == '1004'){%>selected<%}%> >浦发银行</option>
+                            <option value="1006" <%if(model.cardBankCode! == '1006'){%>selected<%}%> >民生银行</option>
+                            <option value="1009" <%if(model.cardBankCode! == '1009'){%>selected<%}%> >兴业银行</option>
+                            <option value="1010" <%if(model.cardBankCode! == '1010'){%>selected<%}%> >平安银行</option>
+                            <option value="1021" <%if(model.cardBankCode! == '1021'){%>selected<%}%> >中信银行</option>
+                            <option value="1025" <%if(model.cardBankCode! == '1025'){%>selected<%}%> >华夏银行</option>
+                            <option value="1027" <%if(model.cardBankCode! == '1027'){%>selected<%}%> >广发银行</option>
+                            <option value="1022" <%if(model.cardBankCode! == '1022'){%>selected<%}%> >光大银行</option>
+                            <option value="1032" <%if(model.cardBankCode! == '1032'){%>selected<%}%> >北京银行</option>
+                            <option value="1056" <%if(model.cardBankCode! == '1056'){%>selected<%}%> >宁波银行</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block ">
+                    <button class="layui-btn layui-col-md-offset4" onclick="skzh_submit();">保存修改</button>
+                </div>
+            </div>
+        </form>
+    </fieldset>
+
+</div>
+</body>
+<script>
+
+    var uid = '${model.id!}';
+
+    layui.use(['form', 'layer'], function () {
+        $ = layui.jquery;
+        var form = layui.form;
+        form.on('select(level)', function(data){
+            change_remoney(data);
+        });
+    });
+
+    function skzh_submit() {
+        var data = $("#edit_sszh").serialize();
+        $.post("/admin/user/update2",
+            data,
+            function (data) {
+                layer.alert(data.msg, {icon: 6}, function () {
+                    window.location.reload();
+                    var index = parent.layer.getFrameIndex(window.name);
+                    parent.layer.close(index);
+                });
+            }, "json");
+    }
+
+    function grzl_submit() {
+        var data = $("#edit_grzl").serialize();
+        $.post("/admin/user/update2",
+            data,
+            function (data) {
+                layer.alert(data.msg, {icon: 6}, function () {
+                    window.location.reload();
+                    var index = parent.layer.getFrameIndex(window.name);
+                    parent.layer.close(index);
+                });
+            }, "json");
+    }
+
+    function change_remoney(obj) {
+        var type = obj.value;
+        if (type == 1) {
+            $("#select_bak_code").hide();
+            var width = Math.round((window.screen.width - 350) / 2);
+            var height = Math.round((window.screen.height - 350) / 2);
+            window.open('/admin/user/scancode/wx?id=' + uid + '&times=' + new Date().getTime(),
+                '扫码绑定微信收款用户',
+                'height=450, width=350, top=' + height + ',left=' + width + ',toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no');
+        }else if(type ==4) {
+            $("#select_bak_code").show();
+        }else{
+            $("#select_bak_code").hide();
+        }
+    }
+
+</script>
+</html>

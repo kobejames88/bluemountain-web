@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.so206.mapper.ext.OrderExtMapper">
+    <resultMap id="BaseResultMap" type="com.so206.po.ext.SystemOrderExt">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="pay_type" jdbcType="INTEGER" property="payType"/>
+        <result column="out_order_id" jdbcType="VARCHAR" property="outOrderId"/>
+        <result column="price" jdbcType="DECIMAL" property="price"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="paid_time" jdbcType="TIMESTAMP" property="paidTime"/>
+        <result column="paid" jdbcType="DECIMAL" property="paid"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="context" jdbcType="VARCHAR" property="context"/>
+        <result column="trade_no" jdbcType="VARCHAR" property="tradeNo"/>
+        <result column="trade_status" jdbcType="VARCHAR" property="tradeStatus"/>
+        <result column="uid" jdbcType="INTEGER" property="uid"/>
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="BaseResultMap2" type="com.so206.po.ext.SystemOrderExt">
+        <result column="user" jdbcType="VARCHAR" property="user"/>
+        <result column="pwd" jdbcType="VARCHAR" property="pwd"/>
+        <result column="role" jdbcType="INTEGER" property="role"/>
+        <result column="showName" jdbcType="VARCHAR" property="showname"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="age" jdbcType="INTEGER" property="age"/>
+        <result column="sex" jdbcType="INTEGER" property="sex"/>
+        <result column="creste_time" jdbcType="TIMESTAMP" property="cresteTime"/>
+        <result column="create_ip" jdbcType="VARCHAR" property="createIp"/>
+        <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime"/>
+    </resultMap>
+
+    <select id="findOrderWithUser" resultMap="BaseResultMap2">
+        select *
+        from system_order o left join system_user u on o.uid = u.id where 1=1
+        <if test="uid != null">
+            and o.uid = #{uid}
+        </if>
+        <if test="status != null">
+            and o.status = #{status}
+        </if>
+        <if test="outorderid != null">
+            and o.out_order_id = #{outorderid}
+        </if>
+        <if test="paytype != null">
+            and o.pay_type =#{paytype}
+        </if>
+        <if test="otype !=null">
+            and o.order_type = #{otype}
+        </if>
+        <if test="id !=null">
+            and o.id = #{id}
+        </if>
+        order by o.create_time desc
+    </select>
+
+
+</mapper>

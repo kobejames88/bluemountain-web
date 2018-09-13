@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>页面跳转中...</title>
+    <script type="text/javascript" charset="utf-8" src="/static/js/jquery-1.11.3.min.js"></script>
+    <script src="https://open.mobile.qq.com/sdk/qqapi.js?_bid=152"></script>
+</head>
+<body>
+<center>
+    <h4 style="padding-top: 30px;">正在进入,请稍等...</h4><br>
+    如果没有跳转,请
+    <a href="javascript:void(0);" onclick="goto()">点此访问</a>
+</center>
+</body>
+<script src="/static/js/md5.js"></script>
+<script src="/static/js/base64.js"></script>
+<script>
+    var base = new Base64();
+
+    function is_weixn_qq() {
+        var ua = navigator.userAgent.toLowerCase();
+        if (ua.match(/MicroMessenger/i) == "micromessenger") {
+            return "weixin";
+        } else if (ua.match(/MQQBrowser/i) == "mqqbrowser" && ua.match(/TBS/i) == "tbs") {
+            return "qq";
+        }
+        return "none";
+    }
+
+    function check() {
+        var result_check = is_weixn_qq();
+        var url = window.location.href;
+        console.log("userAgent:" + result_check);
+        console.log("url:" + url);
+        if (result_check == "qq") {
+            if (url.indexOf("?") == -1) {
+                mqq.ui.openUrl({target: 2, url: url + "?spm=" + new Date().getTime()});
+            } else {
+                mqq.ui.openUrl({target: 2, url: url + "&spm=" + new Date().getTime()});
+            }
+        } else if (result_check == "weixin") {
+            alert("检测到您当前在微信中打开本站,为了保证浏览效果,请点击右上角,选择'用浏览器打开'本站,谢谢!");
+            goto();
+        } else {
+            goto();
+        }
+    }
+
+    function goto() {
+        var a = '${code!}';
+        var b = base.encode($.md5(a + 'check'));
+        window.location = "/index.do?" + "spm=" + b;
+    }
+
+    window.onload = check();
+
+
+</script>
+</html>
+

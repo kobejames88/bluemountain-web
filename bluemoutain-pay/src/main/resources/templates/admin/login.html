@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>管理中心 - 用户登录</title>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
+    <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon"/>
+    <link href="/static/css/register.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/static/css/font.css">
+    <link rel="stylesheet" href="/static/css/xadmin.css">
+    <script type="text/javascript" charset="utf-8" src="/static/js/jquery-1.11.3.min.js"></script>
+    <script src="/static/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/static/js/xadmin.js"></script>
+    <script src="https://open.mobile.qq.com/sdk/qqapi.js?_bid=152"></script>
+    <!--<script src="/static/js/qq.js"></script>-->
+    <script src="/static/js/md5.js"></script>
+</head>
+<body class="login-bg">
+<div class="login">
+    <div class="message">管理中心 - 用户登录</div>
+    <div id="darkbannerwrap"></div>
+    <form method="post" class="layui-form" id="dedwed" action="/admin/login/ajax" onsubmit="return false;">
+        <input name="user" id="user1" placeholder="用户名" type="text" lay-verify="required" class="layui-input">
+        <hr class="hr15">
+        <input name="pwd" id="pwd1" lay-verify="required" placeholder="密码" type="password" class="layui-input">
+        <hr class="hr15">
+        <input value="登录" lay-submit lay-filter="login" style="width:100%;" type="submit" onclick="login();">
+        <hr class="hr20">
+    </form>
+    <div id="darkbannerwrap2">
+        <p class="login-link">
+            <a href="/re_email">忘记密码</a>&nbsp;&nbsp;
+            <a href="/register">商户申请</a>&nbsp;&nbsp;
+            <a href="/index.do">返回首页</a>&nbsp;&nbsp;
+            <span></span>
+    </div>
+</div>
+<script src="/static/js/base64.js"></script>
+<script>
+
+    var base = new Base64();
+
+    $(function () {
+    });
+
+    function login() {
+        layer.msg("正在登录,请稍后...", {icon: 16, shade: 0.01, time: 15000});
+        var user = $("#user1").val();
+        var pwd = $("#pwd1").val();
+        user = base.encode(user);
+        pwd = base.encode($.md5(pwd));
+        $.post("/login/ajax",
+            {"user": user, "pwd": pwd},
+            function (data) {
+                layer.msg(data.msg);
+                if (data.code == 0) {
+                    setTimeout(function () {
+                        location.href = "/admin?times=" + new Date().getTime();
+                    }, 800);
+                }
+            }, "json");
+    }
+</script>
+</body>
+</html>

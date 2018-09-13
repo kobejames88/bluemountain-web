@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!--<classPathEntry location="/Program Files/IBM/SQLLIB/java/db2java.zip" />-->
+
+
+    <context id="Mybatis3Context" targetRuntime="MyBatis3">
+
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/pay_206so_com?useSSL=false"
+                        userId="root"
+                        password="123456">
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="true"/>
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="com.so206.po"
+                            targetProject="/Users/jdh/IdeaProjects/demo1/src/main/java">
+            <property name="enableSubPackages" value="false"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="mapper" targetProject="/Users/jdh/IdeaProjects/demo1/src/main/resources">
+            <property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.so206.mapper"
+                             targetProject="/Users/jdh/IdeaProjects/demo1/src/main/java">
+            <property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
+
+
+        <!--<table tableName="system_config"/>-->
+        <!--<table tableName="system_notice"/>-->
+        <!--<table tableName="system_order" />-->
+        <!--<table tableName="system_sett" />-->
+        <!--<table tableName="system_user" />-->
+        <table tableName="system_web"/>
+        <!--<table tableName="system_doc"/>-->
+        <!--<table tableName="transfer_account"/>-->
+        <!--<table tableName="system_domain"/>-->
+        <!--<table tableName="put_forward_config"/>-->
+        <!--<table tableName="put_forward"/>-->
+        <!--<table tableName="sys_function"/>-->
+        <!--<table tableName="sys_role"/>-->
+        <!--<table tableName="sys_role_function"/>-->
+        <!--<table tableName="sys_user_role"/>-->
+        <!--<table tableName="system_vip"/>-->
+        <!--<table tableName="system_pay_config"/>-->
+        <!--<table tableName="sys_extension"/>-->
+    </context>
+</generatorConfiguration>

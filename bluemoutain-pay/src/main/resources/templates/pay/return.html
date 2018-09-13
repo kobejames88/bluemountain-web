@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html class="signin no-js" lang="zh_CN">
+<head>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <title>${config.siteName!}-正在返回</title>
+    <meta name="keywords" content="${config.keywords!}">
+    <meta name="description" content="${config.decText!}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/static/css/register.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/static/css/font.css">
+    <link rel="stylesheet" href="/static/css/xadmin.css">
+    <script src="/static/js/jquery-1.11.3.min.js"></script>
+    <style>
+        .login-bg {
+            background: url(/static/images/bg.png) no-repeat center;
+            background-size: cover;
+            overflow: hidden;
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="login-bg">
+<h3 style="font-size: 40px;color: greenyellow;padding-top: 80px;">正在返回,请稍后...</h3><br>
+</body>
+<script>
+
+    window.onload = to_pay();
+
+    function to_pay() {
+        window.location.href = '${redirect_url!}';
+    }
+
+</script>
+</html>
+

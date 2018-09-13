@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>${config.siteName!} - 会员购买与续费</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.9">
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="/static/css/index.css">
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <script type="text/javascript" charset="utf-8" src="/static/js/jquery-1.11.3.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="https://open.mobile.qq.com/sdk/qqapi.js?_bid=152"></script>
+    <!--<script src="/static/js/qq.js"></script>-->
+</head>
+<body background="/static/images/bg1.jpg">
+<div class="container" style="padding-top:20px;">
+    <div class="col-xs-12 col-sm-10 col-lg-8 center-block" style="float: none;">
+        <div class="panel panel-primary">
+            <div class="panel-body">
+                <center>
+                    <form id="submitsss" action="/admin/ch/pay2" method="post">
+                        <input type="hidden" name="title" value="${config.siteName!}">
+                        <input type="hidden" name="payType" value="1" id="fewfew">
+                        <input type="hidden" name="uid" value="${user.id!}">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-barcode"></span> 单号:
+                            </span>
+                            <input type="text" size="30" name="outOrderId" value=""
+                                   class="form-control" id="dehwjnkdhbefiebdw" readonly/>
+                        </div>
+                        <br/>
+                        <%if(isEmpty(vip!)){%>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-shopping-cart"></span> 商品:
+                                </span>
+                                <input type="text" size="30" name="context" value="等待中,剩余1分钟...." class="form-control"
+                                       required="required" readonly/>
+                            </div>
+                            <br/>
+                        <%}else{%>
+                            <%if(vip.status! == 1){%>
+                                <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-shopping-cart"></span> VIP:
+                                        </span>
+                                    <input type="text" size="30" name="context" value="${vip.endTime!,dateFormat='yyyy-MM-dd HH:mm:ss'}&nbsp;到期" class="form-control"
+                                           required="required" readonly/>
+                                </div>
+                                <br/>
+                                <div class="input-group">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-shopping-cart"></span> 商品:
+                                </span>
+                                    <input type="text" size="30" name="context" value="续费会员" class="form-control"
+                                           required="required" readonly/>
+                                </div>
+                                <br/>
+                            <%}else{%>
+                                <div class="input-group">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-shopping-cart"></span> 商品:
+                                </span>
+                                    <input type="text" size="30" name="context" value="开通会员" class="form-control"
+                                           required="required" readonly/>
+                                </div>
+                                <br/>
+                            <%}%>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-shopping-cart"></span>单价:
+                                </span>
+                                <input type="text" size="30" value="${config.vipSale!}元&nbsp;/&nbsp;<%if(config.vipMethod! == 0){%>天<%}else{%>月(30天)<%}%>" class="form-control"
+                                       required="required" readonly/>
+                            </div>
+                            <br/>
+                            <div class="input-group">
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-shopping-cart"></span> PID:
+                            </span>
+                                <input type="text" size="30" value="${user.id!}" class="form-control"
+                                       required="required" readonly/>
+                            </div>
+                            <br/>
+                            <div class="input-group">
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-shopping-cart"></span> 用户:
+                            </span>
+                                <input type="text" size="30" value="${user.user!}" class="form-control"
+                                       required="required" readonly/>
+                            </div>
+                            <br/>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-yen"></span> 金额
+                                </span>
+                                <input type="text" size="30" name="price" value="${config.vipSale!}" class="form-control"
+                                       required="required" id="pricewdewds" readonly/>
+                            </div>
+                            <br/>
+                            <div class="input-group">
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-yen"></span> 数量</span>
+                                <span class="input-group-btn">
+                                    <input id="num_min" onclick="sub_num()" type="button" class="btn btn-info" style="border-radius: 0px;" value="━">
+                                </span>
+                                <input id="chNum" name="chNum" class="form-control" type="number" min="1" value="1">
+                                <span class="input-group-btn">
+                                    <input id="num_add" onclick="add_num()" type="button" class="btn btn-info" style="border-radius: 0px;" value="✚">
+                                </span>
+                            </div>
+                            <br/>
+                            <center>
+                                <div class="alert alert-warning">选择一种方式进行购买</div>
+                            </center>
+                            <center>
+                                <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                                    <div class="btn-group" role="group">
+                                        <button type="radio" name="payType1" class="btn btn-primary"
+                                                onclick="submit_ajax(2)">支付宝
+                                        </button>
+                                    </div>
+                                    <div class="btn-group" role="group">
+                                        <button type="radio" name="payType1" class="btn btn-danger"
+                                                onclick="submit_ajax(3)">QQ
+                                        </button>
+                                    </div>
+                                    <div class="btn-group" role="group">
+                                        <button type="radio" name="payType1" class="btn btn-info" onclick="submit_ajax(1)">
+                                            微信
+                                        </button>
+                                    </div>
+                                </div>
+                            </center>
+                        <%}%>
+                    </form>
+                </center>
+            </div>
+        </div>
+    </div>
+    <p style="text-align:center">&copy; Powered by <a href="${config.httpUrl!}">${config.siteName!}</a>!</p>
+</div>
+</body>
+<script>
+
+    var d_price = ${config.vipSale!};
+
+    $(function () {
+        $.post("/quickpass/orderid",
+            {"times": new Date().getTime()},
+            function (data) {
+                $("#dehwjnkdhbefiebdw").val(data.oid);
+            }, "json");
+    });
+
+    function submit_ajax(id) {
+        $("#fewfew").val(id);
+        $("#submitsss").submit();
+    }
+    
+    function add_num() {
+        var num = $("#chNum").val();
+        num++;
+        $("#chNum").val(num);
+        $("#pricewdewds").val(d_price * num);
+    }
+    
+    function sub_num() {
+        var num = $("#chNum").val();
+        num--;
+        if (num >0){
+            $("#chNum").val(num);
+            $("#pricewdewds").val(d_price * num);
+        }
+    }
+
+</script>
+</html>

@@ -1,0 +1,75 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.bluemoutain.plugins.FileManagerUpload",
+      "name": "fdfs",
+      "type": "com.bluemoutain.plugins.FileManagerUpload"
+    },
+    {
+      "sourceType": "com.bluemoutain.plugins.fastdfs.FastDfsUtil",
+      "name": "fdfs",
+      "type": "com.bluemoutain.plugins.fastdfs.FastDfsUtil"
+    },
+    {
+      "sourceType": "com.bluemoutain.config.DruidConfiguration",
+      "name": "spring.datasource.druid",
+      "sourceMethod": "dataSource()",
+      "type": "javax.sql.DataSource"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.bluemoutain.plugins.FileManagerUpload",
+      "name": "fdfs.base-path",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.bluemoutain.plugins.fastdfs.FastDfsUtil",
+      "name": "fdfs.connection-pool",
+      "type": "com.bluemoutain.plugins.fastdfs.ConnectionPool"
+    },
+    {
+      "sourceType": "com.bluemoutain.plugins.FileManagerUpload",
+      "defaultValue": 0,
+      "name": "fdfs.enable",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "com.bluemoutain.plugins.fastdfs.FastDfsUtil",
+      "defaultValue": 0,
+      "name": "fdfs.enable",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "com.bluemoutain.plugins.fastdfs.FastDfsUtil",
+      "defaultValue": "localhost:22122",
+      "name": "fdfs.fdfsserver",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.bluemoutain.plugins.fastdfs.FastDfsUtil",
+      "defaultValue": 300,
+      "name": "fdfs.max-pool-size",
+      "type": "java.lang.Long"
+    },
+    {
+      "sourceType": "com.bluemoutain.plugins.fastdfs.FastDfsUtil",
+      "defaultValue": 100,
+      "name": "fdfs.min-pool-size",
+      "type": "java.lang.Long"
+    },
+    {
+      "sourceType": "com.bluemoutain.plugins.fastdfs.FastDfsUtil",
+      "defaultValue": 0,
+      "name": "fdfs.now-pool-size",
+      "type": "java.lang.Long"
+    },
+    {
+      "sourceType": "com.bluemoutain.plugins.fastdfs.FastDfsUtil",
+      "defaultValue": 200,
+      "name": "fdfs.wait-times",
+      "type": "java.lang.Long"
+    }
+  ]
+}

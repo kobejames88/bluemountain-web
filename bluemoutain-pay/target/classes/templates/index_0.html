@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <title>${config.siteName!}-免签约支付平台</title>
+    <meta name="keywords" content="${config.keywords!}">
+    <meta name="description" content="${config.decText!}">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/reset.css">
+    <link rel="stylesheet" href="/static/css/animate.css">
+    <link rel="stylesheet" href="/static/css/swiper.css">
+    <link rel="stylesheet" href="/static/css/flexslider.css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/css/app.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/amazeui.min.css">
+    <script type="text/javascript" charset="utf-8" src="/static/js/jquery-1.11.3.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="https://open.mobile.qq.com/sdk/qqapi.js?_bid=152"></script>
+    <script src="/static/js/qq.js"></script>
+</head>
+<body class="landing">
+<div id="page-wrapper">
+    <header id="header" class="reveal">
+        <h1><a href="${config.httpUrl!}">${config.siteName!}</a></h1>
+        <nav id="nav">
+            <ul>
+                <li style="white-space: nowrap;"><a href="/index.do">首页</a></li>
+                <li style="white-space: nowrap;"><a href="/quickpass" target="_blank">在线测试</a></li>
+                <li style="white-space: nowrap;"><a href="/doc.do" target="_blank">开发文档</a></li>
+                <li class="opener" style="user-select: none; cursor: pointer; white-space: nowrap;">
+                    <a href="/" class="icon fa-angle-down">联系我们</a>
+                    <ul class="" style="user-select: none; display: none; position: absolute;">
+                        <li style="white-space: nowrap;">
+                            <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=${config.kfqq!}&amp;site=qq&amp;menu=yes"
+                               style="display: block;" target="_blank">联系QQ</a></li>
+                        <li style="white-space: nowrap;">
+                            <a href="${config.qunUrl!}" target="_blank" style="display: block;">加入QQ群</a>
+                        </li>
+
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <section id="banner">
+        <p><h3 style="font-size: 40px;">${config.siteName!} - 免签约支付平台</h3></p>
+        <p style="font-size: 22px;">提供免签约支付宝、QQ钱包、微信支付API接口.</p>
+        <p>
+            当前系统交易费率:<span style="color: red">${config.payStaff1! * 100}%</span> &nbsp;
+            提现:<span style="color: greenyellow;">${config.payStaff2! * 100}%</span>
+        </p>
+        <ul class="actions">
+            <li><a href="/register" class="button special">申请接入</a></li>
+            <li><a href="/admin/login" class="button">登录商户</a></li>
+        </ul>
+    </section>
+</div>
+
+<div class="section section-services" align="center">
+    <div class="title-block title-sub">
+        <h3 class="title-big">
+            我们的优势
+        </h3>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="service-block service-left">
+                    <div class="circle-icon feature-icon">
+                        <i class="fa fa-balance-scale"></i></div>
+                    <div class="serv-info">
+                        <h3 class="serv-title">
+                            分布执行</h3>
+                        <p class="serv-desc">
+                            程序深度优化，支付无延迟 </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="service-block service-left">
+                    <div class="circle-icon feature-icon">
+                        <i class="fa fa-user-circle-o"></i></div>
+                    <div class="serv-info">
+                        <h3 class="serv-title">
+                            账号管理 </h3>
+                        <p class="serv-desc">
+                            一账号可多网站接入，人性化 </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="service-block service-left">
+                    <div class="circle-icon feature-icon">
+                        <i class="fa fa-bar-chart"></i></div>
+                    <div class="serv-info">
+                        <h3 class="serv-title">
+                            实时监控 </h3>
+                        <p class="serv-desc">
+                            实时监控支付订单状态，0漏单</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="service-block service-left">
+                    <div class="circle-icon feature-icon">
+                        <i class="fa fa-check-circle-o"></i></div>
+                    <div class="serv-info">
+                        <h3 class="serv-title">
+                            安全保证 </h3>
+                        <p class="serv-desc">
+                            本平台敏感信息修改均需密保</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="service-block service-left">
+                    <div class="circle-icon feature-icon">
+                        <i class="fa fa-crosshairs"></i></div>
+                    <div class="serv-info">
+                        <h3 class="serv-title">
+                            T+1提现 </h3>
+                        <p class="serv-desc">
+                            T+1提现机制，让您的资金有保障！</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="service-block service-left">
+                    <div class="circle-icon feature-icon">
+                        <i class="fa fa-cubes"></i></div>
+                    <div class="serv-info">
+                        <h3 class="serv-title">
+                            高效服务 </h3>
+                        <p class="serv-desc">
+                            7X24小时在线客服随叫随到！</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="section section-funinfo">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-6 col-sm-3">
+                <div class="count-block">
+                    <div class="count-icon animate pulse" style="visibility: visible; animation-name: pulse;">
+                        <i class="fa fa-users"></i>
+                    </div>
+                    <div class="count-amount animate zoomIn" data-from="0" data-to="${totalUser!}"
+                         style="visibility: visible; animation-name: zoomIn;">${totalUser!}
+                    </div>
+                    <div class="count-name">
+                        商户数量
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-3">
+                <div class="count-block">
+                    <div class="count-icon animate pulse" style="visibility: visible; animation-name: pulse;">
+                        <i class="fa fa-bar-chart"></i>
+                    </div>
+                    <div class="count-amount animate zoomIn" data-from="0" data-to="${totalOrder!}"
+                         style="visibility: visible; animation-name: zoomIn;">${totalOrder!}
+                    </div>
+                    <div class="count-name">
+                        订单总数
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-3">
+                <div class="count-block">
+                    <div class="count-icon animate pulse" style="visibility: visible; animation-name: pulse;">
+                        <i class="fa fa-cube"></i>
+                    </div>
+                    <div class="count-amount animate zoomIn" data-from="0" data-to="${countMoney!}"
+                         style="visibility: visible; animation-name: zoomIn;">${countMoney!}
+                    </div>
+                    <div class="count-name">
+                        结算金额
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-3">
+                <div class="count-block">
+                    <div class="count-icon animate pulse" style="visibility: visible; animation-name: pulse;">
+                        <i class="fa fa-cubes"></i>
+                    </div>
+                    <div class="count-amount animate zoomIn" data-from="0" data-to="${tiotalLiushui!}"
+                         style="visibility: visible; animation-name: zoomIn;">${tiotalLiushui!}
+                    </div>
+                    <div class="count-name">
+                        平台流水
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="section section-pricing">
+    <div class="title-block">
+        <div class="title-big">
+            平台合作伙伴
+        </div>
+        <center>
+            <img style="FILTER: gray()" src="/static/images/aliyun.png" width="85">
+            <img style="FILTER: gray()" src="/static/images/qqpay.png" width="85">
+            <img style="FILTER: gray()" src="/static/images/wxpay.png" width="85">
+        </center>
+    </div>
+</div>
+<footer class="footer-bottom">
+    <p class="copyright">
+        Copyright © 2017-2018 All Rights Reserved by <a href="${config.httpUrl!}">${config.copyright!}</a><br>
+        <a href="http://www.miitbeian.gov.cn/">${config.icpInfo!}</a>
+        <audio autoplay="autoplay" height="100" width="100">
+            <source src="">
+        </audio>&nbsp;
+    </p>
+</footer>
+<audio autoplay="autoplay" height="100" width="100" style="display: none;">
+    <source src="${config.music!}" type="audio/mp3"/>
+</audio>
+</body>
+<script src="/static/js/image-loaded.js"></script>
+<script src="/static/js/wow.js"></script>
+<script src="/static/js/swiper.jquery.min.js"></script>
+<script src="/static/js/isotope.pkgd.min.js"></script>
+<script src="/static/js/jquery.countto.js"></script>
+<script src="/static/js/jquery.flexslider.js"></script>
+<script src="/static/js/app.js"></script>
+<script src="/static/js/jquery.dropotron.min.js"></script>
+<script src="/static/js/jquery.scrollgress.min.js"></script>
+<script src="/static/js/skel.min.js"></script>
+<script src="/static/js/util.js"></script>
+<script src="/static/js/main.js"></script>
+</html>

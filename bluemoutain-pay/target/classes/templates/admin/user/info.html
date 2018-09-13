@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户中心</title>
+    <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="/static/css/font.css">
+    <link rel="stylesheet" href="/static/css/xadmin.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <script type="text/javascript" charset="utf-8" src="/static/js/jquery-1.11.3.min.js"></script>
+    <script src="/static/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/static/js/xadmin.js"></script>
+    <!--<link rel="stylesheet" href="//res.layui.com/layui/dist/css/layui.css"  media="all">-->
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="x-nav">
+      <span class="layui-breadcrumb">
+        <a href="/admin/welcomepage">首页</a>
+        <a href="/admin/user/info">
+          <cite>用户中心</cite>
+        </a>
+      </span>
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"
+       href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
+</div>
+<div class="x-body">
+    <blockquote class="layui-elem-quote">欢迎使用在线收款系统,系统当前满${web.settMin!0.00}元可提现,官方交流群： ${web.kfqqq!}</blockquote>
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+        <legend>系统公告</legend>
+        <div class="layui-collapse" lay-filter="test">
+            <%for(o in notices!){%>
+            <div class="layui-colla-item">
+                <h2 class="layui-colla-title">${oLP.index!} . ${o.title!}</h2>
+                <div class="layui-colla-content">
+                    <p>${o.context!}</p>
+                </div>
+            </div>
+            <%}%>
+        </div>
+    </fieldset>
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+        <legend>用户信息</legend>
+        <div class="layui-field-box">
+            <table class="layui-table" lay-even>
+                <thead>
+                <tr>
+                    <th>订单总数</th>
+                    <th>已退款金额</th>
+                    <th>已结算金额</th>
+                    <th>商户余额(当前费率:交易:${model.payStaff! * 100}%/提现:${model.settStaff! * 100}%)</th>
+                    <th>VIP秒到套餐费率(交易:${model.vipPayStaff! * 100}%/提现:${model.vipSettStaff! * 100}%)</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>${ordercount1!0}</td>
+                    <td>${moneyCount3!0.00}</td>
+                    <td>${settcount!0}<span style="color: dodgerblue;"></span></td>
+                    <td>${uuser.balnes!0.00}&nbsp;<span style="color: dodgerblue;">(已扣除${model.payStaff! * 100}%交易费率)
+                         &nbsp;&nbsp;
+                        <a href="javascript:void(0);" onclick="req_change_money()"><span style="color:blue;font-size: 16px;">充值</span></a>
+                        &nbsp;
+                        <a href="javascript:void(0);" onclick="req_sett()"><span style="color: darkred;font-size: 16px;">提现</span></a>
+                    </span></td>
+                    <td>
+                        <%if(isEmpty(vip!)){%>
+                            <span style="color: red;" >等待中,剩余1分钟...</span>
+                        <%}else{%>
+                            <%if(vip.status! == 1){%>
+                                <span style="color: red;">到期:</span>
+                                <span style="color: #0a6999;">${vip.endTime!,dateFormat='yyyy-MM-dd HH:mm:ss'}</span>
+                                &nbsp;&nbsp;
+                                <a href="javascript:void(0);" onclick="buy_vip()"><span style="color:blue;font-size: 16px;">续费</span></a>
+                            <%}else{%>
+                                <span style="color: red;">到期:</span>
+                                <span style="color: #0a6999;">未开通,剩余体验次数:${vip.experienceNum!}</span>
+                                &nbsp;&nbsp;
+                                <a href="javascript:void(0);" onclick="vip_test()"><span style="color:blue;font-size: 16px;">点此体验</span></a>
+                                &nbsp;
+                                <a href="javascript:void(0);" onclick="buy_vip()"><span style="color: darkred;font-size: 16px;">开通</span></a>
+                            <%}%>
+                        <%}%>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>支付宝支付:</td>
+                    <td><%if(model.payAlipay! ==0 ){%>支付宝官方<%}else if(model.payAlipay! ==1 ){%>易支付<%} else if(model.payAlipay! ==2){%>码支付<%}else{%>无权限<%}%></td>
+                    <td>微信支付:</td>
+                    <td><%if(model.payWxpay! ==0 ){%>微信官方<%}else if(model.payWxpay! ==1 ){%>易支付<%} else if(model.payWxpay! ==2){%>码支付<%}else{%>无权限<%}%></td>
+                    <td>QQ支付:<%if(model.payQqpay! ==0 ){%>QQ官方<%}else if(model.payQqpay! ==1 ){%>易支付<%} else if(model.payQqpay! ==2){%>码支付<%}else{%>无权限<%}%></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </fieldset>
+    <fieldset class="layui-elem-field" style="margin-top: 20px;">
+        <legend>基本资料</legend>
+        <form class="layui-form" id="add_cedew" onsubmit="return false;">
+            <div class="layui-form-item">
+                <div class="layui-inline ">
+                    <label class="layui-form-label">用户ID:</label>
+                    <div class="layui-input-inline">
+                        <input type="tel" name="number" value="${model.id!}" autocomplete="off" class="layui-input"
+                               disabled>
+                    </div>
+                </div>
+                <div class="layui-inline ">
+                    <label class="layui-form-label">登录名:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="text" value="${model.user!}" autocomplete="off" class="layui-input "
+                               disabled>
+                    </div>
+                </div>
+                <div class="layui-inline ">
+                    <label class="layui-form-label">注册时间:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="text" value="${model.cresteTime!,dateFormat='yyyy-MM-dd HH:mm:ss'}"
+                               autocomplete="off" class="layui-input " disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline ">
+                    <label class="layui-form-label">姓名:</label>
+                    <div class="layui-input-inline">
+                        <input type="tel" name="text" value="${model.showname!}" autocomplete="off" class="layui-input"
+                               disabled>
+                    </div>
+                </div>
+                <div class="layui-inline ">
+                    <label class="layui-form-label">邮箱:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="email" value="${model.email!}" autocomplete="off" class="layui-input "
+                               disabled>
+                    </div>
+                </div>
+                <div class="layui-inline ">
+                    <label class="layui-form-label">登录时间:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="text" value="${model.lastLoginTime!,dateFormat='yyyy-MM-dd HH:mm:ss'}"
+                               autocomplete="off" class="layui-input " disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item layui-col-md10">
+                <label class="layui-form-label">商户秘钥:</label>
+                <div class="layui-input-block">
+                    <input type="text" name="title" autocomplete="off" value="${model.appkey!}" class="layui-input"
+                           disabled>
+                </div>
+            </div>
+        </form>
+    </fieldset>
+    <fieldset class="layui-elem-field" style="margin-top: 20px;">
+        <legend>推广返利</legend>
+        <div class=" layui-col-md11" style="padding-left: 15px;">
+            <blockquote class="layui-elem-quote layui-quote-nm"><h3>简要说明:</h3>
+                1.系统推广返利已
+                <%if(web.extenStatus!1 == 1 ){%>
+                <span style="color: green;font-size: 15px;">开启</span>
+                <%}else{%>
+                <span style="color: red;font-size: 15px;">关闭</span>
+                <%}%>
+                <br>2.请勿刷注册,否则将清空推广佣金.
+                <br>3.将您的推广链接分享给其他朋友,社区,论坛, 博客或赞助链接每位通过您推广链接成功注册的用户,您将获得${web.extenMinMoney!0.00}&nbsp;-&nbsp;${web.extenMaxMoney!0.00}元之间的随机金额,推广返利数据统计都是时实的.
+                <br>4.虽然显得微不足道,日夜累加,积少成多,您不需要做任何事情就有收入,动动手指就能赚到钱,还纠结啥,赶快行动吧!
+                <br>5.推荐返利用户通过审核后,资金将会存入用户余额,推荐列表详见:返利详情.
+            </blockquote>
+        </div>
+        <form class="layui-form" id="tgfl" onsubmit="return false;">
+            <div class="layui-form-item">
+                <div class="layui-inline ">
+                    <label class="layui-form-label">推广返利:</label>
+                    <div class="layui-input-inline">
+                        <input type="tel"  value="${ex_money!0.00}元" autocomplete="off" class="layui-input"
+                               disabled>
+                    </div>
+                </div>
+                <div class="layui-inline ">
+                    <label class="layui-form-label">推广人数:</label>
+                    <div class="layui-input-inline">
+                        <input type="text"  value="${ex_num!0}人" autocomplete="off" class="layui-input "
+                               disabled>
+                    </div>
+                </div>
+                <div class="layui-inline ">
+                    <label class="layui-form-label">已提现:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" value="${ex_money2!0.00}元" class="layui-input " disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline layui-col-md8">
+                    <label class="layui-form-label">推广链接:</label>
+                    <div class="layui-input-block">
+                        <input type="text"  value="${web.httpUrl!}/register?e=${ex_key!}" class="layui-input" disabled>
+                    </div>
+                </div>
+                <div class="layui-inline layui-col-md3">
+                    <div class="layui-input-block">
+                        <button class="layui-btn layui-btn-danger" data-clipboard-text="${web.httpUrl!}/register?e=${ex_key!}" id="copy-btn">复制链接</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </fieldset>
+</div>
+</body>
+<script src="/static/js/clipboard.min.js"></script>
+<script>
+
+    layui.use('element', function(){
+        var element = layui.element;
+    });
+
+
+    layui.use(['form', 'layer'], function () {
+        $ = layui.jquery;
+    });
+
+    var clipboard = new Clipboard('#copy-btn');
+
+    clipboard.on('success', function(e) {
+        layer.msg('复制成功');
+    });
+
+    clipboard.on('error', function(e) {
+        layer.msg('复制失败，请长按链接后手动复制');
+    });
+
+
+    function req_sett() {
+        layer.confirm("确认要结算吗", {title: "结算确认"}, function (index) {
+            layer.close(index);
+            $.post("/admin/user/req_sett",
+                null,
+                function (data) {
+                    if(data.code == -1){
+                        layer.alert(data.msg, {icon: 6}, function () {
+                            location.reload();
+                        });
+                    }else if(data.code == 0){
+                        layer.alert(data.msg, {icon: 6}, function () {
+                            location.reload();
+                        });
+                    }else if(data.code == -2){
+                        layer.alert("处理失败,稍后重试!", {icon: 6}, function () {
+                            location.reload();
+                        });
+                    }else{
+                        layer.alert("未知错误,稍后重试!", {icon: 6}, function () {
+                            location.reload();
+                        });
+                    }
+                }, "json");
+        });
+    }
+    
+    function req_change_money() {
+        var width = Math.round((window.screen.width - 800) / 2);
+        var height = Math.round((window.screen.height - 600) / 2);
+        window.open('/admin/ch/index',
+            '账户余额充值',
+            'height=600, width=800, top=' + height + ',left=' + width + ',toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no');
+    }
+
+    function buy_vip() {
+        var width = Math.round((window.screen.width - 800) / 2);
+        var height = Math.round((window.screen.height - 600) / 2);
+        window.open('/admin/ch/vip_buy',
+            '账户余额充值',
+            'height=600, width=800, top=' + height + ',left=' + width + ',toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no');
+    }
+    
+    function vip_test() {
+        var width = Math.round((window.screen.width - 800) / 2);
+        var height = Math.round((window.screen.height - 600) / 2);
+        window.open('/admin/ch/vip_mode_test',
+            'vip套餐体验',
+            'height=600, width=800, top=' + height + ',left=' + width + ',toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no');
+    }
+</script>
+</html>

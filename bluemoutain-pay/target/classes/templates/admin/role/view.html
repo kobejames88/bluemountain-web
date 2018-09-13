@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>查看角色</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
+    <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="/static/css/font.css">
+    <link rel="stylesheet" href="/static/css/xadmin.css">
+    <script type="text/javascript" charset="utf-8" src="/static/js/jquery-1.11.3.min.js"></script>
+    <script src="/static/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/static/js/xadmin.js"></script>
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="/static/js/jstree/themes/default/style.min.css"/>
+    <script src="/static/js/jstree/jstree.min.js"></script>
+</head>
+<body>
+<div class="x-body">
+    <form class="layui-form" id="dwedwdefefefewfewdewdew" onsubmit="return false;">
+        <div class="layui-form-item">
+            <div class="layui-inline layui-col-md5">
+                <label class="layui-form-label">角色:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="roleName" value="${model.roleName!}" class="layui-input" autocomplete="yes" readonly>
+                </div>
+            </div>
+            <div class="layui-inline layui-col-md5">
+                <label class="layui-form-label">描述:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="roleDescp" value="${model.roleDescp!}" class="layui-input" autocomplete="yes" readonly>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline layui-col-md5">
+                <label class="layui-form-label"></label>
+                <div class="layui-input-inline" style="text-align: center;padding-top: 20px;">
+                    <br>
+                    <span style="color: #00F7DE;font-size: 18px;">右边为当前账户所拥有的权限</span>
+                    <br><br>
+                    <span style="color: #0a6aa1;font-size: 18px;">打钩为已开通权限</span>
+                </div>
+            </div>
+            <div class="layui-inline layui-col-md5">
+                <label class="layui-form-label"></label>
+                <div class="layui-input-inline" >
+                    <div id="jsTreeMenu" style="padding-top: 20px;"></div>
+                </div>
+            </div>
+        </div>
+        <div style="height: 50px;"></div>
+        <div class="layui-form-item">
+            <div class="layui-col-md6" style="text-align: center;">
+                <div style="width: 40px;"></div>
+                <button class="layui-btn layui-btn-danger" onclick="x_admin_close()">关闭</button>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+<script>
+
+    $(function () {
+        $(function () {
+            var jsTreeMenu;
+            jsTreeMenu = $("#jsTreeMenu").jstree({
+                plugins: ["wholerow", "checkbox"],
+                core: {
+                    data:${menu_all}
+                },
+                checkbox: {
+                    three_state: true,
+                    cascade: 'down'
+                }
+            }).on("hover_node.jstree", function (e, data) {
+
+            }).on("dehover_node.jstree", function (e, data) {
+
+            }).bind("loaded.jstree", function () {
+            });
+        });
+
+    });
+
+
+
+</script>
+</html>

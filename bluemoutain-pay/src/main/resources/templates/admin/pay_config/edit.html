@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>支付配置</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
+    <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="/static/css/font.css">
+    <link rel="stylesheet" href="/static/css/xadmin.css">
+    <script type="text/javascript" charset="utf-8" src="/static/js/jquery-1.11.3.min.js"></script>
+    <script src="/static/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/static/js/xadmin.js"></script>
+</head>
+<body>
+<div class="x-nav">
+      <span class="layui-breadcrumb">
+        <a href="/admin/welcomepage">首页</a>
+       <a href="javascript:window.location.reload();">
+          <cite>支付配置</cite>
+        </a>
+      </span>
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"
+       href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
+</div>
+<div class="x-body">
+    <blockquote class="layui-elem-quote">
+        提示:请在此处配置邮件发送,各平台支付信息,证书配置,请仔细填写!
+    </blockquote>
+    <fieldset class="layui-elem-field layui-col-md11 " style="margin-top: 10px;">
+        <legend>系统通用设置</legend>
+        <div style="height: 20px;"></div>
+        <form class="layui-form layui-col-md-offset1" onsubmit="return false;" id="fthyhjj">
+            <input type="hidden" name="id" value="${model.id!}">
+            <div class="layui-form-item ">
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label">邮件服务器:</label>
+                    <div class="layui-input-inline">
+                        <input type="tel" name="mailHost" autocomplete="off" value="${model.mailHost!}"
+                               class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label">邮件端口:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="mailPost" value="${model.mailPost!}" autocomplete="off"
+                               class="layui-input " disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label">邮件账号:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="mailUser" value="${model.mailUser!}" autocomplete="off"
+                               class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label">邮件密码:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="mailPw" value="${model.mailPw!}" autocomplete="off"
+                               class="layui-input">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label">支付回跳地址:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="retDomain" autocomplete="" value="${model.retDomain!}"
+                               class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label"></label>
+                    <div class="layui-input-inline">
+                        <button class="layui-btn layui-col-md-offset4" onclick="update_info('fthyhjj')">保存信息</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </fieldset>
+    <fieldset class="layui-elem-field layui-col-md11 " style="margin-top: 10px;">
+        <legend>易支付(微信)对接配置</legend>
+        <div style="height: 20px;"></div>
+        <form class="layui-form layui-col-md-offset1" onsubmit="return false;" id="dedefegefeffefewfw">
+            <input type="hidden" name="id" value="${model.id!}">
+            <div class="layui-form-item">
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label">易支付ID:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="epayId" value="${model.epayId!}" autocomplete="off"
+                               class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label">易支付KEY:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="epayKey" value="${model.epayKey!}" autocomplete="off"
+                               class="layui-input ">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label">易支付接口:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="epayApi" value="${model.epayApi!}" autocomplete="off"
+                               class="layui-input">&nbsp;
+                    </div>
+                </div>
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label"></label>
+                    <div class="layui-input-inline">
+                        <button class="layui-btn layui-col-md-offset4" onclick="update_info('dedefegefeffefewfw')">
+                            保存信息
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </fieldset>
+    <fieldset class="layui-elem-field layui-col-md11 " style="margin-top: 10px;">
+        <legend>易支付(支付宝)对接配置</legend>
+        <div style="height: 20px;"></div>
+        <form class="layui-form layui-col-md-offset1" onsubmit="return false;" id="dedefegefeffefewfw2">
+            <input type="hidden" name="id" value="${model.id!}">
+            <div class="layui-form-item">
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label">易支付ID:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="epayId2" value="${model.epayId2!}" autocomplete="off"
+                               class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label">易支付KEY:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="epayKey2" value="${model.epayKey2!}" autocomplete="off"
+                               class="layui-input ">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label">易支付接口:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="epayApi2" value="${model.epayApi2!}" autocomplete="off"
+                               class="layui-input">&nbsp;
+                    </div>
+                </div>
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label"></label>
+                    <div class="layui-input-inline">
+                        <button class="layui-btn layui-col-md-offset4" onclick="update_info('dedefegefeffefewfw2')">
+                            保存信息
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </fieldset>
+    <fieldset class="layui-elem-field layui-col-md11 " style="margin-top: 10px;">
+        <legend>易支付(QQ钱包)对接配置</legend>
+        <div style="height: 20px;"></div>
+        <form class="layui-form layui-col-md-offset1" onsubmit="return false;" id="dedefegefeffefewfw1">
+            <input type="hidden" name="id" value="${model.id!}">
+            <div class="layui-form-item">
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label">易支付ID:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="epayId3" value="${model.epayId3!}" autocomplete="off"
+                               class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label">易支付KEY:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="epayKey3" value="${model.epayKey3!}" autocomplete="off"
+                               class="layui-input ">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label">易支付接口:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="epayApi3" value="${model.epayApi3!}" autocomplete="off"
+                               class="layui-input">&nbsp;
+                    </div>
+                </div>
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label"></label>
+                    <div class="layui-input-inline">
+                        <button class="layui-btn layui-col-md-offset4" onclick="update_info('dedefegefeffefewfw1')">
+                            保存信息
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </fieldset>
+    <fieldset class="layui-elem-field layui-col-md11 " style="margin-top: 10px;">
+        <legend>支付宝对接配置</legend>
+        <div style="height: 20px;"></div>
+        <form class="layui-form layui-col-md-offset1" onsubmit="return false;" id="ferfrgtr">
+            <input type="hidden" name="id" value="${model.id!}">
+            <div class="layui-form-item">
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label">商户ID:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="alipayParther" value="${model.alipayParther!}" autocomplete="off"
+                               class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label">开放平台ID:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="alipayOpenAppId" value="${model.alipayOpenAppId!}" autocomplete="off"
+                               class="layui-input ">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item layui-col-md10">
+                <label class="layui-form-label">支付宝公钥:</label>
+                <div class="layui-input-block">
+                    <input type="text" name="alipayOpenPublicKey" autocomplete="" value="${model.alipayOpenPublicKey!}"
+                           class="layui-input"
+                    >
+                </div>
+            </div>
+            <div class="layui-form-item layui-col-md10">
+                <label class="layui-form-label">应用秘钥:</label>
+                <div class="layui-input-block">
+                    <input type="text" name="alipayOpenPrivateKey" autocomplete=""
+                           value="${model.alipayOpenPrivateKey!}" class="layui-input"
+                    >
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn layui-col-md-offset4" onclick="update_info('ferfrgtr')">保存信息</button>
+                </div>
+            </div>
+        </form>
+    </fieldset>
+    <fieldset class="layui-elem-field layui-col-md11 " style="margin-top: 10px;">
+        <legend>微信支付对接配置</legend>
+        <div style="height: 20px;"></div>
+        <form class="layui-form layui-col-md-offset1" onsubmit="return false;" id="dewdfewfefwe">
+            <input type="hidden" name="id" value="${model.id!}">
+            <div class="layui-form-item">
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label">商户ID:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="wxpayMchId" value="${model.wxpayMchId!}" autocomplete="off"
+                               class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label">商户秘钥:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="wxpayPaternerKey" value="${model.wxpayPaternerKey!}" autocomplete="off"
+                               class="layui-input ">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label">公众号APPID:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="wxpayAppId" value="${model.wxpayAppId!}" autocomplete="off"
+                               class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label">公众号秘钥:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="wxpayAppsecrt" value="${model.wxpayAppsecrt!}" autocomplete="off"
+                               class="layui-input">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label">移动支付:</label>
+                    <div class="layui-input-inline">
+                        <select name="wxMpayMode"  lay-filter="level">
+                            <option value="0" <%if(model.wxMpayMode!1 == 0 ){%>selected<%}%> >微信H5支付</option>
+                            <option value="1" <%if(model.wxMpayMode!1 == 1 ){%>selected<%}%> >公众号WAP支付</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label"></label>
+                    <div class="layui-input-inline">
+                        <button class="layui-btn" onclick="update_info('dewdfewfefwe')">保存信息</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </fieldset>
+    <fieldset class="layui-elem-field layui-col-md11 " style="margin-top: 10px;">
+        <legend>QQ钱包对接配置</legend>
+        <div style="height: 20px;"></div>
+        <form class="layui-form layui-col-md-offset1" onsubmit="return false;" id="ewdew32332">
+            <input type="hidden" name="id" value="${model.id!}">
+            <div class="layui-form-item">
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label">商户ID:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="qqpayMchId" value="${model.qqpayMchId!}" autocomplete="off"
+                               class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label">商户KEY:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="qqpayPrivateKey" value="${model.qqpayPrivateKey!}" autocomplete="off"
+                               class="layui-input ">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label">商户密码:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="qqpayPw" value="${model.qqpayPw!}" autocomplete="off"
+                               class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label"></label>
+                    <div class="layui-input-inline">
+                        <button class="layui-btn layui-col-md-offset4" onclick="update_info('ewdew32332')">保存信息</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </fieldset>
+    <fieldset class="layui-elem-field layui-col-md11 " style="margin-top: 10px;">
+        <legend>官方接口API证书(P12格式)</legend>
+        <div style="height: 20px;"></div>
+        <form class="layui-form layui-col-md-offset1" onsubmit="return false;" id="vfctctt">
+            <input type="hidden" name="id" value="${model.id!}">
+            <div class="layui-form-item">
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label">QQAPI证书:</label>
+                    <div class="layui-input-inline">
+                        <%if(model.qqpayApiCert! ==null){%>
+                        <span>未上传</span>
+                        <button class="layui-btn layui-col-md-offset4" id="fileselect1" >上传</button>
+                        <%}else{%>
+                        <span>已上传</span>
+                        <button class="layui-btn layui-col-md-offset4" id="fileselect1" >更改</button>
+                        <%}%>
+                    </div>
+                </div>
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label">微信API证书:</label>
+                    <div class="layui-input-inline">
+                        <%if(model.wxpayApiCert! ==null){%>
+                        <span>未上传</span>
+                        <button class="layui-btn layui-col-md-offset4" id="fileselect2" >上传</button>
+                        <%}else{%>
+                        <span>已上传</span>
+                        <button class="layui-btn layui-col-md-offset4" id="fileselect2" >更改</button>
+                        <%}%>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </fieldset>
+    <fieldset class="layui-elem-field layui-col-md11 " style="margin-top: 10px;">
+        <legend>码支付对接配置(codepay.fateqq.com)</legend>
+        <div style="height: 20px;"></div>
+        <form class="layui-form layui-col-md-offset1" onsubmit="return false;" id="dedefegefeffefewfw22">
+            <input type="hidden" name="id" value="${model.id!}">
+            <div class="layui-form-item">
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label">码支付ID:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="codepayId" value="${model.codepayId!}" autocomplete="off"
+                               class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label">通信秘钥:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="codepayKey" value="${model.codepayKey!}" autocomplete="off"
+                               class="layui-input ">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label">下单接口:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="codepayApi" value="${model.codepayApi!}" autocomplete="off"
+                               class="layui-input">&nbsp;
+                    </div>
+                </div>
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label">接口兼容:</label>
+                    <div class="layui-input-inline">
+                        <input type="text"  value="易支付"  autocomplete="off"
+                               class="layui-input" readonly>&nbsp;
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn layui-col-md-offset4" onclick="update_info('dedefegefeffefewfw22')">保存信息</button>
+                </div>
+            </div>
+        </form>
+    </fieldset>
+    <div style="height: 20px;"></div>
+</div>
+</body>
+<script src="/static/js/ajaxupload.js"></script>
+<script>
+    $(function () {
+        layui.use(['form', 'layer'], function () {
+            $ = layui.jquery;
+            var form = layui.form;
+
+        });
+
+        new AjaxUpload('#fileselect1', {
+            action: '/admin/payConfig/cert_update',
+            name: 'picFile',
+            responseType: 'json',
+            data: {"id": 1, "type": 1},
+            onSubmit: function (file, ext) {},
+            onComplete: function (file, response) {
+                if (response.code == 0) {
+                    layer.alert(response.msg, {icon: 6}, function () {
+                        window.location.reload();
+                        var index = parent.layer.getFrameIndex(window.name);
+                        parent.layer.close(index);
+                    });
+                }
+            }
+        });
+
+        new AjaxUpload('#fileselect2', {
+            action: '/admin/payConfig/cert_update',
+            name: 'picFile',
+            responseType: 'json',
+            data: {"id": 1, "type": 2},
+            onSubmit: function (file, ext) {},
+            onComplete: function (file, response) {
+                if (response.code == 0) {
+                    layer.alert(response.msg, {icon: 6}, function () {
+                        window.location.reload();
+                        var index = parent.layer.getFrameIndex(window.name);
+                        parent.layer.close(index);
+                    });
+                }
+            }
+        });
+    });
+
+
+    function update_info(obj) {
+        var data = $("#" + obj).serialize();
+        $.post("/admin/payConfig/update",
+            data,
+            function (data) {
+                layer.alert(data.msg, {icon: 6}, function () {
+                    window.location.reload();
+                    var index = parent.layer.getFrameIndex(window.name);
+                    parent.layer.close(index);
+                });
+            }, "json");
+    }
+
+</script>
+</html>

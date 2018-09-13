@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.so206.mapper.ext.SysSettExtMapper">
+    <resultMap id="BaseResultMap" type="com.so206.po.ext.SysSettExt">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="sid" jdbcType="VARCHAR" property="sid"/>
+        <result column="uid" jdbcType="INTEGER" property="uid"/>
+        <result column="sett_pre_money" jdbcType="DECIMAL" property="settPreMoney"/>
+        <result column="sett_sub_money" jdbcType="DECIMAL" property="settSubMoney"/>
+        <result column="sett_final_money" jdbcType="DECIMAL" property="settFinalMoney"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="ok_time" jdbcType="TIMESTAMP" property="okTime"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="opt_user" jdbcType="INTEGER" property="optUser"/>
+        <result column="pre_type" jdbcType="INTEGER" property="preType"/>
+        <result column="ctype" jdbcType="INTEGER" property="ctype"/>
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="BaseResultMap2" type="com.so206.po.ext.SysSettExt">
+        <result column="user" jdbcType="VARCHAR" property="user"/>
+        <result column="pwd" jdbcType="VARCHAR" property="pwd"/>
+        <result column="role" jdbcType="INTEGER" property="role"/>
+        <result column="showName" jdbcType="VARCHAR" property="showname"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="age" jdbcType="INTEGER" property="age"/>
+        <result column="sex" jdbcType="INTEGER" property="sex"/>
+        <result column="creste_time" jdbcType="TIMESTAMP" property="cresteTime"/>
+        <result column="create_ip" jdbcType="VARCHAR" property="createIp"/>
+        <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime"/>
+    </resultMap>
+
+    <select id="findpage" resultMap="BaseResultMap2">
+        select * from system_sett t left join system_user u on t.uid = u.id
+        where 1=1
+        <if test="sid !=null">
+            and t.sid = #{sid}
+        </if>
+        <if test="status !=null">
+            and t.status = #{status}
+        </if>
+        <if test="type != null">
+            and t.pre_type = #{type}
+        </if>
+        <if test="uid !=null">
+            and t.uid = #{uid}
+        </if>
+        order by t.create_time desc
+    </select>
+
+
+</mapper>

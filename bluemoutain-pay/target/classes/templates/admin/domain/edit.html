@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>修改授权</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
+    <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="/static/css/font.css">
+    <link rel="stylesheet" href="/static/css/xadmin.css">
+    <script type="text/javascript" charset="utf-8" src="/static/js/jquery-1.11.3.min.js"></script>
+    <script src="/static/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/static/js/xadmin.js"></script>
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="x-body">
+    <form class="layui-form" id="add_cedew" onsubmit="return false;">
+        <input type="hidden" name="id" value="${model.id!}">
+        <div class="layui-form-item">
+            <label for="domain" class="layui-form-label">
+                <span class="x-red">*</span>顶级域名
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="domain" name="domain" value="${model.domain}" required="" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="nature" class="layui-form-label">
+                <span class="x-red">*</span>备案性质
+            </label>
+            <div class="layui-input-inline">
+                <select name="nature" id="nature">
+                    <option value="个人" <%if(model.nature! == '个人'){%>selected<%}%> >个人</option>
+                    <option value="企业" <%if(model.nature! == '企业'){%>selected<%}%> >企业</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="icp" class="layui-form-label">
+                <span class="x-red">*</span>主体备案号
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="icp" name="icp" value="${model.icp!}" required="" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="indexUrl" class="layui-form-label">
+                <span class="x-red">*</span>首页地址
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="indexUrl" name="indexUrl" value="${model.indexUrl!}" required="" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="sitename" class="layui-form-label">
+                <span class="x-red">*</span>站点名称
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="sitename" name="sitename" value="${model.sitename!}" required="" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="nowIcp" class="layui-form-label">
+                <span class="x-red">*</span>当前网站备案号
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="nowIcp" name="nowIcp" value="${model.nowIcp!}" required="" autocomplete="off" class="layui-input" >
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="name1" class="layui-form-label">
+                <span class="x-red">*</span>主办方
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="name1" name="name1" value="${model.name1!}" required="" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="serach" class="layui-form-label">
+                <span class="x-red">*</span>交易域名
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="serach" name="serach" value="${model.serach!}" required="" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="serach" class="layui-form-label">
+                <span class="x-red">*</span>用户PID
+            </label>
+            <div class="layui-input-inline">
+                <input type="number" name="pid" value="${model.uid!}" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label"><span class="x-red">*</span>是否授权</label>
+            <div class="layui-input-block">
+                <input type="radio" name="status" value="1" lay-skin="primary" title="未授权" <%if(model.status! ==1){%>checked<%}%> >
+                <input type="radio" name="status" value="2" lay-skin="primary" title="已授权" <%if(model.status! ==2){%>checked<%}%> >
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label"><span class="x-red">*</span>支付提示</label>
+            <div class="layui-input-block">
+                <input type="radio" name="payShowInfo" value="0" lay-skin="primary" title="不显示" <%if(model.payShowInfo! ==0){%>checked<%}%> >
+                <input type="radio" name="payShowInfo" value="1" lay-skin="primary" title="显示" <%if(model.payShowInfo! ==1){%>checked<%}%> >
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label  class="layui-form-label">
+            </label>
+            <button class="layui-btn" onclick="add_dwdwd()">
+                修改
+            </button>
+        </div>
+    </form>
+</div>
+<script>
+
+    layui.use(['form', 'layer'], function () {
+        $ = layui.jquery;
+    });
+
+    function add_dwdwd() {
+        var data = $("#add_cedew").serialize();
+        $.post("/admin/domain/update",
+            data,
+            function (data) {
+                layer.alert(data.msg, {icon: 6}, function () {
+                    window.parent.location.reload();
+                    var index = parent.layer.getFrameIndex(window.name);
+                    parent.layer.close(index);
+                });
+            }, "json");
+    }
+
+
+</script>
+</body>
+</html>

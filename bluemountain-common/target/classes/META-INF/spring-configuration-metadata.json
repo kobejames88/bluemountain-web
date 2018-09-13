@@ -1,0 +1,49 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.bluemountain.common.utils.JwtUtils",
+      "name": "renren.jwt",
+      "type": "com.bluemountain.common.utils.JwtUtils"
+    },
+    {
+      "sourceType": "com.bluemountain.utils.JwtUtils",
+      "name": "renren.jwt",
+      "type": "com.bluemountain.utils.JwtUtils"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.bluemountain.common.utils.JwtUtils",
+      "defaultValue": 0,
+      "name": "renren.jwt.expire",
+      "type": "java.lang.Long"
+    },
+    {
+      "sourceType": "com.bluemountain.utils.JwtUtils",
+      "defaultValue": 0,
+      "name": "renren.jwt.expire",
+      "type": "java.lang.Long"
+    },
+    {
+      "sourceType": "com.bluemountain.common.utils.JwtUtils",
+      "name": "renren.jwt.header",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.bluemountain.utils.JwtUtils",
+      "name": "renren.jwt.header",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.bluemountain.common.utils.JwtUtils",
+      "name": "renren.jwt.secret",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.bluemountain.utils.JwtUtils",
+      "name": "renren.jwt.secret",
+      "type": "java.lang.String"
+    }
+  ]
+}

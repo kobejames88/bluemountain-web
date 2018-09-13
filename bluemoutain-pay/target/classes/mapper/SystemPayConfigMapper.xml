@@ -1,0 +1,748 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.so206.mapper.SystemPayConfigMapper">
+  <resultMap id="BaseResultMap" type="com.so206.po.SystemPayConfig">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="epay_id" jdbcType="VARCHAR" property="epayId" />
+    <result column="epay_key" jdbcType="VARCHAR" property="epayKey" />
+    <result column="ret_domain" jdbcType="VARCHAR" property="retDomain" />
+    <result column="alipay_parther" jdbcType="VARCHAR" property="alipayParther" />
+    <result column="alipay_open_app_id" jdbcType="VARCHAR" property="alipayOpenAppId" />
+    <result column="wxpay_mch_id" jdbcType="VARCHAR" property="wxpayMchId" />
+    <result column="wxpay_paterner_key" jdbcType="VARCHAR" property="wxpayPaternerKey" />
+    <result column="wxpay_app_id" jdbcType="VARCHAR" property="wxpayAppId" />
+    <result column="wxpay_appsecrt" jdbcType="VARCHAR" property="wxpayAppsecrt" />
+    <result column="qqpay_mch_id" jdbcType="VARCHAR" property="qqpayMchId" />
+    <result column="qqpay_private_key" jdbcType="VARCHAR" property="qqpayPrivateKey" />
+    <result column="qqpay_pw" jdbcType="VARCHAR" property="qqpayPw" />
+    <result column="mail_host" jdbcType="VARCHAR" property="mailHost" />
+    <result column="mail_post" jdbcType="INTEGER" property="mailPost" />
+    <result column="mail_user" jdbcType="VARCHAR" property="mailUser" />
+    <result column="mail_pw" jdbcType="VARCHAR" property="mailPw" />
+    <result column="epay_api" jdbcType="VARCHAR" property="epayApi" />
+    <result column="epay_id2" jdbcType="VARCHAR" property="epayId2" />
+    <result column="epay_key2" jdbcType="VARCHAR" property="epayKey2" />
+    <result column="epay_api2" jdbcType="VARCHAR" property="epayApi2" />
+    <result column="epay_id3" jdbcType="VARCHAR" property="epayId3" />
+    <result column="epay_key3" jdbcType="VARCHAR" property="epayKey3" />
+    <result column="epay_api3" jdbcType="VARCHAR" property="epayApi3" />
+    <result column="codepay_id" jdbcType="VARCHAR" property="codepayId" />
+    <result column="codepay_api" jdbcType="VARCHAR" property="codepayApi" />
+    <result column="codepay_key" jdbcType="VARCHAR" property="codepayKey" />
+    <result column="codepay_notify_url" jdbcType="VARCHAR" property="codepayNotifyUrl" />
+    <result column="wx_mpay_mode" jdbcType="INTEGER" property="wxMpayMode" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.so206.po.SystemPayConfigWithBLOBs">
+    <result column="alipay_open_public_key" jdbcType="LONGVARCHAR" property="alipayOpenPublicKey" />
+    <result column="alipay_open_private_key" jdbcType="LONGVARCHAR" property="alipayOpenPrivateKey" />
+    <result column="wxpay_api_cert" jdbcType="LONGVARBINARY" property="wxpayApiCert" />
+    <result column="qqpay_api_cert" jdbcType="LONGVARBINARY" property="qqpayApiCert" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, epay_id, epay_key, ret_domain, alipay_parther, alipay_open_app_id, wxpay_mch_id, 
+    wxpay_paterner_key, wxpay_app_id, wxpay_appsecrt, qqpay_mch_id, qqpay_private_key, 
+    qqpay_pw, mail_host, mail_post, mail_user, mail_pw, epay_api, epay_id2, epay_key2, 
+    epay_api2, epay_id3, epay_key3, epay_api3, codepay_id, codepay_api, codepay_key, 
+    codepay_notify_url, wx_mpay_mode
+  </sql>
+  <sql id="Blob_Column_List">
+    alipay_open_public_key, alipay_open_private_key, wxpay_api_cert, qqpay_api_cert
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.so206.po.SystemPayConfigExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from system_pay_config
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.so206.po.SystemPayConfigExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from system_pay_config
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from system_pay_config
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from system_pay_config
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.so206.po.SystemPayConfigExample">
+    delete from system_pay_config
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.so206.po.SystemPayConfigWithBLOBs">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      select LAST_INSERT_ID()
+    </selectKey>
+    insert into system_pay_config (id, epay_id, epay_key, 
+      ret_domain, alipay_parther, alipay_open_app_id, 
+      wxpay_mch_id, wxpay_paterner_key, wxpay_app_id, 
+      wxpay_appsecrt, qqpay_mch_id, qqpay_private_key, 
+      qqpay_pw, mail_host, mail_post, 
+      mail_user, mail_pw, epay_api, 
+      epay_id2, epay_key2, epay_api2, 
+      epay_id3, epay_key3, epay_api3, 
+      codepay_id, codepay_api, codepay_key, 
+      codepay_notify_url, wx_mpay_mode, alipay_open_public_key, 
+      alipay_open_private_key, wxpay_api_cert, 
+      qqpay_api_cert)
+    values (#{id,jdbcType=INTEGER}, #{epayId,jdbcType=VARCHAR}, #{epayKey,jdbcType=VARCHAR}, 
+      #{retDomain,jdbcType=VARCHAR}, #{alipayParther,jdbcType=VARCHAR}, #{alipayOpenAppId,jdbcType=VARCHAR}, 
+      #{wxpayMchId,jdbcType=VARCHAR}, #{wxpayPaternerKey,jdbcType=VARCHAR}, #{wxpayAppId,jdbcType=VARCHAR}, 
+      #{wxpayAppsecrt,jdbcType=VARCHAR}, #{qqpayMchId,jdbcType=VARCHAR}, #{qqpayPrivateKey,jdbcType=VARCHAR}, 
+      #{qqpayPw,jdbcType=VARCHAR}, #{mailHost,jdbcType=VARCHAR}, #{mailPost,jdbcType=INTEGER}, 
+      #{mailUser,jdbcType=VARCHAR}, #{mailPw,jdbcType=VARCHAR}, #{epayApi,jdbcType=VARCHAR}, 
+      #{epayId2,jdbcType=VARCHAR}, #{epayKey2,jdbcType=VARCHAR}, #{epayApi2,jdbcType=VARCHAR}, 
+      #{epayId3,jdbcType=VARCHAR}, #{epayKey3,jdbcType=VARCHAR}, #{epayApi3,jdbcType=VARCHAR}, 
+      #{codepayId,jdbcType=VARCHAR}, #{codepayApi,jdbcType=VARCHAR}, #{codepayKey,jdbcType=VARCHAR}, 
+      #{codepayNotifyUrl,jdbcType=VARCHAR}, #{wxMpayMode,jdbcType=INTEGER}, #{alipayOpenPublicKey,jdbcType=LONGVARCHAR}, 
+      #{alipayOpenPrivateKey,jdbcType=LONGVARCHAR}, #{wxpayApiCert,jdbcType=LONGVARBINARY}, 
+      #{qqpayApiCert,jdbcType=LONGVARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="com.so206.po.SystemPayConfigWithBLOBs">
+    insert into system_pay_config
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="epayId != null">
+        epay_id,
+      </if>
+      <if test="epayKey != null">
+        epay_key,
+      </if>
+      <if test="retDomain != null">
+        ret_domain,
+      </if>
+      <if test="alipayParther != null">
+        alipay_parther,
+      </if>
+      <if test="alipayOpenAppId != null">
+        alipay_open_app_id,
+      </if>
+      <if test="wxpayMchId != null">
+        wxpay_mch_id,
+      </if>
+      <if test="wxpayPaternerKey != null">
+        wxpay_paterner_key,
+      </if>
+      <if test="wxpayAppId != null">
+        wxpay_app_id,
+      </if>
+      <if test="wxpayAppsecrt != null">
+        wxpay_appsecrt,
+      </if>
+      <if test="qqpayMchId != null">
+        qqpay_mch_id,
+      </if>
+      <if test="qqpayPrivateKey != null">
+        qqpay_private_key,
+      </if>
+      <if test="qqpayPw != null">
+        qqpay_pw,
+      </if>
+      <if test="mailHost != null">
+        mail_host,
+      </if>
+      <if test="mailPost != null">
+        mail_post,
+      </if>
+      <if test="mailUser != null">
+        mail_user,
+      </if>
+      <if test="mailPw != null">
+        mail_pw,
+      </if>
+      <if test="epayApi != null">
+        epay_api,
+      </if>
+      <if test="epayId2 != null">
+        epay_id2,
+      </if>
+      <if test="epayKey2 != null">
+        epay_key2,
+      </if>
+      <if test="epayApi2 != null">
+        epay_api2,
+      </if>
+      <if test="epayId3 != null">
+        epay_id3,
+      </if>
+      <if test="epayKey3 != null">
+        epay_key3,
+      </if>
+      <if test="epayApi3 != null">
+        epay_api3,
+      </if>
+      <if test="codepayId != null">
+        codepay_id,
+      </if>
+      <if test="codepayApi != null">
+        codepay_api,
+      </if>
+      <if test="codepayKey != null">
+        codepay_key,
+      </if>
+      <if test="codepayNotifyUrl != null">
+        codepay_notify_url,
+      </if>
+      <if test="wxMpayMode != null">
+        wx_mpay_mode,
+      </if>
+      <if test="alipayOpenPublicKey != null">
+        alipay_open_public_key,
+      </if>
+      <if test="alipayOpenPrivateKey != null">
+        alipay_open_private_key,
+      </if>
+      <if test="wxpayApiCert != null">
+        wxpay_api_cert,
+      </if>
+      <if test="qqpayApiCert != null">
+        qqpay_api_cert,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="epayId != null">
+        #{epayId,jdbcType=VARCHAR},
+      </if>
+      <if test="epayKey != null">
+        #{epayKey,jdbcType=VARCHAR},
+      </if>
+      <if test="retDomain != null">
+        #{retDomain,jdbcType=VARCHAR},
+      </if>
+      <if test="alipayParther != null">
+        #{alipayParther,jdbcType=VARCHAR},
+      </if>
+      <if test="alipayOpenAppId != null">
+        #{alipayOpenAppId,jdbcType=VARCHAR},
+      </if>
+      <if test="wxpayMchId != null">
+        #{wxpayMchId,jdbcType=VARCHAR},
+      </if>
+      <if test="wxpayPaternerKey != null">
+        #{wxpayPaternerKey,jdbcType=VARCHAR},
+      </if>
+      <if test="wxpayAppId != null">
+        #{wxpayAppId,jdbcType=VARCHAR},
+      </if>
+      <if test="wxpayAppsecrt != null">
+        #{wxpayAppsecrt,jdbcType=VARCHAR},
+      </if>
+      <if test="qqpayMchId != null">
+        #{qqpayMchId,jdbcType=VARCHAR},
+      </if>
+      <if test="qqpayPrivateKey != null">
+        #{qqpayPrivateKey,jdbcType=VARCHAR},
+      </if>
+      <if test="qqpayPw != null">
+        #{qqpayPw,jdbcType=VARCHAR},
+      </if>
+      <if test="mailHost != null">
+        #{mailHost,jdbcType=VARCHAR},
+      </if>
+      <if test="mailPost != null">
+        #{mailPost,jdbcType=INTEGER},
+      </if>
+      <if test="mailUser != null">
+        #{mailUser,jdbcType=VARCHAR},
+      </if>
+      <if test="mailPw != null">
+        #{mailPw,jdbcType=VARCHAR},
+      </if>
+      <if test="epayApi != null">
+        #{epayApi,jdbcType=VARCHAR},
+      </if>
+      <if test="epayId2 != null">
+        #{epayId2,jdbcType=VARCHAR},
+      </if>
+      <if test="epayKey2 != null">
+        #{epayKey2,jdbcType=VARCHAR},
+      </if>
+      <if test="epayApi2 != null">
+        #{epayApi2,jdbcType=VARCHAR},
+      </if>
+      <if test="epayId3 != null">
+        #{epayId3,jdbcType=VARCHAR},
+      </if>
+      <if test="epayKey3 != null">
+        #{epayKey3,jdbcType=VARCHAR},
+      </if>
+      <if test="epayApi3 != null">
+        #{epayApi3,jdbcType=VARCHAR},
+      </if>
+      <if test="codepayId != null">
+        #{codepayId,jdbcType=VARCHAR},
+      </if>
+      <if test="codepayApi != null">
+        #{codepayApi,jdbcType=VARCHAR},
+      </if>
+      <if test="codepayKey != null">
+        #{codepayKey,jdbcType=VARCHAR},
+      </if>
+      <if test="codepayNotifyUrl != null">
+        #{codepayNotifyUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="wxMpayMode != null">
+        #{wxMpayMode,jdbcType=INTEGER},
+      </if>
+      <if test="alipayOpenPublicKey != null">
+        #{alipayOpenPublicKey,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="alipayOpenPrivateKey != null">
+        #{alipayOpenPrivateKey,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="wxpayApiCert != null">
+        #{wxpayApiCert,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="qqpayApiCert != null">
+        #{qqpayApiCert,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.so206.po.SystemPayConfigExample" resultType="java.lang.Long">
+    select count(*) from system_pay_config
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update system_pay_config
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.epayId != null">
+        epay_id = #{record.epayId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.epayKey != null">
+        epay_key = #{record.epayKey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.retDomain != null">
+        ret_domain = #{record.retDomain,jdbcType=VARCHAR},
+      </if>
+      <if test="record.alipayParther != null">
+        alipay_parther = #{record.alipayParther,jdbcType=VARCHAR},
+      </if>
+      <if test="record.alipayOpenAppId != null">
+        alipay_open_app_id = #{record.alipayOpenAppId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wxpayMchId != null">
+        wxpay_mch_id = #{record.wxpayMchId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wxpayPaternerKey != null">
+        wxpay_paterner_key = #{record.wxpayPaternerKey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wxpayAppId != null">
+        wxpay_app_id = #{record.wxpayAppId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wxpayAppsecrt != null">
+        wxpay_appsecrt = #{record.wxpayAppsecrt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qqpayMchId != null">
+        qqpay_mch_id = #{record.qqpayMchId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qqpayPrivateKey != null">
+        qqpay_private_key = #{record.qqpayPrivateKey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qqpayPw != null">
+        qqpay_pw = #{record.qqpayPw,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mailHost != null">
+        mail_host = #{record.mailHost,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mailPost != null">
+        mail_post = #{record.mailPost,jdbcType=INTEGER},
+      </if>
+      <if test="record.mailUser != null">
+        mail_user = #{record.mailUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mailPw != null">
+        mail_pw = #{record.mailPw,jdbcType=VARCHAR},
+      </if>
+      <if test="record.epayApi != null">
+        epay_api = #{record.epayApi,jdbcType=VARCHAR},
+      </if>
+      <if test="record.epayId2 != null">
+        epay_id2 = #{record.epayId2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.epayKey2 != null">
+        epay_key2 = #{record.epayKey2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.epayApi2 != null">
+        epay_api2 = #{record.epayApi2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.epayId3 != null">
+        epay_id3 = #{record.epayId3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.epayKey3 != null">
+        epay_key3 = #{record.epayKey3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.epayApi3 != null">
+        epay_api3 = #{record.epayApi3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.codepayId != null">
+        codepay_id = #{record.codepayId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.codepayApi != null">
+        codepay_api = #{record.codepayApi,jdbcType=VARCHAR},
+      </if>
+      <if test="record.codepayKey != null">
+        codepay_key = #{record.codepayKey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.codepayNotifyUrl != null">
+        codepay_notify_url = #{record.codepayNotifyUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wxMpayMode != null">
+        wx_mpay_mode = #{record.wxMpayMode,jdbcType=INTEGER},
+      </if>
+      <if test="record.alipayOpenPublicKey != null">
+        alipay_open_public_key = #{record.alipayOpenPublicKey,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.alipayOpenPrivateKey != null">
+        alipay_open_private_key = #{record.alipayOpenPrivateKey,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.wxpayApiCert != null">
+        wxpay_api_cert = #{record.wxpayApiCert,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="record.qqpayApiCert != null">
+        qqpay_api_cert = #{record.qqpayApiCert,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update system_pay_config
+    set id = #{record.id,jdbcType=INTEGER},
+      epay_id = #{record.epayId,jdbcType=VARCHAR},
+      epay_key = #{record.epayKey,jdbcType=VARCHAR},
+      ret_domain = #{record.retDomain,jdbcType=VARCHAR},
+      alipay_parther = #{record.alipayParther,jdbcType=VARCHAR},
+      alipay_open_app_id = #{record.alipayOpenAppId,jdbcType=VARCHAR},
+      wxpay_mch_id = #{record.wxpayMchId,jdbcType=VARCHAR},
+      wxpay_paterner_key = #{record.wxpayPaternerKey,jdbcType=VARCHAR},
+      wxpay_app_id = #{record.wxpayAppId,jdbcType=VARCHAR},
+      wxpay_appsecrt = #{record.wxpayAppsecrt,jdbcType=VARCHAR},
+      qqpay_mch_id = #{record.qqpayMchId,jdbcType=VARCHAR},
+      qqpay_private_key = #{record.qqpayPrivateKey,jdbcType=VARCHAR},
+      qqpay_pw = #{record.qqpayPw,jdbcType=VARCHAR},
+      mail_host = #{record.mailHost,jdbcType=VARCHAR},
+      mail_post = #{record.mailPost,jdbcType=INTEGER},
+      mail_user = #{record.mailUser,jdbcType=VARCHAR},
+      mail_pw = #{record.mailPw,jdbcType=VARCHAR},
+      epay_api = #{record.epayApi,jdbcType=VARCHAR},
+      epay_id2 = #{record.epayId2,jdbcType=VARCHAR},
+      epay_key2 = #{record.epayKey2,jdbcType=VARCHAR},
+      epay_api2 = #{record.epayApi2,jdbcType=VARCHAR},
+      epay_id3 = #{record.epayId3,jdbcType=VARCHAR},
+      epay_key3 = #{record.epayKey3,jdbcType=VARCHAR},
+      epay_api3 = #{record.epayApi3,jdbcType=VARCHAR},
+      codepay_id = #{record.codepayId,jdbcType=VARCHAR},
+      codepay_api = #{record.codepayApi,jdbcType=VARCHAR},
+      codepay_key = #{record.codepayKey,jdbcType=VARCHAR},
+      codepay_notify_url = #{record.codepayNotifyUrl,jdbcType=VARCHAR},
+      wx_mpay_mode = #{record.wxMpayMode,jdbcType=INTEGER},
+      alipay_open_public_key = #{record.alipayOpenPublicKey,jdbcType=LONGVARCHAR},
+      alipay_open_private_key = #{record.alipayOpenPrivateKey,jdbcType=LONGVARCHAR},
+      wxpay_api_cert = #{record.wxpayApiCert,jdbcType=LONGVARBINARY},
+      qqpay_api_cert = #{record.qqpayApiCert,jdbcType=LONGVARBINARY}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update system_pay_config
+    set id = #{record.id,jdbcType=INTEGER},
+      epay_id = #{record.epayId,jdbcType=VARCHAR},
+      epay_key = #{record.epayKey,jdbcType=VARCHAR},
+      ret_domain = #{record.retDomain,jdbcType=VARCHAR},
+      alipay_parther = #{record.alipayParther,jdbcType=VARCHAR},
+      alipay_open_app_id = #{record.alipayOpenAppId,jdbcType=VARCHAR},
+      wxpay_mch_id = #{record.wxpayMchId,jdbcType=VARCHAR},
+      wxpay_paterner_key = #{record.wxpayPaternerKey,jdbcType=VARCHAR},
+      wxpay_app_id = #{record.wxpayAppId,jdbcType=VARCHAR},
+      wxpay_appsecrt = #{record.wxpayAppsecrt,jdbcType=VARCHAR},
+      qqpay_mch_id = #{record.qqpayMchId,jdbcType=VARCHAR},
+      qqpay_private_key = #{record.qqpayPrivateKey,jdbcType=VARCHAR},
+      qqpay_pw = #{record.qqpayPw,jdbcType=VARCHAR},
+      mail_host = #{record.mailHost,jdbcType=VARCHAR},
+      mail_post = #{record.mailPost,jdbcType=INTEGER},
+      mail_user = #{record.mailUser,jdbcType=VARCHAR},
+      mail_pw = #{record.mailPw,jdbcType=VARCHAR},
+      epay_api = #{record.epayApi,jdbcType=VARCHAR},
+      epay_id2 = #{record.epayId2,jdbcType=VARCHAR},
+      epay_key2 = #{record.epayKey2,jdbcType=VARCHAR},
+      epay_api2 = #{record.epayApi2,jdbcType=VARCHAR},
+      epay_id3 = #{record.epayId3,jdbcType=VARCHAR},
+      epay_key3 = #{record.epayKey3,jdbcType=VARCHAR},
+      epay_api3 = #{record.epayApi3,jdbcType=VARCHAR},
+      codepay_id = #{record.codepayId,jdbcType=VARCHAR},
+      codepay_api = #{record.codepayApi,jdbcType=VARCHAR},
+      codepay_key = #{record.codepayKey,jdbcType=VARCHAR},
+      codepay_notify_url = #{record.codepayNotifyUrl,jdbcType=VARCHAR},
+      wx_mpay_mode = #{record.wxMpayMode,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.so206.po.SystemPayConfigWithBLOBs">
+    update system_pay_config
+    <set>
+      <if test="epayId != null">
+        epay_id = #{epayId,jdbcType=VARCHAR},
+      </if>
+      <if test="epayKey != null">
+        epay_key = #{epayKey,jdbcType=VARCHAR},
+      </if>
+      <if test="retDomain != null">
+        ret_domain = #{retDomain,jdbcType=VARCHAR},
+      </if>
+      <if test="alipayParther != null">
+        alipay_parther = #{alipayParther,jdbcType=VARCHAR},
+      </if>
+      <if test="alipayOpenAppId != null">
+        alipay_open_app_id = #{alipayOpenAppId,jdbcType=VARCHAR},
+      </if>
+      <if test="wxpayMchId != null">
+        wxpay_mch_id = #{wxpayMchId,jdbcType=VARCHAR},
+      </if>
+      <if test="wxpayPaternerKey != null">
+        wxpay_paterner_key = #{wxpayPaternerKey,jdbcType=VARCHAR},
+      </if>
+      <if test="wxpayAppId != null">
+        wxpay_app_id = #{wxpayAppId,jdbcType=VARCHAR},
+      </if>
+      <if test="wxpayAppsecrt != null">
+        wxpay_appsecrt = #{wxpayAppsecrt,jdbcType=VARCHAR},
+      </if>
+      <if test="qqpayMchId != null">
+        qqpay_mch_id = #{qqpayMchId,jdbcType=VARCHAR},
+      </if>
+      <if test="qqpayPrivateKey != null">
+        qqpay_private_key = #{qqpayPrivateKey,jdbcType=VARCHAR},
+      </if>
+      <if test="qqpayPw != null">
+        qqpay_pw = #{qqpayPw,jdbcType=VARCHAR},
+      </if>
+      <if test="mailHost != null">
+        mail_host = #{mailHost,jdbcType=VARCHAR},
+      </if>
+      <if test="mailPost != null">
+        mail_post = #{mailPost,jdbcType=INTEGER},
+      </if>
+      <if test="mailUser != null">
+        mail_user = #{mailUser,jdbcType=VARCHAR},
+      </if>
+      <if test="mailPw != null">
+        mail_pw = #{mailPw,jdbcType=VARCHAR},
+      </if>
+      <if test="epayApi != null">
+        epay_api = #{epayApi,jdbcType=VARCHAR},
+      </if>
+      <if test="epayId2 != null">
+        epay_id2 = #{epayId2,jdbcType=VARCHAR},
+      </if>
+      <if test="epayKey2 != null">
+        epay_key2 = #{epayKey2,jdbcType=VARCHAR},
+      </if>
+      <if test="epayApi2 != null">
+        epay_api2 = #{epayApi2,jdbcType=VARCHAR},
+      </if>
+      <if test="epayId3 != null">
+        epay_id3 = #{epayId3,jdbcType=VARCHAR},
+      </if>
+      <if test="epayKey3 != null">
+        epay_key3 = #{epayKey3,jdbcType=VARCHAR},
+      </if>
+      <if test="epayApi3 != null">
+        epay_api3 = #{epayApi3,jdbcType=VARCHAR},
+      </if>
+      <if test="codepayId != null">
+        codepay_id = #{codepayId,jdbcType=VARCHAR},
+      </if>
+      <if test="codepayApi != null">
+        codepay_api = #{codepayApi,jdbcType=VARCHAR},
+      </if>
+      <if test="codepayKey != null">
+        codepay_key = #{codepayKey,jdbcType=VARCHAR},
+      </if>
+      <if test="codepayNotifyUrl != null">
+        codepay_notify_url = #{codepayNotifyUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="wxMpayMode != null">
+        wx_mpay_mode = #{wxMpayMode,jdbcType=INTEGER},
+      </if>
+      <if test="alipayOpenPublicKey != null">
+        alipay_open_public_key = #{alipayOpenPublicKey,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="alipayOpenPrivateKey != null">
+        alipay_open_private_key = #{alipayOpenPrivateKey,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="wxpayApiCert != null">
+        wxpay_api_cert = #{wxpayApiCert,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="qqpayApiCert != null">
+        qqpay_api_cert = #{qqpayApiCert,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.so206.po.SystemPayConfigWithBLOBs">
+    update system_pay_config
+    set epay_id = #{epayId,jdbcType=VARCHAR},
+      epay_key = #{epayKey,jdbcType=VARCHAR},
+      ret_domain = #{retDomain,jdbcType=VARCHAR},
+      alipay_parther = #{alipayParther,jdbcType=VARCHAR},
+      alipay_open_app_id = #{alipayOpenAppId,jdbcType=VARCHAR},
+      wxpay_mch_id = #{wxpayMchId,jdbcType=VARCHAR},
+      wxpay_paterner_key = #{wxpayPaternerKey,jdbcType=VARCHAR},
+      wxpay_app_id = #{wxpayAppId,jdbcType=VARCHAR},
+      wxpay_appsecrt = #{wxpayAppsecrt,jdbcType=VARCHAR},
+      qqpay_mch_id = #{qqpayMchId,jdbcType=VARCHAR},
+      qqpay_private_key = #{qqpayPrivateKey,jdbcType=VARCHAR},
+      qqpay_pw = #{qqpayPw,jdbcType=VARCHAR},
+      mail_host = #{mailHost,jdbcType=VARCHAR},
+      mail_post = #{mailPost,jdbcType=INTEGER},
+      mail_user = #{mailUser,jdbcType=VARCHAR},
+      mail_pw = #{mailPw,jdbcType=VARCHAR},
+      epay_api = #{epayApi,jdbcType=VARCHAR},
+      epay_id2 = #{epayId2,jdbcType=VARCHAR},
+      epay_key2 = #{epayKey2,jdbcType=VARCHAR},
+      epay_api2 = #{epayApi2,jdbcType=VARCHAR},
+      epay_id3 = #{epayId3,jdbcType=VARCHAR},
+      epay_key3 = #{epayKey3,jdbcType=VARCHAR},
+      epay_api3 = #{epayApi3,jdbcType=VARCHAR},
+      codepay_id = #{codepayId,jdbcType=VARCHAR},
+      codepay_api = #{codepayApi,jdbcType=VARCHAR},
+      codepay_key = #{codepayKey,jdbcType=VARCHAR},
+      codepay_notify_url = #{codepayNotifyUrl,jdbcType=VARCHAR},
+      wx_mpay_mode = #{wxMpayMode,jdbcType=INTEGER},
+      alipay_open_public_key = #{alipayOpenPublicKey,jdbcType=LONGVARCHAR},
+      alipay_open_private_key = #{alipayOpenPrivateKey,jdbcType=LONGVARCHAR},
+      wxpay_api_cert = #{wxpayApiCert,jdbcType=LONGVARBINARY},
+      qqpay_api_cert = #{qqpayApiCert,jdbcType=LONGVARBINARY}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.so206.po.SystemPayConfig">
+    update system_pay_config
+    set epay_id = #{epayId,jdbcType=VARCHAR},
+      epay_key = #{epayKey,jdbcType=VARCHAR},
+      ret_domain = #{retDomain,jdbcType=VARCHAR},
+      alipay_parther = #{alipayParther,jdbcType=VARCHAR},
+      alipay_open_app_id = #{alipayOpenAppId,jdbcType=VARCHAR},
+      wxpay_mch_id = #{wxpayMchId,jdbcType=VARCHAR},
+      wxpay_paterner_key = #{wxpayPaternerKey,jdbcType=VARCHAR},
+      wxpay_app_id = #{wxpayAppId,jdbcType=VARCHAR},
+      wxpay_appsecrt = #{wxpayAppsecrt,jdbcType=VARCHAR},
+      qqpay_mch_id = #{qqpayMchId,jdbcType=VARCHAR},
+      qqpay_private_key = #{qqpayPrivateKey,jdbcType=VARCHAR},
+      qqpay_pw = #{qqpayPw,jdbcType=VARCHAR},
+      mail_host = #{mailHost,jdbcType=VARCHAR},
+      mail_post = #{mailPost,jdbcType=INTEGER},
+      mail_user = #{mailUser,jdbcType=VARCHAR},
+      mail_pw = #{mailPw,jdbcType=VARCHAR},
+      epay_api = #{epayApi,jdbcType=VARCHAR},
+      epay_id2 = #{epayId2,jdbcType=VARCHAR},
+      epay_key2 = #{epayKey2,jdbcType=VARCHAR},
+      epay_api2 = #{epayApi2,jdbcType=VARCHAR},
+      epay_id3 = #{epayId3,jdbcType=VARCHAR},
+      epay_key3 = #{epayKey3,jdbcType=VARCHAR},
+      epay_api3 = #{epayApi3,jdbcType=VARCHAR},
+      codepay_id = #{codepayId,jdbcType=VARCHAR},
+      codepay_api = #{codepayApi,jdbcType=VARCHAR},
+      codepay_key = #{codepayKey,jdbcType=VARCHAR},
+      codepay_notify_url = #{codepayNotifyUrl,jdbcType=VARCHAR},
+      wx_mpay_mode = #{wxMpayMode,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

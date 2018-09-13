@@ -1,0 +1,48 @@
+<style>
+    .a {text-decoration: none;}
+</style>
+<%var curr_page = model.currentPage!;
+var total_page = model.totalPage!;
+var total = model.totalNum!;
+var rows = model.pageSize!;
+if(curr_page! !=null && total_page! != null){%>
+    <a href="javascript:void(0);" class="prev" onclick="goto_page(1)">首页</a>
+    <%if(curr_page! == 1 ){%>
+        <a disabled="disabled" class="prev">前一页</a>
+    <%}else{%>
+        <a href="javascript:void(0);" class="prev" onclick="goto_page(${curr_page! - 1})">前一页</a>
+    <%}%>
+    <%for(var tmp=1;tmp <= total_page!;tmp++){%>
+        <%if(curr_page! == tmp){%>
+            <a disabled="disabled" class="num">${tmp!}</a>
+        <%}else{%>
+            <%if( tmp < (curr_page! + 4) && tmp > curr_page!){%>
+                <a href="javascript:void(0);" onclick="goto_page(${tmp!})" class="num">${tmp!}</a>
+            <%}else if(tmp > (curr_page! - 4) && tmp < curr_page!){%>
+                <a href="javascript:void(0);" onclick="goto_page(${tmp!})" class="num">${tmp!}</a>
+            <%}%>
+        <%}%>
+    <%}%>
+    <%if(curr_page! == total_page! || curr_page! > total_page!){%>
+        <a disabled="disabled" class="next">后一页</a>
+    <%}else{%>
+        <a href="javascript:void(0);" class="next" onclick="goto_page(${curr_page! + 1})">后一页</a>
+    <%}%>
+    <a href="javascript:void(0);" class="prev" onclick="goto_page(${total_page!})">尾页</a>
+<%}%>
+<script>
+    var context_id='${context!}';
+    var action_url='${action!}';
+
+    function goto_page(page) {
+        $("#" + context_id).load(
+            action_url + "?page=" + page+"&ajax=true&"+$("#ajaxForm").serialize(),
+            function (response, status, xhr) {
+                if (status != "success") {
+                    $("#" + context_id).html(response);
+                }
+            }
+        );
+    }
+
+</script>

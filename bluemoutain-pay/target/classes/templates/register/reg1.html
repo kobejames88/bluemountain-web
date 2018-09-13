@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <title>${config.siteName!}-商户注册</title>
+    <meta name="keywords" content="${config.keywords!}">
+    <meta name="description" content="${config.decText!}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/static/css/register.css" rel="stylesheet" type="text/css">
+    <script src="/static/js/jquery-1.11.3.min.js"></script>
+    <link  href="/static/layer/mobile/need/layer.css" rel="stylesheet">
+    <script type="text/javascript" src="/static/layer/layer.js"></script>
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        .login-bg {
+            background: url(/static/images/bg.png) no-repeat center;
+            background-size: cover;
+            overflow: hidden;
+        }
+    </style>
+    <script src="https://open.mobile.qq.com/sdk/qqapi.js?_bid=152"></script>
+    <script src="/static/js/qq.js"></script>
+</head>
+<body class="login-bg">
+<div class="main">
+    <div class="appRegister">
+        <aside class="Register">
+            <section class="main">
+                <form class="registerform" id="registerform" onsubmit="return false;" method="post">
+                    <div class="mip-reset-heading"><a class="cancel" href="javascript:"></a>${config.siteName!}商户注册
+                    </div>
+                    <div class="mip-step-body">
+                        <div class="el-form-item">
+                            <div class="el-form-item__content">
+                                <div class="el-input">
+                                    <input id="ref" name="ref" type="hidden" value="fabumao">
+                                    <span style="color: green;text-align: center;">商户申请价格为：<span style="color: red;">${config.regPrice!0}</span>元
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <%if(e2! != null){%>
+                                            推荐用户:<span style="color: #00F7DE;"> ${e_user.user!}</span>
+                                            <input type="hidden" name="extenKey" value="${e2!}">
+                                        <%}%>
+                                    </span>
+                                    <select class="el-input__inner" name="pre_pay_type">
+                                        <option value="2">结算方式:支付宝</option>
+                                        <option>其他结算方式注册后配置</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="el-form-item">
+                            <div class="el-form-item__content">
+                                <div class="el-input">
+                                    <input class="el-input__inner" id="ps" type="text" name="pre_account"
+                                           autocomplete="new-password" value="" datatype="*8-16"
+                                           placeholder="输入结算账号">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="el-form-item">
+                            <div class="el-form-item__content">
+                                <div class="el-input">
+                                    <input class="el-input__inner" name="pre_zs_name" type="text"
+                                           maxlength="32" autocomplete="off" value=""
+                                           placeholder="真实姓名">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="el-form-item">
+                            <div class="el-form-item__content">
+                                <div class="el-input">
+                                    <input class="el-input__inner" type="text"
+                                           autocomplete="off" value="" datatype="m" id="email" name="email"
+                                           placeholder="邮箱(用于接收商户信息)">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="el-form-item">
+                            <div class="el-form-item__content">
+                                <div class="el-input">
+                                    <input class="el-input__inner" style="float: left;width: 70%;" type="text"
+                                           autocomplete="off" value="" name="vcode" placeholder="邮件验证码">
+                                    <button type="button" class="el-button el-button--primary "
+                                            style="float: left;width: 30%;"
+                                            onclick="send_vcode(this)"><span>点击获取</span></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="el-form-item">
+                            <label class="aqxy" style="font-size: 14px;">
+                                <input id="yuedu" style="margin-right: 5px; vertical-align: -2px;" type="checkbox" name="check" value="223">我已同意
+                                <a href="/readme" target="_blank" style="color:#37a12b">《用户协议》</a></label>
+                        </div>
+                        <div class="el-form-item">
+                            <div class="el-form-item__content">
+                                <button type="button" class="el-button w-100 el-button--primary " id="post_reg"
+                                        onclick="submit_reg(this)"><span>注册</span></button>
+                            </div>
+                        </div>
+                        <p class="login-link"><a href="/admin/login">商户登录</a>&nbsp;&nbsp;<a href="/index.do">首页</a><span></span>
+                        </p>
+                    </div>
+                </form>
+            </section>
+        </aside>
+    </div>
+    <div class="copyright"
+         style="text-align: center; position: absolute;bottom:0;width: 100%; color: #6d6d6d;line-height: 26px; font-size: 14px; margin-bottom: 15px;">
+        Copyright ${config.copyright!} Tech Inc. All Rights Reserved. ${config.icpInfo!}
+        <div style="display:none"></div>
+    </div>
+</div>
+</body>
+<script>
+
+    var validCode = true;
+
+
+    /**
+     * 提交注册
+     */
+    function submit_reg(obj) {
+        console.log($("#registerform").serialize());
+        var code = $(obj);
+        code.html("<span>请稍等</span>");
+        $.post("/reg_save",
+            $("#registerform").serialize(),
+            function (data) {
+                layer.msg(data.msg);
+                if (data.code == 0) {
+                    setTimeout(function () {
+                        location.href = "/pay_check?oid=" + data.oid + "&times=" + new Date().getTime();
+                    }, 800);
+                }else{
+                    code.html("<span>注册</span>");
+                }
+            }, "json");
+    }
+
+    /**
+     * 发送邮件验证码
+     */
+    function send_vcode(obj) {
+        var time = 60;
+        var code = $(obj);
+        code.html("<span>请稍等</span>");
+        var to_user = $("#email").val();
+        $.post("/send_vcode",
+            {"email": to_user},
+            function (data) {
+                layer.msg(data.msg);
+                if (data.code == 0) {
+                    if (validCode) {
+                        validCode = false;
+                        var t = setInterval(function () {
+                            time--;
+                            code.html("<span>" + time + "秒</span>");
+                            if (time == 0) {
+                                clearInterval(t);
+                                code.html("<span>重新获取</span>");
+                                validCode = true;
+                            }
+                        }, 1000)
+                    }
+                } else {
+                    code.html("<span>重新获取</span>");
+                }
+            }, "json");
+    }
+</script>
+</html>
+

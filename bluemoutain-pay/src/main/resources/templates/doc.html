@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>${config.siteName!} - 开发文档</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <meta name="keywords" content="${config.keywords!}">
+    <meta name="description" content="${config.decText!}">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.9">
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/amazeui.min.css">
+    <link rel="stylesheet" href="/static/css/reset.css">
+    <link rel="stylesheet" href="/static/css/animate.css">
+    <link rel="stylesheet" href="/static/css/swiper.css">
+    <link rel="stylesheet" href="/static/css/flexslider.css">
+    <link href="/static/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/app.css">
+    <script type="text/javascript" charset="utf-8" src="/static/js/jquery-1.11.3.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://open.mobile.qq.com/sdk/qqapi.js?_bid=152"></script>
+    <script src="/static/js/qq.js"></script>
+
+    <style type="text/css">
+        .bann {
+            content: '';
+            background-size: 100%;
+            background: #4280cb;
+            background: -webkit-gradient(linear, 0 0, 0 100%, from(#4585d2), to(#4280cb));
+            background: -moz-linear-gradient(top, #4585d2, #4280cb);
+            background: linear-gradient(to bottom, #4585d2, #4280cb);
+            padding-top: 50px;
+            left: 0;
+            z-index: -1;
+            min-height: 50px;
+            width: 100%
+        }
+
+        .fl .active {
+            color: #3F5061;
+            background: #fff;
+            border-color: #fff
+        }
+    </style>
+
+</head>
+<body class="landing">
+<div id="page-wrapper">
+    <!-- Header -->
+    <header id="header" class="reveal">
+        <h1><a href="${config.httpUrl!}">${config.siteName!}</a></h1>
+        <nav id="nav">
+            <ul>
+                <li style="white-space: nowrap;"><a href="/index.do">首页</a></li>
+                <li style="white-space: nowrap;"><a href="/quickpass" target="_blank">在线测试</a></li>
+                <li style="white-space: nowrap;"><a href="/doc.do" target="_blank">开发文档</a></li>
+                <li class="opener" style="user-select: none; cursor: pointer; white-space: nowrap;">
+                    <a href="/" class="icon fa-angle-down">联系我们</a>
+                    <ul class="" style="user-select: none; display: none; position: absolute;">
+                        <li style="white-space: nowrap;">
+                            <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=929512841&amp;site=qq&amp;menu=yes"
+                               style="display: block;">联系QQ</a></li>
+                        <li style="white-space: nowrap;">
+                            <a href="https://jq.qq.com/?_wv=1027&amp;k=5AgQ0r6"
+                               style="display: block;">进入QQ群</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div class="bann">
+        <div class="col-xs-12" style="text-align:center;">
+            <div class="h3" style="color:#ffffff;margin-top: 35px;margin-bottom: 30px;">开发文档</div>
+            <div style="clear:both;"></div>
+        </div>
+        <div style="clear:both;"></div>
+    </div>
+</div>
+<div style="height: 10px;"></div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <div id="toc" class="bc-sidebar">
+                <ul class="nav">
+                    <%for(o in api!){%>
+                        <%if(oLP.index == 1){%>
+                            <li class="toc-h2 toc-active"><a href="#toc${o.id!}">${o.title!}</a></li>
+                        <%}else{%>
+                            <li class="toc-h2"><a href="#toc${o.id!}">${o.title!}</a></li>
+                        <%}%>
+                    <%}%>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <article class="post page">
+                <section class="post-content">
+                    <%for(o in api!){%>
+                        <h2 id="toc${o.id!}">${o.title!}</h2>
+                        <p>${o.content!}</p>
+                    <%}%>
+                </section>
+            </article>
+        </div>
+    </div>
+</div>
+<div class="section section-pricing">
+    <div class="title-block">
+        <div class="title-big">
+            平台合作伙伴
+        </div>
+        <center>
+            <img style="FILTER: gray()" src="/static/images/aliyun.png" width="85">
+            <img style="FILTER: gray()" src="/static/images/qqpay.png" width="85">
+            <img style="FILTER: gray()" src="/static/images/wxpay.png" width="85">
+        </center>
+    </div>
+</div>
+<footer class="footer-bottom">
+    <p class="copyright">
+        Copyright © 2017-2018 All Rights Reserved by <a href="http://usbboot.cn/">二零六云支付</a><br>
+        <a href="http://www.miitbeian.gov.cn/">京ICP备10005912号-1</a>
+        <audio autoplay="autoplay" height="100" width="100">
+            <source src="">
+        </audio>&nbsp;
+    </p>
+</footer>
+<script type="text/javascript">
+    if ('ontouchend' in document.body &amp;&amp; $(window).width() < 996) {
+        $('.col-xs-12 .h2').css('text-align', 'center');
+    }
+</script>
+<script>
+    (function (d, s, a, i, j, r, l, m, t) {
+        try {
+            l = d.getElementsByTagName('a');
+            t = d.createElement('textarea');
+            for (i = 0; l.length - i; i++) {
+                try {
+                    a = l[i].href;
+                    s = a.indexOf('/cdn-cgi/l/email-protection');
+                    m = a.length;
+                    if (a && s > -1 && m > 28) {
+                        j = 28 + s;
+                        s = '';
+                        if (j < m) {
+                            r = '0x' + a.substr(j, 2) | 0;
+                            for (j += 2; j < m && a.charAt(j) != 'X'; j += 2) s += '%' + ('0' + ('0x' + a.substr(j, 2) ^ r).toString(16)).slice(-2);
+                            j++;
+                            s = decodeURIComponent(s) + a.substr(j, m - j)
+                        }
+                        t.innerHTML = s.replace(/</g, '&lt;').replace(/\>/g, '&gt;');
+                        l[i].href = 'mailto:' + t.value
+                    }
+                } catch (e) {
+                }
+            }
+        } catch (e) {
+        }
+    })(document);
+</script>
+<script>
+    (function (d, s, a, i, j, r, l, m, t) {
+        try {
+            l = d.getElementsByTagName('a');
+            t = d.createElement('textarea');
+            for (i = 0; l.length - i; i++) {
+                try {
+                    a = l[i].href;
+                    s = a.indexOf('/cdn-cgi/l/email-protection');
+                    m = a.length;
+                    if (a && s > -1 && m > 28) {
+                        j = 28 + s;
+                        s = '';
+                        if (j < m) {
+                            r = '0x' + a.substr(j, 2) | 0;
+                            for (j += 2; j < m && a.charAt(j) != 'X'; j += 2) s += '%' + ('0' + ('0x' + a.substr(j, 2) ^ r).toString(16)).slice(-2);
+                            j++;
+                            s = decodeURIComponent(s) + a.substr(j, m - j)
+                        }
+                        t.innerHTML = s.replace(/</g, '&lt;').replace(/\>/g, '&gt;');
+                        l[i].href = 'mailto:' + t.value
+                    }
+                } catch (e) {
+                }
+            }
+        } catch (e) {
+        }
+    })(document);
+</script>
+</body>
+<script src="/static/js/image-loaded.js"></script>
+<script src="/static/js/wow.js"></script>
+<script src="/static/js/swiper.jquery.min.js"></script>
+<script src="/static/js/isotope.pkgd.min.js"></script>
+<script src="/static/js/jquery.countto.js"></script>
+<script src="/static/js/jquery.flexslider.js"></script>
+<script src="/static/js/app.js"></script>
+<script src="/static/js/jquery.dropotron.min.js"></script>
+<script src="/static/js/jquery.scrollgress.min.js"></script>
+<script src="/static/js/skel.min.js"></script>
+<script src="/static/js/util.js"></script>
+<script src="/static/js/main.js"></script>
+</html>

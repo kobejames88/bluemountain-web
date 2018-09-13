@@ -1,0 +1,578 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.so206.mapper.SystemOrderMapper">
+  <resultMap id="BaseResultMap" type="com.so206.po.SystemOrder">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="pay_type" jdbcType="INTEGER" property="payType" />
+    <result column="out_order_id" jdbcType="VARCHAR" property="outOrderId" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="paid_time" jdbcType="TIMESTAMP" property="paidTime" />
+    <result column="paid" jdbcType="DECIMAL" property="paid" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="context" jdbcType="VARCHAR" property="context" />
+    <result column="trade_no" jdbcType="VARCHAR" property="tradeNo" />
+    <result column="trade_status" jdbcType="VARCHAR" property="tradeStatus" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="notify_url" jdbcType="VARCHAR" property="notifyUrl" />
+    <result column="return_url" jdbcType="VARCHAR" property="returnUrl" />
+    <result column="is_sett" jdbcType="INTEGER" property="isSett" />
+    <result column="pre_pay_type" jdbcType="INTEGER" property="prePayType" />
+    <result column="pre_account" jdbcType="VARCHAR" property="preAccount" />
+    <result column="pre_zs_name" jdbcType="VARCHAR" property="preZsName" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="order_type" jdbcType="INTEGER" property="orderType" />
+    <result column="ip_addr" jdbcType="VARCHAR" property="ipAddr" />
+    <result column="change_sett" jdbcType="DECIMAL" property="changeSett" />
+    <result column="is_notify" jdbcType="INTEGER" property="isNotify" />
+    <result column="ch_type" jdbcType="INTEGER" property="chType" />
+    <result column="ch_num" jdbcType="INTEGER" property="chNum" />
+    <result column="site_name" jdbcType="VARCHAR" property="siteName" />
+    <result column="exten_key" jdbcType="VARCHAR" property="extenKey" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, pay_type, out_order_id, price, status, create_time, paid_time, paid, title, context, 
+    trade_no, trade_status, uid, notify_url, return_url, is_sett, pre_pay_type, pre_account, 
+    pre_zs_name, email, order_type, ip_addr, change_sett, is_notify, ch_type, ch_num, 
+    site_name, exten_key
+  </sql>
+  <select id="selectByExample" parameterType="com.so206.po.SystemOrderExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from system_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from system_order
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from system_order
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.so206.po.SystemOrderExample">
+    delete from system_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.so206.po.SystemOrder">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      select LAST_INSERT_ID()
+    </selectKey>
+    insert into system_order (id, pay_type, out_order_id, 
+      price, status, create_time, 
+      paid_time, paid, title, 
+      context, trade_no, trade_status, 
+      uid, notify_url, return_url, 
+      is_sett, pre_pay_type, pre_account, 
+      pre_zs_name, email, order_type, 
+      ip_addr, change_sett, is_notify, 
+      ch_type, ch_num, site_name, 
+      exten_key)
+    values (#{id,jdbcType=INTEGER}, #{payType,jdbcType=INTEGER}, #{outOrderId,jdbcType=VARCHAR}, 
+      #{price,jdbcType=DECIMAL}, #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{paidTime,jdbcType=TIMESTAMP}, #{paid,jdbcType=DECIMAL}, #{title,jdbcType=VARCHAR}, 
+      #{context,jdbcType=VARCHAR}, #{tradeNo,jdbcType=VARCHAR}, #{tradeStatus,jdbcType=VARCHAR}, 
+      #{uid,jdbcType=INTEGER}, #{notifyUrl,jdbcType=VARCHAR}, #{returnUrl,jdbcType=VARCHAR}, 
+      #{isSett,jdbcType=INTEGER}, #{prePayType,jdbcType=INTEGER}, #{preAccount,jdbcType=VARCHAR}, 
+      #{preZsName,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{orderType,jdbcType=INTEGER}, 
+      #{ipAddr,jdbcType=VARCHAR}, #{changeSett,jdbcType=DECIMAL}, #{isNotify,jdbcType=INTEGER}, 
+      #{chType,jdbcType=INTEGER}, #{chNum,jdbcType=INTEGER}, #{siteName,jdbcType=VARCHAR}, 
+      #{extenKey,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.so206.po.SystemOrder">
+    insert into system_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="payType != null">
+        pay_type,
+      </if>
+      <if test="outOrderId != null">
+        out_order_id,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="paidTime != null">
+        paid_time,
+      </if>
+      <if test="paid != null">
+        paid,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="context != null">
+        context,
+      </if>
+      <if test="tradeNo != null">
+        trade_no,
+      </if>
+      <if test="tradeStatus != null">
+        trade_status,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="notifyUrl != null">
+        notify_url,
+      </if>
+      <if test="returnUrl != null">
+        return_url,
+      </if>
+      <if test="isSett != null">
+        is_sett,
+      </if>
+      <if test="prePayType != null">
+        pre_pay_type,
+      </if>
+      <if test="preAccount != null">
+        pre_account,
+      </if>
+      <if test="preZsName != null">
+        pre_zs_name,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="orderType != null">
+        order_type,
+      </if>
+      <if test="ipAddr != null">
+        ip_addr,
+      </if>
+      <if test="changeSett != null">
+        change_sett,
+      </if>
+      <if test="isNotify != null">
+        is_notify,
+      </if>
+      <if test="chType != null">
+        ch_type,
+      </if>
+      <if test="chNum != null">
+        ch_num,
+      </if>
+      <if test="siteName != null">
+        site_name,
+      </if>
+      <if test="extenKey != null">
+        exten_key,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="payType != null">
+        #{payType,jdbcType=INTEGER},
+      </if>
+      <if test="outOrderId != null">
+        #{outOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paidTime != null">
+        #{paidTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paid != null">
+        #{paid,jdbcType=DECIMAL},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="context != null">
+        #{context,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeNo != null">
+        #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeStatus != null">
+        #{tradeStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="notifyUrl != null">
+        #{notifyUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="returnUrl != null">
+        #{returnUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="isSett != null">
+        #{isSett,jdbcType=INTEGER},
+      </if>
+      <if test="prePayType != null">
+        #{prePayType,jdbcType=INTEGER},
+      </if>
+      <if test="preAccount != null">
+        #{preAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="preZsName != null">
+        #{preZsName,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="orderType != null">
+        #{orderType,jdbcType=INTEGER},
+      </if>
+      <if test="ipAddr != null">
+        #{ipAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="changeSett != null">
+        #{changeSett,jdbcType=DECIMAL},
+      </if>
+      <if test="isNotify != null">
+        #{isNotify,jdbcType=INTEGER},
+      </if>
+      <if test="chType != null">
+        #{chType,jdbcType=INTEGER},
+      </if>
+      <if test="chNum != null">
+        #{chNum,jdbcType=INTEGER},
+      </if>
+      <if test="siteName != null">
+        #{siteName,jdbcType=VARCHAR},
+      </if>
+      <if test="extenKey != null">
+        #{extenKey,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.so206.po.SystemOrderExample" resultType="java.lang.Long">
+    select count(*) from system_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update system_order
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.payType != null">
+        pay_type = #{record.payType,jdbcType=INTEGER},
+      </if>
+      <if test="record.outOrderId != null">
+        out_order_id = #{record.outOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.price != null">
+        price = #{record.price,jdbcType=DECIMAL},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.paidTime != null">
+        paid_time = #{record.paidTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.paid != null">
+        paid = #{record.paid,jdbcType=DECIMAL},
+      </if>
+      <if test="record.title != null">
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.context != null">
+        context = #{record.context,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tradeNo != null">
+        trade_no = #{record.tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tradeStatus != null">
+        trade_status = #{record.tradeStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uid != null">
+        uid = #{record.uid,jdbcType=INTEGER},
+      </if>
+      <if test="record.notifyUrl != null">
+        notify_url = #{record.notifyUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.returnUrl != null">
+        return_url = #{record.returnUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isSett != null">
+        is_sett = #{record.isSett,jdbcType=INTEGER},
+      </if>
+      <if test="record.prePayType != null">
+        pre_pay_type = #{record.prePayType,jdbcType=INTEGER},
+      </if>
+      <if test="record.preAccount != null">
+        pre_account = #{record.preAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.preZsName != null">
+        pre_zs_name = #{record.preZsName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null">
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderType != null">
+        order_type = #{record.orderType,jdbcType=INTEGER},
+      </if>
+      <if test="record.ipAddr != null">
+        ip_addr = #{record.ipAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.changeSett != null">
+        change_sett = #{record.changeSett,jdbcType=DECIMAL},
+      </if>
+      <if test="record.isNotify != null">
+        is_notify = #{record.isNotify,jdbcType=INTEGER},
+      </if>
+      <if test="record.chType != null">
+        ch_type = #{record.chType,jdbcType=INTEGER},
+      </if>
+      <if test="record.chNum != null">
+        ch_num = #{record.chNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.siteName != null">
+        site_name = #{record.siteName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extenKey != null">
+        exten_key = #{record.extenKey,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update system_order
+    set id = #{record.id,jdbcType=INTEGER},
+      pay_type = #{record.payType,jdbcType=INTEGER},
+      out_order_id = #{record.outOrderId,jdbcType=VARCHAR},
+      price = #{record.price,jdbcType=DECIMAL},
+      status = #{record.status,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      paid_time = #{record.paidTime,jdbcType=TIMESTAMP},
+      paid = #{record.paid,jdbcType=DECIMAL},
+      title = #{record.title,jdbcType=VARCHAR},
+      context = #{record.context,jdbcType=VARCHAR},
+      trade_no = #{record.tradeNo,jdbcType=VARCHAR},
+      trade_status = #{record.tradeStatus,jdbcType=VARCHAR},
+      uid = #{record.uid,jdbcType=INTEGER},
+      notify_url = #{record.notifyUrl,jdbcType=VARCHAR},
+      return_url = #{record.returnUrl,jdbcType=VARCHAR},
+      is_sett = #{record.isSett,jdbcType=INTEGER},
+      pre_pay_type = #{record.prePayType,jdbcType=INTEGER},
+      pre_account = #{record.preAccount,jdbcType=VARCHAR},
+      pre_zs_name = #{record.preZsName,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      order_type = #{record.orderType,jdbcType=INTEGER},
+      ip_addr = #{record.ipAddr,jdbcType=VARCHAR},
+      change_sett = #{record.changeSett,jdbcType=DECIMAL},
+      is_notify = #{record.isNotify,jdbcType=INTEGER},
+      ch_type = #{record.chType,jdbcType=INTEGER},
+      ch_num = #{record.chNum,jdbcType=INTEGER},
+      site_name = #{record.siteName,jdbcType=VARCHAR},
+      exten_key = #{record.extenKey,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.so206.po.SystemOrder">
+    update system_order
+    <set>
+      <if test="payType != null">
+        pay_type = #{payType,jdbcType=INTEGER},
+      </if>
+      <if test="outOrderId != null">
+        out_order_id = #{outOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paidTime != null">
+        paid_time = #{paidTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paid != null">
+        paid = #{paid,jdbcType=DECIMAL},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="context != null">
+        context = #{context,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeNo != null">
+        trade_no = #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeStatus != null">
+        trade_status = #{tradeStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="notifyUrl != null">
+        notify_url = #{notifyUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="returnUrl != null">
+        return_url = #{returnUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="isSett != null">
+        is_sett = #{isSett,jdbcType=INTEGER},
+      </if>
+      <if test="prePayType != null">
+        pre_pay_type = #{prePayType,jdbcType=INTEGER},
+      </if>
+      <if test="preAccount != null">
+        pre_account = #{preAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="preZsName != null">
+        pre_zs_name = #{preZsName,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="orderType != null">
+        order_type = #{orderType,jdbcType=INTEGER},
+      </if>
+      <if test="ipAddr != null">
+        ip_addr = #{ipAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="changeSett != null">
+        change_sett = #{changeSett,jdbcType=DECIMAL},
+      </if>
+      <if test="isNotify != null">
+        is_notify = #{isNotify,jdbcType=INTEGER},
+      </if>
+      <if test="chType != null">
+        ch_type = #{chType,jdbcType=INTEGER},
+      </if>
+      <if test="chNum != null">
+        ch_num = #{chNum,jdbcType=INTEGER},
+      </if>
+      <if test="siteName != null">
+        site_name = #{siteName,jdbcType=VARCHAR},
+      </if>
+      <if test="extenKey != null">
+        exten_key = #{extenKey,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.so206.po.SystemOrder">
+    update system_order
+    set pay_type = #{payType,jdbcType=INTEGER},
+      out_order_id = #{outOrderId,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      status = #{status,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      paid_time = #{paidTime,jdbcType=TIMESTAMP},
+      paid = #{paid,jdbcType=DECIMAL},
+      title = #{title,jdbcType=VARCHAR},
+      context = #{context,jdbcType=VARCHAR},
+      trade_no = #{tradeNo,jdbcType=VARCHAR},
+      trade_status = #{tradeStatus,jdbcType=VARCHAR},
+      uid = #{uid,jdbcType=INTEGER},
+      notify_url = #{notifyUrl,jdbcType=VARCHAR},
+      return_url = #{returnUrl,jdbcType=VARCHAR},
+      is_sett = #{isSett,jdbcType=INTEGER},
+      pre_pay_type = #{prePayType,jdbcType=INTEGER},
+      pre_account = #{preAccount,jdbcType=VARCHAR},
+      pre_zs_name = #{preZsName,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      order_type = #{orderType,jdbcType=INTEGER},
+      ip_addr = #{ipAddr,jdbcType=VARCHAR},
+      change_sett = #{changeSett,jdbcType=DECIMAL},
+      is_notify = #{isNotify,jdbcType=INTEGER},
+      ch_type = #{chType,jdbcType=INTEGER},
+      ch_num = #{chNum,jdbcType=INTEGER},
+      site_name = #{siteName,jdbcType=VARCHAR},
+      exten_key = #{extenKey,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

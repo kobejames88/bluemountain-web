@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>权限管理</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
+    <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="/static/css/font.css">
+    <link rel="stylesheet" href="/static/css/xadmin.css">
+    <script type="text/javascript" charset="utf-8" src="/static/js/jquery-1.11.3.min.js"></script>
+    <script src="/static/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/static/js/xadmin.js"></script>
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="/static/js/treetable/jquery.treetable.css"/>
+    <script src="/static/js/treetable/jquery.treetable.js"></script>
+</head>
+<body class="layui-layout-body">
+<div class="x-nav">
+      <span class="layui-breadcrumb">
+        <a href="/admin/welcomepage">首页</a>
+       <a href="javascript:window.location.reload();">
+          <cite>权限列表</cite>
+        </a>
+      </span>
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"
+       href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
+</div>
+<div class="x-body">
+    <blockquote class="layui-elem-quote">此处设置系统菜单结构,不建议用户私自修改!</blockquote>
+    <xblock>
+        <button class="layui-btn" onclick="x_admin_show('添加权限','/admin/function/add',800,600)"><i class="layui-icon"></i>添加
+        </button>
+        <span class="x-right" style="line-height:40px">管理和查看系统权限/菜单结构!</span>
+    </xblock>
+    <div>
+        <table class="layui-table" id="treeTable">
+            <thead>
+                <tr>
+                    <th>权限名</th>
+                    <th>权限值</th>
+                    <th>路径</th>
+                    <th>时间</th>
+                    <th>类型</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%for(o in model!){%>
+                <tr data-tt-id="${o.id!}" data-tt-parent-id="${o.parent!}" data-tt-branch="${o.status! == 1?true:false}">
+                    <td>
+                        <span class="pd-l-sm"></span><i class=""></i> ${o.funName!}
+                    </td>
+                    <td>${o.funDescp!}</td>
+                    <td>${o.funPath!}</td>
+                    <td>${o.optTime,dateFormat='yyyy-MM-dd HH:mm:ss'}</td>
+                    <td>
+                        <%if(o.isMenu! == 1){%>菜单<%}else{%>权限<%}%>
+                    </td>
+                    <td>
+                        <a title="编辑" onclick="x_admin_show('编辑','/admin/function/edit?id=${o.id!}',800,600)" href="javascript:void(0);">
+                            <i class="layui-icon">&#xe642;</i>
+                        </a>
+                        <a title="删除" onclick="member_del(this,'${o.id!}')" href="javascript:void(0);">
+                            <i class="layui-icon">&#xe640;</i>
+                        </a>
+                    </td>
+                </tr>
+                <%}%>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+<script>
+
+    var treeTable = null;
+
+    $(function () {
+        treeTable = $("#treeTable").treetable({
+            expandable: true,
+            onNodeExpand: function () {
+                var node = this;
+                var rows = "<tr data-tt-id=\"加载中...\" data-tt-parent-id=\"" + node.id + "\" data-tt-branch=\"false\"><td colspan='5'>loading</td></tr>";
+                treeTable.treetable("loadBranch", node, rows);
+                $.post("/admin/function/child?pid=" + node.id, {}, function (data) {
+                    treeTable.treetable("unloadBranch", node);
+                    treeTable.treetable("loadBranch", node, data);
+                });
+            }
+        });
+
+        layui.use('laydate', function () {
+            var laydate = layui.laydate;
+            //执行一个laydate实例
+            laydate.render({
+                elem: '#start' //指定元素
+            });
+            //执行一个laydate实例
+            laydate.render({
+                elem: '#end' //指定元素
+            });
+        });
+
+    });
+
+    function member_del(obj, id) {
+        layer.confirm('确认要删除吗？', function (index) {
+            $.post("/admin/function/delete",
+                {"id":id},
+                function (data) {
+                    layer.msg(data.msg, {icon: 1, time: 800});
+                    $(obj).parents("tr").remove();
+                    window.location.reload();
+                },"json");
+        });
+    }
+
+</script>
+</html>

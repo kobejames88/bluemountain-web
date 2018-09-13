@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> 查看推荐信息</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
+    <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="/static/css/font.css">
+    <link rel="stylesheet" href="/static/css/xadmin.css">
+    <script type="text/javascript" charset="utf-8" src="/static/js/jquery-1.11.3.min.js"></script>
+    <script src="/static/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/static/js/xadmin.js"></script>
+</head>
+<body>
+<div class="x-body">
+    <table class="layui-table">
+        <thead>
+        <tr>
+            <th>标题</th>
+            <th>详情</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>编号:</td>
+            <td>${model.id!}</td>
+        </tr>
+        <tr>
+            <td>推广人ID:</td>
+            <td>${e_user.id!}</td>
+        </tr>
+        <tr>
+            <td>推广人用户名:</td>
+            <td>${e_user.user!}</td>
+        </tr>
+        <tr>
+            <td>推广人邮箱:</td>
+            <td>${e_user.email!}</td>
+        </tr>
+        <tr>
+            <td>推广人注册IP:</td>
+            <td>${e_user.createIp!}</td>
+        </tr>
+        <tr>
+            <td>注册人ID:</td>
+            <td>${r_user.id!}</td>
+        </tr>
+        <tr>
+            <td>注册人用户名:</td>
+            <td>${r_user.user!}</td>
+        </tr>
+        <tr>
+            <td>注册人邮箱:</td>
+            <td>${r_user.email!}</td>
+        </tr>
+        <tr>
+            <td>注册人IP:</td>
+            <td>${r_user.createIp!}</td>
+        </tr>
+        <tr>
+            <td>注册时间:</td>
+            <td>${r_user.cresteTime!,dateFormat='yyyy-MM-dd HH:mm:ss'}</td>
+        </tr>
+        <tr>
+            <td>返利金额:</td>
+            <td>${model.money!}</td>
+        </tr>
+        <tr>
+            <td>记录时间:</td>
+            <td>${model.createTime!,dateFormat='yyyy-MM-dd HH:mm:ss'}</td>
+        </tr>
+        <tr>
+            <td>当前状态:</td>
+            <td><%if(model.status! == 0){%>待审核<%}else if(model.status! == 1){%>已提现<%}else{%>提现失败<%}%></td>
+        </tr>
+
+    </table>
+    <div style="text-align: center;">
+        <button class="layui-btn layui-btn-warm" onclick="x_admin_close()">关&nbsp;&nbsp;闭</button>
+    </div>
+</div>
+</body>
+<script>
+
+</script>
+</html>

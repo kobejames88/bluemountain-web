@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>提现记录</title>
+    <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="/static/css/font.css">
+    <link rel="stylesheet" href="/static/css/xadmin.css">
+    <script type="text/javascript" charset="utf-8" src="/static/js/jquery-1.11.3.min.js"></script>
+    <script src="/static/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/static/js/xadmin.js"></script>
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="x-nav">
+      <span class="layui-breadcrumb">
+        <a href="/admin/welcomepage">首页</a>
+        <a href="javascript:window.location.reload();">
+          <cite>提现记录</cite>
+        </a>
+      </span>
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"
+       href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
+</div>
+<div class="x-body">
+    <blockquote class="layui-elem-quote">系统自动提现时间为每天21:00开始出单,22:00开始打款,到账时间为24小时以内!</blockquote>
+    <div class="layui-row">
+        <form class="layui-form layui-col-md12 x-so" action="/admin/sett/list" method="get" id="ajaxForm">
+            <div class="layui-input-inline">
+                <select name="status">
+                    <option value="" <%if(status! == null){%>selected<%}%> >支付状态</option>
+                    <option value="2" <%if(status! == 2){%>selected<%}%> >已打款</option>
+                    <option value="1"<%if(status! == 1){%>selected<%}%> >未打款</option>
+                </select>
+            </div>
+            <div class="layui-input-inline">
+                <select name="payType">
+                    <option value="" <%if(payType! ==null){%>selected<%}%> >支付方式</option>
+                    <option value="2" <%if(payType! ==2){%>selected<%}%> >支付宝</option>
+                    <option value="1" <%if(payType! ==1){%>selected<%}%> >微信</option>
+                    <option value="3" <%if(payType! ==3){%>selected<%}%> >QQ钱包</option>
+                    <option value="4" <%if(payType! ==4){%>selected<%}%> >银行卡</option>
+                </select>
+            </div>
+            <input type="text" name="sid" value="${sid!}" placeholder="请输入提现编号" autocomplete="off" class="layui-input">
+            <button class="layui-btn" type="submit">
+                <i class="layui-icon">&#xe615;</i>
+            </button>
+            <span class="x-right" style="line-height:40px">共有数据：${bean.totalNum!0} 条</span>
+        </form>
+    </div>
+    <div id="dewdewfef">
+        <%#ajax pagenode:{%>
+        <table class="layui-table">
+            <thead>
+            <tr>
+                <th>编号</th>
+                <th>提现账号</th>
+                <th>提现金额</th>
+                <th>手续费</th>
+                <th>打款金额</th>
+                <th>提现时间</th>
+                <th>状态</th>
+                <th>操作</th>
+            </thead>
+            <tbody>
+            <%for(o in bean.items!){%>
+            <tr>
+                <td>${o.sid!}</td>
+                <td>${o.user!}</td>
+                <td>${o.settPreMoney!}</td>
+                <td>${o.settSubMoney!}</td>
+                <td>${o.settFinalMoney!0.00}</td>
+                <td>${o.createTime!,dateFormat='yyyy-MM-dd HH:mm'}</td>
+                <td>
+                    <%if(o.status! == 2){%>
+                        已打款
+                    <%}else if(o.status! == 1){%>
+                        等待打款
+                    <%}else if(o.status! == 3){%>
+                        打款失败
+                    <%}else if(o.status! == 4){%>
+                        已取消打款
+                    <%}%>
+                </td>
+                <td class="td-manage">
+                    <a title="查看提现详情" onclick="x_admin_show('查看提现详情','/admin/sett/view?id=${o.id!}')" href="javascript:void(0);">
+                        <i class="layui-icon">&#xe63c;</i>
+                    </a>
+                </td>
+            </tr>
+            <%}%>
+            </tbody>
+        </table>
+        <div class="page">
+            <%include("/include/page.html",{context:'dewdewfef',action:'/admin/order/list',model:bean!}){}%>
+        </div>
+        <script>
+            $(function () {
+                layui.use('laydate', function () {
+                    var laydate = layui.laydate;
+                    //执行一个laydate实例
+                    laydate.render({
+                        elem: '#start' //指定元素
+                    });
+                    //执行一个laydate实例
+                    laydate.render({
+                        elem: '#end' //指定元素
+                    });
+                });
+            });
+        </script>
+        <%}%>
+    </div>
+</div>
+</body>
+<script>
+    layui.use(['form', 'layer'], function () {
+        $ = layui.jquery;
+    });
+</script>
+</html>

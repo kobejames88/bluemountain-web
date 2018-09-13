@@ -1,0 +1,1072 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.so206.mapper.SystemWebMapper">
+  <resultMap id="BaseResultMap" type="com.so206.po.SystemWeb">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="pay_staff1" jdbcType="DOUBLE" property="payStaff1" />
+    <result column="pay_staff2" jdbcType="DOUBLE" property="payStaff2" />
+    <result column="kfqqq" jdbcType="VARCHAR" property="kfqqq" />
+    <result column="kfqq" jdbcType="VARCHAR" property="kfqq" />
+    <result column="sett_min" jdbcType="DOUBLE" property="settMin" />
+    <result column="http_url" jdbcType="VARCHAR" property="httpUrl" />
+    <result column="copyright" jdbcType="VARCHAR" property="copyright" />
+    <result column="icp_info" jdbcType="VARCHAR" property="icpInfo" />
+    <result column="keywords" jdbcType="VARCHAR" property="keywords" />
+    <result column="dec_text" jdbcType="VARCHAR" property="decText" />
+    <result column="site_name" jdbcType="VARCHAR" property="siteName" />
+    <result column="music" jdbcType="VARCHAR" property="music" />
+    <result column="reg_price" jdbcType="DECIMAL" property="regPrice" />
+    <result column="qun_url" jdbcType="VARCHAR" property="qunUrl" />
+    <result column="is_very_domain" jdbcType="INTEGER" property="isVeryDomain" />
+    <result column="auto_sett_pay" jdbcType="INTEGER" property="autoSettPay" />
+    <result column="reg_role" jdbcType="INTEGER" property="regRole" />
+    <result column="user_create_role" jdbcType="INTEGER" property="userCreateRole" />
+    <result column="pay_url_check" jdbcType="INTEGER" property="payUrlCheck" />
+    <result column="vip_sale" jdbcType="DECIMAL" property="vipSale" />
+    <result column="vip_staff2" jdbcType="DECIMAL" property="vipStaff2" />
+    <result column="vip_staff1" jdbcType="DECIMAL" property="vipStaff1" />
+    <result column="vip_method" jdbcType="INTEGER" property="vipMethod" />
+    <result column="is_api_open" jdbcType="INTEGER" property="isApiOpen" />
+    <result column="close_api_detial" jdbcType="VARCHAR" property="closeApiDetial" />
+    <result column="sys_threams" jdbcType="INTEGER" property="sysThreams" />
+    <result column="user_reg" jdbcType="INTEGER" property="userReg" />
+    <result column="pay_title" jdbcType="VARCHAR" property="payTitle" />
+    <result column="use_user_qq" jdbcType="INTEGER" property="useUserQq" />
+    <result column="show_pay_readme" jdbcType="INTEGER" property="showPayReadme" />
+    <result column="pay_to_alipay" jdbcType="INTEGER" property="payToAlipay" />
+    <result column="pay_to_wxpay" jdbcType="INTEGER" property="payToWxpay" />
+    <result column="pay_to_qqpay" jdbcType="INTEGER" property="payToQqpay" />
+    <result column="test_alipay" jdbcType="INTEGER" property="testAlipay" />
+    <result column="test_qqpay" jdbcType="INTEGER" property="testQqpay" />
+    <result column="test_wxpay" jdbcType="INTEGER" property="testWxpay" />
+    <result column="reg_alipay" jdbcType="INTEGER" property="regAlipay" />
+    <result column="reg_qqpay" jdbcType="INTEGER" property="regQqpay" />
+    <result column="reg_wxpay" jdbcType="INTEGER" property="regWxpay" />
+    <result column="home_logo" jdbcType="VARCHAR" property="homeLogo" />
+    <result column="home_qrcode" jdbcType="VARCHAR" property="homeQrcode" />
+    <result column="auto_sett" jdbcType="INTEGER" property="autoSett" />
+    <result column="auto_settle_pay" jdbcType="INTEGER" property="autoSettlePay" />
+    <result column="disable_shop_pay" jdbcType="VARCHAR" property="disableShopPay" />
+    <result column="exten_status" jdbcType="INTEGER" property="extenStatus" />
+    <result column="exten_min_money" jdbcType="DECIMAL" property="extenMinMoney" />
+    <result column="exten_max_money" jdbcType="DECIMAL" property="extenMaxMoney" />
+    <result column="order_filter" jdbcType="INTEGER" property="orderFilter" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.so206.po.SystemWebWithBLOBs">
+    <result column="user_def" jdbcType="LONGVARCHAR" property="userDef" />
+    <result column="pay_readme" jdbcType="LONGVARCHAR" property="payReadme" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, pay_staff1, pay_staff2, kfqqq, kfqq, sett_min, http_url, copyright, icp_info, 
+    keywords, dec_text, site_name, music, reg_price, qun_url, is_very_domain, auto_sett_pay, 
+    reg_role, user_create_role, pay_url_check, vip_sale, vip_staff2, vip_staff1, vip_method, 
+    is_api_open, close_api_detial, sys_threams, user_reg, pay_title, use_user_qq, show_pay_readme, 
+    pay_to_alipay, pay_to_wxpay, pay_to_qqpay, test_alipay, test_qqpay, test_wxpay, reg_alipay, 
+    reg_qqpay, reg_wxpay, home_logo, home_qrcode, auto_sett, auto_settle_pay, disable_shop_pay, 
+    exten_status, exten_min_money, exten_max_money, order_filter
+  </sql>
+  <sql id="Blob_Column_List">
+    user_def, pay_readme
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.so206.po.SystemWebExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from system_web
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.so206.po.SystemWebExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from system_web
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from system_web
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from system_web
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.so206.po.SystemWebExample">
+    delete from system_web
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.so206.po.SystemWebWithBLOBs">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      select LAST_INSERT_ID()
+    </selectKey>
+    insert into system_web (id, pay_staff1, pay_staff2, 
+      kfqqq, kfqq, sett_min, 
+      http_url, copyright, icp_info, 
+      keywords, dec_text, site_name, 
+      music, reg_price, qun_url, 
+      is_very_domain, auto_sett_pay, reg_role, 
+      user_create_role, pay_url_check, vip_sale, 
+      vip_staff2, vip_staff1, vip_method, 
+      is_api_open, close_api_detial, sys_threams, 
+      user_reg, pay_title, use_user_qq, 
+      show_pay_readme, pay_to_alipay, pay_to_wxpay, 
+      pay_to_qqpay, test_alipay, test_qqpay, 
+      test_wxpay, reg_alipay, reg_qqpay, 
+      reg_wxpay, home_logo, home_qrcode, 
+      auto_sett, auto_settle_pay, disable_shop_pay, 
+      exten_status, exten_min_money, exten_max_money, 
+      order_filter, user_def, pay_readme
+      )
+    values (#{id,jdbcType=INTEGER}, #{payStaff1,jdbcType=DOUBLE}, #{payStaff2,jdbcType=DOUBLE}, 
+      #{kfqqq,jdbcType=VARCHAR}, #{kfqq,jdbcType=VARCHAR}, #{settMin,jdbcType=DOUBLE}, 
+      #{httpUrl,jdbcType=VARCHAR}, #{copyright,jdbcType=VARCHAR}, #{icpInfo,jdbcType=VARCHAR}, 
+      #{keywords,jdbcType=VARCHAR}, #{decText,jdbcType=VARCHAR}, #{siteName,jdbcType=VARCHAR}, 
+      #{music,jdbcType=VARCHAR}, #{regPrice,jdbcType=DECIMAL}, #{qunUrl,jdbcType=VARCHAR}, 
+      #{isVeryDomain,jdbcType=INTEGER}, #{autoSettPay,jdbcType=INTEGER}, #{regRole,jdbcType=INTEGER}, 
+      #{userCreateRole,jdbcType=INTEGER}, #{payUrlCheck,jdbcType=INTEGER}, #{vipSale,jdbcType=DECIMAL}, 
+      #{vipStaff2,jdbcType=DECIMAL}, #{vipStaff1,jdbcType=DECIMAL}, #{vipMethod,jdbcType=INTEGER}, 
+      #{isApiOpen,jdbcType=INTEGER}, #{closeApiDetial,jdbcType=VARCHAR}, #{sysThreams,jdbcType=INTEGER}, 
+      #{userReg,jdbcType=INTEGER}, #{payTitle,jdbcType=VARCHAR}, #{useUserQq,jdbcType=INTEGER}, 
+      #{showPayReadme,jdbcType=INTEGER}, #{payToAlipay,jdbcType=INTEGER}, #{payToWxpay,jdbcType=INTEGER}, 
+      #{payToQqpay,jdbcType=INTEGER}, #{testAlipay,jdbcType=INTEGER}, #{testQqpay,jdbcType=INTEGER}, 
+      #{testWxpay,jdbcType=INTEGER}, #{regAlipay,jdbcType=INTEGER}, #{regQqpay,jdbcType=INTEGER}, 
+      #{regWxpay,jdbcType=INTEGER}, #{homeLogo,jdbcType=VARCHAR}, #{homeQrcode,jdbcType=VARCHAR}, 
+      #{autoSett,jdbcType=INTEGER}, #{autoSettlePay,jdbcType=INTEGER}, #{disableShopPay,jdbcType=VARCHAR}, 
+      #{extenStatus,jdbcType=INTEGER}, #{extenMinMoney,jdbcType=DECIMAL}, #{extenMaxMoney,jdbcType=DECIMAL}, 
+      #{orderFilter,jdbcType=INTEGER}, #{userDef,jdbcType=LONGVARCHAR}, #{payReadme,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.so206.po.SystemWebWithBLOBs">
+    insert into system_web
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="payStaff1 != null">
+        pay_staff1,
+      </if>
+      <if test="payStaff2 != null">
+        pay_staff2,
+      </if>
+      <if test="kfqqq != null">
+        kfqqq,
+      </if>
+      <if test="kfqq != null">
+        kfqq,
+      </if>
+      <if test="settMin != null">
+        sett_min,
+      </if>
+      <if test="httpUrl != null">
+        http_url,
+      </if>
+      <if test="copyright != null">
+        copyright,
+      </if>
+      <if test="icpInfo != null">
+        icp_info,
+      </if>
+      <if test="keywords != null">
+        keywords,
+      </if>
+      <if test="decText != null">
+        dec_text,
+      </if>
+      <if test="siteName != null">
+        site_name,
+      </if>
+      <if test="music != null">
+        music,
+      </if>
+      <if test="regPrice != null">
+        reg_price,
+      </if>
+      <if test="qunUrl != null">
+        qun_url,
+      </if>
+      <if test="isVeryDomain != null">
+        is_very_domain,
+      </if>
+      <if test="autoSettPay != null">
+        auto_sett_pay,
+      </if>
+      <if test="regRole != null">
+        reg_role,
+      </if>
+      <if test="userCreateRole != null">
+        user_create_role,
+      </if>
+      <if test="payUrlCheck != null">
+        pay_url_check,
+      </if>
+      <if test="vipSale != null">
+        vip_sale,
+      </if>
+      <if test="vipStaff2 != null">
+        vip_staff2,
+      </if>
+      <if test="vipStaff1 != null">
+        vip_staff1,
+      </if>
+      <if test="vipMethod != null">
+        vip_method,
+      </if>
+      <if test="isApiOpen != null">
+        is_api_open,
+      </if>
+      <if test="closeApiDetial != null">
+        close_api_detial,
+      </if>
+      <if test="sysThreams != null">
+        sys_threams,
+      </if>
+      <if test="userReg != null">
+        user_reg,
+      </if>
+      <if test="payTitle != null">
+        pay_title,
+      </if>
+      <if test="useUserQq != null">
+        use_user_qq,
+      </if>
+      <if test="showPayReadme != null">
+        show_pay_readme,
+      </if>
+      <if test="payToAlipay != null">
+        pay_to_alipay,
+      </if>
+      <if test="payToWxpay != null">
+        pay_to_wxpay,
+      </if>
+      <if test="payToQqpay != null">
+        pay_to_qqpay,
+      </if>
+      <if test="testAlipay != null">
+        test_alipay,
+      </if>
+      <if test="testQqpay != null">
+        test_qqpay,
+      </if>
+      <if test="testWxpay != null">
+        test_wxpay,
+      </if>
+      <if test="regAlipay != null">
+        reg_alipay,
+      </if>
+      <if test="regQqpay != null">
+        reg_qqpay,
+      </if>
+      <if test="regWxpay != null">
+        reg_wxpay,
+      </if>
+      <if test="homeLogo != null">
+        home_logo,
+      </if>
+      <if test="homeQrcode != null">
+        home_qrcode,
+      </if>
+      <if test="autoSett != null">
+        auto_sett,
+      </if>
+      <if test="autoSettlePay != null">
+        auto_settle_pay,
+      </if>
+      <if test="disableShopPay != null">
+        disable_shop_pay,
+      </if>
+      <if test="extenStatus != null">
+        exten_status,
+      </if>
+      <if test="extenMinMoney != null">
+        exten_min_money,
+      </if>
+      <if test="extenMaxMoney != null">
+        exten_max_money,
+      </if>
+      <if test="orderFilter != null">
+        order_filter,
+      </if>
+      <if test="userDef != null">
+        user_def,
+      </if>
+      <if test="payReadme != null">
+        pay_readme,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="payStaff1 != null">
+        #{payStaff1,jdbcType=DOUBLE},
+      </if>
+      <if test="payStaff2 != null">
+        #{payStaff2,jdbcType=DOUBLE},
+      </if>
+      <if test="kfqqq != null">
+        #{kfqqq,jdbcType=VARCHAR},
+      </if>
+      <if test="kfqq != null">
+        #{kfqq,jdbcType=VARCHAR},
+      </if>
+      <if test="settMin != null">
+        #{settMin,jdbcType=DOUBLE},
+      </if>
+      <if test="httpUrl != null">
+        #{httpUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="copyright != null">
+        #{copyright,jdbcType=VARCHAR},
+      </if>
+      <if test="icpInfo != null">
+        #{icpInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="keywords != null">
+        #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="decText != null">
+        #{decText,jdbcType=VARCHAR},
+      </if>
+      <if test="siteName != null">
+        #{siteName,jdbcType=VARCHAR},
+      </if>
+      <if test="music != null">
+        #{music,jdbcType=VARCHAR},
+      </if>
+      <if test="regPrice != null">
+        #{regPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="qunUrl != null">
+        #{qunUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="isVeryDomain != null">
+        #{isVeryDomain,jdbcType=INTEGER},
+      </if>
+      <if test="autoSettPay != null">
+        #{autoSettPay,jdbcType=INTEGER},
+      </if>
+      <if test="regRole != null">
+        #{regRole,jdbcType=INTEGER},
+      </if>
+      <if test="userCreateRole != null">
+        #{userCreateRole,jdbcType=INTEGER},
+      </if>
+      <if test="payUrlCheck != null">
+        #{payUrlCheck,jdbcType=INTEGER},
+      </if>
+      <if test="vipSale != null">
+        #{vipSale,jdbcType=DECIMAL},
+      </if>
+      <if test="vipStaff2 != null">
+        #{vipStaff2,jdbcType=DECIMAL},
+      </if>
+      <if test="vipStaff1 != null">
+        #{vipStaff1,jdbcType=DECIMAL},
+      </if>
+      <if test="vipMethod != null">
+        #{vipMethod,jdbcType=INTEGER},
+      </if>
+      <if test="isApiOpen != null">
+        #{isApiOpen,jdbcType=INTEGER},
+      </if>
+      <if test="closeApiDetial != null">
+        #{closeApiDetial,jdbcType=VARCHAR},
+      </if>
+      <if test="sysThreams != null">
+        #{sysThreams,jdbcType=INTEGER},
+      </if>
+      <if test="userReg != null">
+        #{userReg,jdbcType=INTEGER},
+      </if>
+      <if test="payTitle != null">
+        #{payTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="useUserQq != null">
+        #{useUserQq,jdbcType=INTEGER},
+      </if>
+      <if test="showPayReadme != null">
+        #{showPayReadme,jdbcType=INTEGER},
+      </if>
+      <if test="payToAlipay != null">
+        #{payToAlipay,jdbcType=INTEGER},
+      </if>
+      <if test="payToWxpay != null">
+        #{payToWxpay,jdbcType=INTEGER},
+      </if>
+      <if test="payToQqpay != null">
+        #{payToQqpay,jdbcType=INTEGER},
+      </if>
+      <if test="testAlipay != null">
+        #{testAlipay,jdbcType=INTEGER},
+      </if>
+      <if test="testQqpay != null">
+        #{testQqpay,jdbcType=INTEGER},
+      </if>
+      <if test="testWxpay != null">
+        #{testWxpay,jdbcType=INTEGER},
+      </if>
+      <if test="regAlipay != null">
+        #{regAlipay,jdbcType=INTEGER},
+      </if>
+      <if test="regQqpay != null">
+        #{regQqpay,jdbcType=INTEGER},
+      </if>
+      <if test="regWxpay != null">
+        #{regWxpay,jdbcType=INTEGER},
+      </if>
+      <if test="homeLogo != null">
+        #{homeLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="homeQrcode != null">
+        #{homeQrcode,jdbcType=VARCHAR},
+      </if>
+      <if test="autoSett != null">
+        #{autoSett,jdbcType=INTEGER},
+      </if>
+      <if test="autoSettlePay != null">
+        #{autoSettlePay,jdbcType=INTEGER},
+      </if>
+      <if test="disableShopPay != null">
+        #{disableShopPay,jdbcType=VARCHAR},
+      </if>
+      <if test="extenStatus != null">
+        #{extenStatus,jdbcType=INTEGER},
+      </if>
+      <if test="extenMinMoney != null">
+        #{extenMinMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="extenMaxMoney != null">
+        #{extenMaxMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="orderFilter != null">
+        #{orderFilter,jdbcType=INTEGER},
+      </if>
+      <if test="userDef != null">
+        #{userDef,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="payReadme != null">
+        #{payReadme,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.so206.po.SystemWebExample" resultType="java.lang.Long">
+    select count(*) from system_web
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update system_web
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.payStaff1 != null">
+        pay_staff1 = #{record.payStaff1,jdbcType=DOUBLE},
+      </if>
+      <if test="record.payStaff2 != null">
+        pay_staff2 = #{record.payStaff2,jdbcType=DOUBLE},
+      </if>
+      <if test="record.kfqqq != null">
+        kfqqq = #{record.kfqqq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kfqq != null">
+        kfqq = #{record.kfqq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.settMin != null">
+        sett_min = #{record.settMin,jdbcType=DOUBLE},
+      </if>
+      <if test="record.httpUrl != null">
+        http_url = #{record.httpUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.copyright != null">
+        copyright = #{record.copyright,jdbcType=VARCHAR},
+      </if>
+      <if test="record.icpInfo != null">
+        icp_info = #{record.icpInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.keywords != null">
+        keywords = #{record.keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="record.decText != null">
+        dec_text = #{record.decText,jdbcType=VARCHAR},
+      </if>
+      <if test="record.siteName != null">
+        site_name = #{record.siteName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.music != null">
+        music = #{record.music,jdbcType=VARCHAR},
+      </if>
+      <if test="record.regPrice != null">
+        reg_price = #{record.regPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.qunUrl != null">
+        qun_url = #{record.qunUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isVeryDomain != null">
+        is_very_domain = #{record.isVeryDomain,jdbcType=INTEGER},
+      </if>
+      <if test="record.autoSettPay != null">
+        auto_sett_pay = #{record.autoSettPay,jdbcType=INTEGER},
+      </if>
+      <if test="record.regRole != null">
+        reg_role = #{record.regRole,jdbcType=INTEGER},
+      </if>
+      <if test="record.userCreateRole != null">
+        user_create_role = #{record.userCreateRole,jdbcType=INTEGER},
+      </if>
+      <if test="record.payUrlCheck != null">
+        pay_url_check = #{record.payUrlCheck,jdbcType=INTEGER},
+      </if>
+      <if test="record.vipSale != null">
+        vip_sale = #{record.vipSale,jdbcType=DECIMAL},
+      </if>
+      <if test="record.vipStaff2 != null">
+        vip_staff2 = #{record.vipStaff2,jdbcType=DECIMAL},
+      </if>
+      <if test="record.vipStaff1 != null">
+        vip_staff1 = #{record.vipStaff1,jdbcType=DECIMAL},
+      </if>
+      <if test="record.vipMethod != null">
+        vip_method = #{record.vipMethod,jdbcType=INTEGER},
+      </if>
+      <if test="record.isApiOpen != null">
+        is_api_open = #{record.isApiOpen,jdbcType=INTEGER},
+      </if>
+      <if test="record.closeApiDetial != null">
+        close_api_detial = #{record.closeApiDetial,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sysThreams != null">
+        sys_threams = #{record.sysThreams,jdbcType=INTEGER},
+      </if>
+      <if test="record.userReg != null">
+        user_reg = #{record.userReg,jdbcType=INTEGER},
+      </if>
+      <if test="record.payTitle != null">
+        pay_title = #{record.payTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.useUserQq != null">
+        use_user_qq = #{record.useUserQq,jdbcType=INTEGER},
+      </if>
+      <if test="record.showPayReadme != null">
+        show_pay_readme = #{record.showPayReadme,jdbcType=INTEGER},
+      </if>
+      <if test="record.payToAlipay != null">
+        pay_to_alipay = #{record.payToAlipay,jdbcType=INTEGER},
+      </if>
+      <if test="record.payToWxpay != null">
+        pay_to_wxpay = #{record.payToWxpay,jdbcType=INTEGER},
+      </if>
+      <if test="record.payToQqpay != null">
+        pay_to_qqpay = #{record.payToQqpay,jdbcType=INTEGER},
+      </if>
+      <if test="record.testAlipay != null">
+        test_alipay = #{record.testAlipay,jdbcType=INTEGER},
+      </if>
+      <if test="record.testQqpay != null">
+        test_qqpay = #{record.testQqpay,jdbcType=INTEGER},
+      </if>
+      <if test="record.testWxpay != null">
+        test_wxpay = #{record.testWxpay,jdbcType=INTEGER},
+      </if>
+      <if test="record.regAlipay != null">
+        reg_alipay = #{record.regAlipay,jdbcType=INTEGER},
+      </if>
+      <if test="record.regQqpay != null">
+        reg_qqpay = #{record.regQqpay,jdbcType=INTEGER},
+      </if>
+      <if test="record.regWxpay != null">
+        reg_wxpay = #{record.regWxpay,jdbcType=INTEGER},
+      </if>
+      <if test="record.homeLogo != null">
+        home_logo = #{record.homeLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.homeQrcode != null">
+        home_qrcode = #{record.homeQrcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.autoSett != null">
+        auto_sett = #{record.autoSett,jdbcType=INTEGER},
+      </if>
+      <if test="record.autoSettlePay != null">
+        auto_settle_pay = #{record.autoSettlePay,jdbcType=INTEGER},
+      </if>
+      <if test="record.disableShopPay != null">
+        disable_shop_pay = #{record.disableShopPay,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extenStatus != null">
+        exten_status = #{record.extenStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.extenMinMoney != null">
+        exten_min_money = #{record.extenMinMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.extenMaxMoney != null">
+        exten_max_money = #{record.extenMaxMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.orderFilter != null">
+        order_filter = #{record.orderFilter,jdbcType=INTEGER},
+      </if>
+      <if test="record.userDef != null">
+        user_def = #{record.userDef,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.payReadme != null">
+        pay_readme = #{record.payReadme,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update system_web
+    set id = #{record.id,jdbcType=INTEGER},
+      pay_staff1 = #{record.payStaff1,jdbcType=DOUBLE},
+      pay_staff2 = #{record.payStaff2,jdbcType=DOUBLE},
+      kfqqq = #{record.kfqqq,jdbcType=VARCHAR},
+      kfqq = #{record.kfqq,jdbcType=VARCHAR},
+      sett_min = #{record.settMin,jdbcType=DOUBLE},
+      http_url = #{record.httpUrl,jdbcType=VARCHAR},
+      copyright = #{record.copyright,jdbcType=VARCHAR},
+      icp_info = #{record.icpInfo,jdbcType=VARCHAR},
+      keywords = #{record.keywords,jdbcType=VARCHAR},
+      dec_text = #{record.decText,jdbcType=VARCHAR},
+      site_name = #{record.siteName,jdbcType=VARCHAR},
+      music = #{record.music,jdbcType=VARCHAR},
+      reg_price = #{record.regPrice,jdbcType=DECIMAL},
+      qun_url = #{record.qunUrl,jdbcType=VARCHAR},
+      is_very_domain = #{record.isVeryDomain,jdbcType=INTEGER},
+      auto_sett_pay = #{record.autoSettPay,jdbcType=INTEGER},
+      reg_role = #{record.regRole,jdbcType=INTEGER},
+      user_create_role = #{record.userCreateRole,jdbcType=INTEGER},
+      pay_url_check = #{record.payUrlCheck,jdbcType=INTEGER},
+      vip_sale = #{record.vipSale,jdbcType=DECIMAL},
+      vip_staff2 = #{record.vipStaff2,jdbcType=DECIMAL},
+      vip_staff1 = #{record.vipStaff1,jdbcType=DECIMAL},
+      vip_method = #{record.vipMethod,jdbcType=INTEGER},
+      is_api_open = #{record.isApiOpen,jdbcType=INTEGER},
+      close_api_detial = #{record.closeApiDetial,jdbcType=VARCHAR},
+      sys_threams = #{record.sysThreams,jdbcType=INTEGER},
+      user_reg = #{record.userReg,jdbcType=INTEGER},
+      pay_title = #{record.payTitle,jdbcType=VARCHAR},
+      use_user_qq = #{record.useUserQq,jdbcType=INTEGER},
+      show_pay_readme = #{record.showPayReadme,jdbcType=INTEGER},
+      pay_to_alipay = #{record.payToAlipay,jdbcType=INTEGER},
+      pay_to_wxpay = #{record.payToWxpay,jdbcType=INTEGER},
+      pay_to_qqpay = #{record.payToQqpay,jdbcType=INTEGER},
+      test_alipay = #{record.testAlipay,jdbcType=INTEGER},
+      test_qqpay = #{record.testQqpay,jdbcType=INTEGER},
+      test_wxpay = #{record.testWxpay,jdbcType=INTEGER},
+      reg_alipay = #{record.regAlipay,jdbcType=INTEGER},
+      reg_qqpay = #{record.regQqpay,jdbcType=INTEGER},
+      reg_wxpay = #{record.regWxpay,jdbcType=INTEGER},
+      home_logo = #{record.homeLogo,jdbcType=VARCHAR},
+      home_qrcode = #{record.homeQrcode,jdbcType=VARCHAR},
+      auto_sett = #{record.autoSett,jdbcType=INTEGER},
+      auto_settle_pay = #{record.autoSettlePay,jdbcType=INTEGER},
+      disable_shop_pay = #{record.disableShopPay,jdbcType=VARCHAR},
+      exten_status = #{record.extenStatus,jdbcType=INTEGER},
+      exten_min_money = #{record.extenMinMoney,jdbcType=DECIMAL},
+      exten_max_money = #{record.extenMaxMoney,jdbcType=DECIMAL},
+      order_filter = #{record.orderFilter,jdbcType=INTEGER},
+      user_def = #{record.userDef,jdbcType=LONGVARCHAR},
+      pay_readme = #{record.payReadme,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update system_web
+    set id = #{record.id,jdbcType=INTEGER},
+      pay_staff1 = #{record.payStaff1,jdbcType=DOUBLE},
+      pay_staff2 = #{record.payStaff2,jdbcType=DOUBLE},
+      kfqqq = #{record.kfqqq,jdbcType=VARCHAR},
+      kfqq = #{record.kfqq,jdbcType=VARCHAR},
+      sett_min = #{record.settMin,jdbcType=DOUBLE},
+      http_url = #{record.httpUrl,jdbcType=VARCHAR},
+      copyright = #{record.copyright,jdbcType=VARCHAR},
+      icp_info = #{record.icpInfo,jdbcType=VARCHAR},
+      keywords = #{record.keywords,jdbcType=VARCHAR},
+      dec_text = #{record.decText,jdbcType=VARCHAR},
+      site_name = #{record.siteName,jdbcType=VARCHAR},
+      music = #{record.music,jdbcType=VARCHAR},
+      reg_price = #{record.regPrice,jdbcType=DECIMAL},
+      qun_url = #{record.qunUrl,jdbcType=VARCHAR},
+      is_very_domain = #{record.isVeryDomain,jdbcType=INTEGER},
+      auto_sett_pay = #{record.autoSettPay,jdbcType=INTEGER},
+      reg_role = #{record.regRole,jdbcType=INTEGER},
+      user_create_role = #{record.userCreateRole,jdbcType=INTEGER},
+      pay_url_check = #{record.payUrlCheck,jdbcType=INTEGER},
+      vip_sale = #{record.vipSale,jdbcType=DECIMAL},
+      vip_staff2 = #{record.vipStaff2,jdbcType=DECIMAL},
+      vip_staff1 = #{record.vipStaff1,jdbcType=DECIMAL},
+      vip_method = #{record.vipMethod,jdbcType=INTEGER},
+      is_api_open = #{record.isApiOpen,jdbcType=INTEGER},
+      close_api_detial = #{record.closeApiDetial,jdbcType=VARCHAR},
+      sys_threams = #{record.sysThreams,jdbcType=INTEGER},
+      user_reg = #{record.userReg,jdbcType=INTEGER},
+      pay_title = #{record.payTitle,jdbcType=VARCHAR},
+      use_user_qq = #{record.useUserQq,jdbcType=INTEGER},
+      show_pay_readme = #{record.showPayReadme,jdbcType=INTEGER},
+      pay_to_alipay = #{record.payToAlipay,jdbcType=INTEGER},
+      pay_to_wxpay = #{record.payToWxpay,jdbcType=INTEGER},
+      pay_to_qqpay = #{record.payToQqpay,jdbcType=INTEGER},
+      test_alipay = #{record.testAlipay,jdbcType=INTEGER},
+      test_qqpay = #{record.testQqpay,jdbcType=INTEGER},
+      test_wxpay = #{record.testWxpay,jdbcType=INTEGER},
+      reg_alipay = #{record.regAlipay,jdbcType=INTEGER},
+      reg_qqpay = #{record.regQqpay,jdbcType=INTEGER},
+      reg_wxpay = #{record.regWxpay,jdbcType=INTEGER},
+      home_logo = #{record.homeLogo,jdbcType=VARCHAR},
+      home_qrcode = #{record.homeQrcode,jdbcType=VARCHAR},
+      auto_sett = #{record.autoSett,jdbcType=INTEGER},
+      auto_settle_pay = #{record.autoSettlePay,jdbcType=INTEGER},
+      disable_shop_pay = #{record.disableShopPay,jdbcType=VARCHAR},
+      exten_status = #{record.extenStatus,jdbcType=INTEGER},
+      exten_min_money = #{record.extenMinMoney,jdbcType=DECIMAL},
+      exten_max_money = #{record.extenMaxMoney,jdbcType=DECIMAL},
+      order_filter = #{record.orderFilter,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.so206.po.SystemWebWithBLOBs">
+    update system_web
+    <set>
+      <if test="payStaff1 != null">
+        pay_staff1 = #{payStaff1,jdbcType=DOUBLE},
+      </if>
+      <if test="payStaff2 != null">
+        pay_staff2 = #{payStaff2,jdbcType=DOUBLE},
+      </if>
+      <if test="kfqqq != null">
+        kfqqq = #{kfqqq,jdbcType=VARCHAR},
+      </if>
+      <if test="kfqq != null">
+        kfqq = #{kfqq,jdbcType=VARCHAR},
+      </if>
+      <if test="settMin != null">
+        sett_min = #{settMin,jdbcType=DOUBLE},
+      </if>
+      <if test="httpUrl != null">
+        http_url = #{httpUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="copyright != null">
+        copyright = #{copyright,jdbcType=VARCHAR},
+      </if>
+      <if test="icpInfo != null">
+        icp_info = #{icpInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="keywords != null">
+        keywords = #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="decText != null">
+        dec_text = #{decText,jdbcType=VARCHAR},
+      </if>
+      <if test="siteName != null">
+        site_name = #{siteName,jdbcType=VARCHAR},
+      </if>
+      <if test="music != null">
+        music = #{music,jdbcType=VARCHAR},
+      </if>
+      <if test="regPrice != null">
+        reg_price = #{regPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="qunUrl != null">
+        qun_url = #{qunUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="isVeryDomain != null">
+        is_very_domain = #{isVeryDomain,jdbcType=INTEGER},
+      </if>
+      <if test="autoSettPay != null">
+        auto_sett_pay = #{autoSettPay,jdbcType=INTEGER},
+      </if>
+      <if test="regRole != null">
+        reg_role = #{regRole,jdbcType=INTEGER},
+      </if>
+      <if test="userCreateRole != null">
+        user_create_role = #{userCreateRole,jdbcType=INTEGER},
+      </if>
+      <if test="payUrlCheck != null">
+        pay_url_check = #{payUrlCheck,jdbcType=INTEGER},
+      </if>
+      <if test="vipSale != null">
+        vip_sale = #{vipSale,jdbcType=DECIMAL},
+      </if>
+      <if test="vipStaff2 != null">
+        vip_staff2 = #{vipStaff2,jdbcType=DECIMAL},
+      </if>
+      <if test="vipStaff1 != null">
+        vip_staff1 = #{vipStaff1,jdbcType=DECIMAL},
+      </if>
+      <if test="vipMethod != null">
+        vip_method = #{vipMethod,jdbcType=INTEGER},
+      </if>
+      <if test="isApiOpen != null">
+        is_api_open = #{isApiOpen,jdbcType=INTEGER},
+      </if>
+      <if test="closeApiDetial != null">
+        close_api_detial = #{closeApiDetial,jdbcType=VARCHAR},
+      </if>
+      <if test="sysThreams != null">
+        sys_threams = #{sysThreams,jdbcType=INTEGER},
+      </if>
+      <if test="userReg != null">
+        user_reg = #{userReg,jdbcType=INTEGER},
+      </if>
+      <if test="payTitle != null">
+        pay_title = #{payTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="useUserQq != null">
+        use_user_qq = #{useUserQq,jdbcType=INTEGER},
+      </if>
+      <if test="showPayReadme != null">
+        show_pay_readme = #{showPayReadme,jdbcType=INTEGER},
+      </if>
+      <if test="payToAlipay != null">
+        pay_to_alipay = #{payToAlipay,jdbcType=INTEGER},
+      </if>
+      <if test="payToWxpay != null">
+        pay_to_wxpay = #{payToWxpay,jdbcType=INTEGER},
+      </if>
+      <if test="payToQqpay != null">
+        pay_to_qqpay = #{payToQqpay,jdbcType=INTEGER},
+      </if>
+      <if test="testAlipay != null">
+        test_alipay = #{testAlipay,jdbcType=INTEGER},
+      </if>
+      <if test="testQqpay != null">
+        test_qqpay = #{testQqpay,jdbcType=INTEGER},
+      </if>
+      <if test="testWxpay != null">
+        test_wxpay = #{testWxpay,jdbcType=INTEGER},
+      </if>
+      <if test="regAlipay != null">
+        reg_alipay = #{regAlipay,jdbcType=INTEGER},
+      </if>
+      <if test="regQqpay != null">
+        reg_qqpay = #{regQqpay,jdbcType=INTEGER},
+      </if>
+      <if test="regWxpay != null">
+        reg_wxpay = #{regWxpay,jdbcType=INTEGER},
+      </if>
+      <if test="homeLogo != null">
+        home_logo = #{homeLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="homeQrcode != null">
+        home_qrcode = #{homeQrcode,jdbcType=VARCHAR},
+      </if>
+      <if test="autoSett != null">
+        auto_sett = #{autoSett,jdbcType=INTEGER},
+      </if>
+      <if test="autoSettlePay != null">
+        auto_settle_pay = #{autoSettlePay,jdbcType=INTEGER},
+      </if>
+      <if test="disableShopPay != null">
+        disable_shop_pay = #{disableShopPay,jdbcType=VARCHAR},
+      </if>
+      <if test="extenStatus != null">
+        exten_status = #{extenStatus,jdbcType=INTEGER},
+      </if>
+      <if test="extenMinMoney != null">
+        exten_min_money = #{extenMinMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="extenMaxMoney != null">
+        exten_max_money = #{extenMaxMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="orderFilter != null">
+        order_filter = #{orderFilter,jdbcType=INTEGER},
+      </if>
+      <if test="userDef != null">
+        user_def = #{userDef,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="payReadme != null">
+        pay_readme = #{payReadme,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.so206.po.SystemWebWithBLOBs">
+    update system_web
+    set pay_staff1 = #{payStaff1,jdbcType=DOUBLE},
+      pay_staff2 = #{payStaff2,jdbcType=DOUBLE},
+      kfqqq = #{kfqqq,jdbcType=VARCHAR},
+      kfqq = #{kfqq,jdbcType=VARCHAR},
+      sett_min = #{settMin,jdbcType=DOUBLE},
+      http_url = #{httpUrl,jdbcType=VARCHAR},
+      copyright = #{copyright,jdbcType=VARCHAR},
+      icp_info = #{icpInfo,jdbcType=VARCHAR},
+      keywords = #{keywords,jdbcType=VARCHAR},
+      dec_text = #{decText,jdbcType=VARCHAR},
+      site_name = #{siteName,jdbcType=VARCHAR},
+      music = #{music,jdbcType=VARCHAR},
+      reg_price = #{regPrice,jdbcType=DECIMAL},
+      qun_url = #{qunUrl,jdbcType=VARCHAR},
+      is_very_domain = #{isVeryDomain,jdbcType=INTEGER},
+      auto_sett_pay = #{autoSettPay,jdbcType=INTEGER},
+      reg_role = #{regRole,jdbcType=INTEGER},
+      user_create_role = #{userCreateRole,jdbcType=INTEGER},
+      pay_url_check = #{payUrlCheck,jdbcType=INTEGER},
+      vip_sale = #{vipSale,jdbcType=DECIMAL},
+      vip_staff2 = #{vipStaff2,jdbcType=DECIMAL},
+      vip_staff1 = #{vipStaff1,jdbcType=DECIMAL},
+      vip_method = #{vipMethod,jdbcType=INTEGER},
+      is_api_open = #{isApiOpen,jdbcType=INTEGER},
+      close_api_detial = #{closeApiDetial,jdbcType=VARCHAR},
+      sys_threams = #{sysThreams,jdbcType=INTEGER},
+      user_reg = #{userReg,jdbcType=INTEGER},
+      pay_title = #{payTitle,jdbcType=VARCHAR},
+      use_user_qq = #{useUserQq,jdbcType=INTEGER},
+      show_pay_readme = #{showPayReadme,jdbcType=INTEGER},
+      pay_to_alipay = #{payToAlipay,jdbcType=INTEGER},
+      pay_to_wxpay = #{payToWxpay,jdbcType=INTEGER},
+      pay_to_qqpay = #{payToQqpay,jdbcType=INTEGER},
+      test_alipay = #{testAlipay,jdbcType=INTEGER},
+      test_qqpay = #{testQqpay,jdbcType=INTEGER},
+      test_wxpay = #{testWxpay,jdbcType=INTEGER},
+      reg_alipay = #{regAlipay,jdbcType=INTEGER},
+      reg_qqpay = #{regQqpay,jdbcType=INTEGER},
+      reg_wxpay = #{regWxpay,jdbcType=INTEGER},
+      home_logo = #{homeLogo,jdbcType=VARCHAR},
+      home_qrcode = #{homeQrcode,jdbcType=VARCHAR},
+      auto_sett = #{autoSett,jdbcType=INTEGER},
+      auto_settle_pay = #{autoSettlePay,jdbcType=INTEGER},
+      disable_shop_pay = #{disableShopPay,jdbcType=VARCHAR},
+      exten_status = #{extenStatus,jdbcType=INTEGER},
+      exten_min_money = #{extenMinMoney,jdbcType=DECIMAL},
+      exten_max_money = #{extenMaxMoney,jdbcType=DECIMAL},
+      order_filter = #{orderFilter,jdbcType=INTEGER},
+      user_def = #{userDef,jdbcType=LONGVARCHAR},
+      pay_readme = #{payReadme,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.so206.po.SystemWeb">
+    update system_web
+    set pay_staff1 = #{payStaff1,jdbcType=DOUBLE},
+      pay_staff2 = #{payStaff2,jdbcType=DOUBLE},
+      kfqqq = #{kfqqq,jdbcType=VARCHAR},
+      kfqq = #{kfqq,jdbcType=VARCHAR},
+      sett_min = #{settMin,jdbcType=DOUBLE},
+      http_url = #{httpUrl,jdbcType=VARCHAR},
+      copyright = #{copyright,jdbcType=VARCHAR},
+      icp_info = #{icpInfo,jdbcType=VARCHAR},
+      keywords = #{keywords,jdbcType=VARCHAR},
+      dec_text = #{decText,jdbcType=VARCHAR},
+      site_name = #{siteName,jdbcType=VARCHAR},
+      music = #{music,jdbcType=VARCHAR},
+      reg_price = #{regPrice,jdbcType=DECIMAL},
+      qun_url = #{qunUrl,jdbcType=VARCHAR},
+      is_very_domain = #{isVeryDomain,jdbcType=INTEGER},
+      auto_sett_pay = #{autoSettPay,jdbcType=INTEGER},
+      reg_role = #{regRole,jdbcType=INTEGER},
+      user_create_role = #{userCreateRole,jdbcType=INTEGER},
+      pay_url_check = #{payUrlCheck,jdbcType=INTEGER},
+      vip_sale = #{vipSale,jdbcType=DECIMAL},
+      vip_staff2 = #{vipStaff2,jdbcType=DECIMAL},
+      vip_staff1 = #{vipStaff1,jdbcType=DECIMAL},
+      vip_method = #{vipMethod,jdbcType=INTEGER},
+      is_api_open = #{isApiOpen,jdbcType=INTEGER},
+      close_api_detial = #{closeApiDetial,jdbcType=VARCHAR},
+      sys_threams = #{sysThreams,jdbcType=INTEGER},
+      user_reg = #{userReg,jdbcType=INTEGER},
+      pay_title = #{payTitle,jdbcType=VARCHAR},
+      use_user_qq = #{useUserQq,jdbcType=INTEGER},
+      show_pay_readme = #{showPayReadme,jdbcType=INTEGER},
+      pay_to_alipay = #{payToAlipay,jdbcType=INTEGER},
+      pay_to_wxpay = #{payToWxpay,jdbcType=INTEGER},
+      pay_to_qqpay = #{payToQqpay,jdbcType=INTEGER},
+      test_alipay = #{testAlipay,jdbcType=INTEGER},
+      test_qqpay = #{testQqpay,jdbcType=INTEGER},
+      test_wxpay = #{testWxpay,jdbcType=INTEGER},
+      reg_alipay = #{regAlipay,jdbcType=INTEGER},
+      reg_qqpay = #{regQqpay,jdbcType=INTEGER},
+      reg_wxpay = #{regWxpay,jdbcType=INTEGER},
+      home_logo = #{homeLogo,jdbcType=VARCHAR},
+      home_qrcode = #{homeQrcode,jdbcType=VARCHAR},
+      auto_sett = #{autoSett,jdbcType=INTEGER},
+      auto_settle_pay = #{autoSettlePay,jdbcType=INTEGER},
+      disable_shop_pay = #{disableShopPay,jdbcType=VARCHAR},
+      exten_status = #{extenStatus,jdbcType=INTEGER},
+      exten_min_money = #{extenMinMoney,jdbcType=DECIMAL},
+      exten_max_money = #{extenMaxMoney,jdbcType=DECIMAL},
+      order_filter = #{orderFilter,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

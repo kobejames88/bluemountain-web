@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>在线收款系统管理中心</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
+    <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="/static/css/font.css">
+    <link rel="stylesheet" href="/static/css/xadmin.css">
+</head>
+<body>
+<div class="x-body">
+    <blockquote class="layui-elem-quote">欢迎使用在线收款系统,系统当前满${web.settMin!0.00}元可提现,官方交流群： ${web.kfqqq!}</blockquote>
+    <fieldset class="layui-elem-field">
+        <legend>信息统计</legend>
+        <div class="layui-field-box">
+            <table class="layui-table" lay-even>
+                <thead>
+                <tr>
+                    <th>用户数</th>
+                    <th>订单数</th>
+                    <th>已支付</th>
+                    <th>已退款</th>
+                    <th>未支付</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>${usercount!0}</td>
+                    <td>${ordercount1!0}</td>
+                    <td>${ordercount2!0}</td>
+                    <td>${ordercount4!0}</td>
+                    <td>${ordercount3!0}</td>
+                </tr>
+                </tbody>
+            </table>
+            <table class="layui-table">
+                <thead>
+                <tr>
+                    <th colspan="2" scope="col">服务器信息</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>服务器IP地址</td>
+                    <td>${ip!}</td>
+                </tr>
+                <tr>
+                    <td>服务器主机名</td>
+                    <td>${hostname!}</td>
+                </tr>
+                <tr>
+                    <td>操作系统</td>
+                    <td>${osname!}</td>
+                </tr>
+                <tr>
+                    <td>操作系统版本</td>
+                    <td>${osversion!}</td>
+                </tr>
+                <tr>
+                    <td>Web&nbsp;Root</td>
+                    <td>${realpath!}</td>
+                </tr>
+                <tr>
+                    <td>运行环境版本</td>
+                    <td>${javaversion!}</td>
+                </tr>
+                <tr>
+                    <td>运行环境供应商</td>
+                    <td>${javavendor!}</td>
+                </tr>
+                <tr>
+                    <td>虚拟实现名称</td>
+                    <td>${javavmname!}</td>
+                </tr>
+                <tr>
+                    <td>虚拟机内存</td>
+                    <td>${maxmemory!}M</td>
+                </tr>
+                <tr>
+                    <td>已使用内存</td>
+                    <td>${usememory!}M</td>
+                </tr>
+                <tr>
+                    <td>空闲内存</td>
+                    <td>${freememory!}M</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </fieldset>
+</div>
+</body>
+</html>

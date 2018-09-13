@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>网站设置</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
+    <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="/static/css/font.css">
+    <link rel="stylesheet" href="/static/css/xadmin.css">
+    <script type="text/javascript" charset="utf-8" src="/static/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/static/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/static/ueditor/ueditor.all.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/static/ueditor/lang/zh-cn/zh-cn.js"></script>
+    <script src="/static/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/static/js/xadmin.js"></script>
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="/static/js/ajaxupload.js"></script>
+    <script>
+        // var editor = new UE.ui.Editor(5);
+        // editor.render("editor");
+        $(function () {
+            var ue = UE.getEditor('editor');
+            new AjaxUpload('#fileselect1', {
+                action: '/admin/wconfig/img_update',
+                name: 'picFile',
+                responseType: 'json',
+                data: {"id": 1, "type": 1},
+                onSubmit: function (file, ext) {},
+                onComplete: function (file, response) {
+                    if (response.code == 0) {
+                        layer.alert(response.msg, {icon: 6}, function () {
+                            window.location.reload();
+                            var index = parent.layer.getFrameIndex(window.name);
+                            parent.layer.close(index);
+                        });
+                    }
+                }
+            });
+
+            new AjaxUpload('#fileselect2', {
+                action: '/admin/wconfig/img_update',
+                name: 'picFile',
+                responseType: 'json',
+                data: {"id": 1, "type": 2},
+                onSubmit: function (file, ext) {},
+                onComplete: function (file, response) {
+                    if (response.code == 0) {
+                        layer.alert(response.msg, {icon: 6}, function () {
+                            window.location.reload();
+                            var index = parent.layer.getFrameIndex(window.name);
+                            parent.layer.close(index);
+                        });
+                    }
+                }
+            });
+        });
+
+        function cerfedewdcec() {
+            var data = $("#add_cedew").serialize();
+            $.post("/admin/wconfig/update",
+                data,
+                function (data) {
+                    layer.alert(data.msg, {icon: 6}, function () {
+                        window.location.reload();
+                    });
+                }, "json");
+        }
+    </script>
+</head>
+<body>
+<div class="x-nav">
+      <span class="layui-breadcrumb">
+        <a href="/admin/welcomepage">首页</a>
+        <a href="javascript:window.location.reload();">
+          <cite>网站设置</cite>
+        </a>
+      </span>
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"
+       href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
+</div>
+<div class="x-body">
+    <blockquote class="layui-elem-quote">请在此处配置网站基本信息,设置仔细后保存刷新即可!</blockquote>
+    <fieldset class="layui-elem-field layui-col-md11 " style="margin-top: 10px;">
+        <legend>网站设置</legend>
+        <form class="layui-form" id="add_cedew" onsubmit="return false;">
+            <input type="hidden" name="id" value="${model.id!1}">
+            <div class="layui-form-item">
+                <div class="layui-inline layui-col-md5 layui-col-md-offset1">
+                    <label class="layui-form-label">基础交易费率:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="payStaff1" value="${model.payStaff1!0.00}"  autocomplete="off" class="layui-input" >
+                    </div>
+                </div>
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label">基础提现费率:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="payStaff2" value="${model.payStaff2!0.00}" autocomplete="off" class="layui-input " >
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline layui-col-md5 layui-col-md-offset1">
+                    <label class="layui-form-label">注册角色:</label>
+                    <div class="layui-input-inline">
+                        <select name="regRole" class="layui-input-block">
+                            <%for(o in roles!){%>
+                            <option value="${o.id!}" <%if(model.regRole! == o.id! ){%>selected<%}%> >${o.roleName!}</option>
+                            <%}%>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label">合作角色:</label>
+                    <div class="layui-input-inline">
+                        <select name="userCreateRole" class="layui-input-block">
+                            <%for(o in roles!){%>
+                            <option value="${o.id!}" <%if(model.userCreateRole! == o.id! ){%>selected<%}%> >${o.roleName!}</option>
+                            <%}%>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline layui-col-md5 layui-col-md-offset1">
+                    <label class="layui-form-label">校验授权:</label>
+                    <div class="layui-input-inline">
+                        <select name="isVeryDomain"  lay-filter="level">
+                            <option value="1" <%if(model.isVeryDomain!1 == 1 ){%>selected<%}%> >是</option>
+                            <option value="2" <%if(model.isVeryDomain!1 == 2 ){%>selected<%}%> >否</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label">测试接口:</label>
+                    <div class="layui-input-inline">
+                        <select name="payUrlCheck"  lay-filter="level">
+                            <option value="1" <%if(model.payUrlCheck!0 == 1 ){%>selected<%}%> >启用</option>
+                            <option value="0" <%if(model.payUrlCheck!0 == 0 ){%>selected<%}%> >禁用</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline layui-col-md5 layui-col-md-offset1">
+                    <label class="layui-form-label">测试-Alipay:</label>
+                    <div class="layui-input-inline">
+                        <select name="testAlipay"  lay-filter="level">
+                            <option value="0" <%if(model.testAlipay!1 == 0 ){%>selected<%}%> >官方接口</option>
+                            <option value="1" <%if(model.testAlipay!1 == 1 ){%>selected<%}%> >易支付接口</option>
+                            <option value="2" <%if(model.testAlipay!1 == 2 ){%>selected<%}%> >码支付接口</option>
+                            <option value="-1" <%if(model.testAlipay!0 == -1 ){%>selected<%}%> >关闭接口</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label">测试-QQPay:</label>
+                    <div class="layui-input-inline">
+                        <select name="testQqpay"  lay-filter="level">
+                            <option value="0" <%if(model.testQqpay!1 == 0 ){%>selected<%}%> >官方接口</option>
+                            <option value="1" <%if(model.testQqpay!1 == 1 ){%>selected<%}%> >易支付接口</option>
+                            <option value="2" <%if(model.testQqpay!1 == 2 ){%>selected<%}%> >码支付接口</option>
+                            <option value="-1" <%if(model.testQqpay!0 == -1 ){%>selected<%}%> >关闭接口</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline layui-col-md5 layui-col-md-offset1">
+                    <label class="layui-form-label">测试-WxPay:</label>
+                    <div class="layui-input-inline">
+                        <select name="testWxpay"  lay-filter="level">
+                            <option value="0" <%if(model.testWxpay!0 == 0 ){%>selected<%}%> >官方接口</option>
+                            <option value="1" <%if(model.testWxpay!0 == 1 ){%>selected<%}%> >易支付接口</option>
+                            <option value="2" <%if(model.testWxpay!0 == 2 ){%>selected<%}%> >码支付接口</option>
+                            <option value="-1" <%if(model.testWxpay!0 == -1 ){%>selected<%}%> >关闭接口</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label">系统主题:</label>
+                    <div class="layui-input-inline">
+                        <select name="sysThreams"  lay-filter="level">
+                            <option value="0" <%if(model.sysThreams!1 == 0 ){%>selected<%}%> >主题-0</option>
+                            <option value="1" <%if(model.sysThreams!1 == 1 ){%>selected<%}%> >主题-1</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline layui-col-md5 layui-col-md-offset1">
+                    <label class="layui-form-label">开放注册:</label>
+                    <div class="layui-input-inline">
+                        <select name="userReg"  lay-filter="level">
+                            <option value="1" <%if(model.userReg!0 == 1 ){%>selected<%}%> >启用</option>
+                            <option value="0" <%if(model.userReg!0 == 0 ){%>selected<%}%> >禁用</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label">注册-Alipay:</label>
+                    <div class="layui-input-inline">
+                        <select name="regAlipay"  lay-filter="level">
+                            <option value="0" <%if(model.regAlipay!1 == 0 ){%>selected<%}%> >官方接口</option>
+                            <option value="1" <%if(model.regAlipay!1 == 1 ){%>selected<%}%> >易支付接口</option>
+                            <option value="2" <%if(model.regAlipay!1 == 2 ){%>selected<%}%> >码支付接口</option>
+                            <option value="-1" <%if(model.regAlipay!0 == -1 ){%>selected<%}%> >关闭接口</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline layui-col-md5 layui-col-md-offset1">
+                    <label class="layui-form-label">注册-QQPay:</label>
+                    <div class="layui-input-inline">
+                        <select name="regQqpay"  lay-filter="level">
+                            <option value="0" <%if(model.regQqpay!1 == 0 ){%>selected<%}%> >官方接口</option>
+                            <option value="1" <%if(model.regQqpay!1 == 1 ){%>selected<%}%> >易支付接口</option>
+                            <option value="2" <%if(model.regQqpay!1 == 2 ){%>selected<%}%> >码支付接口</option>
+                            <option value="-1" <%if(model.regQqpay!0 == -1 ){%>selected<%}%> >关闭接口</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label">注册-WxPay:</label>
+                    <div class="layui-input-inline">
+                        <select name="regWxpay"  lay-filter="level">
+                            <option value="0" <%if(model.regWxpay!0 == 0 ){%>selected<%}%> >官方接口</option>
+                            <option value="1" <%if(model.regWxpay!0 == 1 ){%>selected<%}%> >易支付接口</option>
+                            <option value="2" <%if(model.regWxpay!0 == 2 ){%>selected<%}%> >码支付接口</option>
+                            <option value="-1" <%if(model.regWxpay!0 == -1 ){%>selected<%}%> >关闭接口</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline layui-col-md5 layui-col-md-offset1">
+                    <label class="layui-form-label">支付宝接口:</label>
+                    <div class="layui-input-inline">
+                        <select name="payToAlipay"  lay-filter="level">
+                            <option value="0" <%if(model.payToAlipay!1 == 0 ){%>selected<%}%> >官方接口</option>
+                            <option value="1" <%if(model.payToAlipay!1 == 1 ){%>selected<%}%> >易支付接口</option>
+                            <option value="2" <%if(model.payToAlipay!1 == 2 ){%>selected<%}%> >码支付接口</option>
+                            <option value="-1" <%if(model.payToAlipay!0 == -1 ){%>selected<%}%> >关闭接口</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label">微信接口:</label>
+                    <div class="layui-input-inline">
+                        <select name="payToWxpay"  lay-filter="level">
+                            <option value="0" <%if(model.payToWxpay!0 == 0 ){%>selected<%}%> >官方接口</option>
+                            <option value="1" <%if(model.payToWxpay!0 == 1 ){%>selected<%}%> >易支付接口</option>
+                            <option value="2" <%if(model.payToWxpay!0 == 2 ){%>selected<%}%> >码支付接口</option>
+                            <option value="-1" <%if(model.payToWxpay!0 == -1 ){%>selected<%}%> >关闭接口</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline layui-col-md5 layui-col-md-offset1">
+                    <label class="layui-form-label">QQ接口:</label>
+                    <div class="layui-input-inline">
+                        <select name="payToQqpay"  lay-filter="level">
+                            <option value="0" <%if(model.payToQqpay!1 == 0 ){%>selected<%}%> >官方接口</option>
+                            <option value="1" <%if(model.payToQqpay!1 == 1 ){%>selected<%}%> >易支付接口</option>
+                            <option value="2" <%if(model.payToQqpay!1 == 2 ){%>selected<%}%> >码支付接口</option>
+                            <option value="-1" <%if(model.payToQqpay!0 == -1 ){%>selected<%}%> >关闭接口</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label">支付协议:</label>
+                    <div class="layui-input-inline">
+                        <select name="showPayReadme"  lay-filter="level">
+                            <option value="1" <%if(model.showPayReadme!0 == 1 ){%>selected<%}%> >显示</option>
+                            <option value="0" <%if(model.showPayReadme!0 == 0 ){%>selected<%}%> >不显示</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline layui-col-md5 layui-col-md-offset1">
+                    <label class="layui-form-label">交流QQ群:</label>
+                    <div class="layui-input-inline">
+                        <input type="number" name="kfqqq" value="${model.kfqqq!}"  autocomplete="off" class="layui-input" >
+                    </div>
+                </div>
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label">客服QQ:</label>
+                    <div class="layui-input-inline">
+                        <input type="number" name="kfqq" value="${model.kfqq!}" autocomplete="off" class="layui-input " >
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline layui-col-md5 layui-col-md-offset1">
+                    <label class="layui-form-label">VIP提现费率:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="vipStaff2" value="${model.vipStaff2!}"  autocomplete="off" class="layui-input" >
+                    </div>
+                </div>
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label">VIP交易费率:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="vipStaff1" value="${model.vipStaff1!}" autocomplete="off" class="layui-input " >
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline layui-col-md5 layui-col-md-offset1">
+                    <label class="layui-form-label">VIP单价:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="vipSale" value="${model.vipSale!}"  autocomplete="off" class="layui-input" >
+                    </div>
+                </div>
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label">VIP模式:</label>
+                    <div class="layui-input-inline">
+                        <select name="vipMethod"  lay-filter="level">
+                            <option value="1" <%if(model.vipMethod!0 == 1 ){%>selected<%}%> >按月收费</option>
+                            <option value="0" <%if(model.vipMethod!0 == 0 ){%>selected<%}%> >按天收费</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline layui-col-md5 layui-col-md-offset1">
+                    <label class="layui-form-label">默认支付标题:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="payTitle" value="${model.payTitle!}"  autocomplete="off" class="layui-input" >
+                    </div>
+                </div>
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label">支付标题显示:</label>
+                    <div class="layui-input-inline">
+                        <select name="useUserQq"  lay-filter="level">
+                            <option value="1" <%if(model.useUserQq!0 == 1 ){%>selected<%}%> >用户定义</option>
+                            <option value="0" <%if(model.useUserQq!0 == 0 ){%>selected<%}%> >系统默认</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline layui-col-md5 layui-col-md-offset1">
+                    <label class="layui-form-label">网站状态:</label>
+                    <div class="layui-input-inline">
+                        <select name="isApiOpen"  lay-filter="level">
+                            <option value="1" <%if(model.isApiOpen!0 == 1 ){%>selected<%}%> >开启</option>
+                            <option value="0" <%if(model.isApiOpen!0 == 0 ){%>selected<%}%> >关闭</option>
+                        </select>
+                    </div>
+
+                </div>
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label">关闭提示:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="closeApiDetial" value="${model.closeApiDetial!}"  autocomplete="off" class="layui-input" >
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline layui-col-md5 layui-col-md-offset1">
+                    <label class="layui-form-label">最低结算金额:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="settMin" value="${model.settMin!}"  autocomplete="off" class="layui-input" >
+                    </div>
+                </div>
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label">网站域名:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="httpUrl" value="${model.httpUrl!}" autocomplete="off" class="layui-input " >
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline layui-col-md5 layui-col-md-offset1">
+                    <label class="layui-form-label">版权信息:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="copyright" value="${model.copyright!}"  autocomplete="off" class="layui-input" >
+                    </div>
+                </div>
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label">备案信息:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="icpInfo" value="${model.icpInfo!}" autocomplete="off" class="layui-input " >
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline layui-col-md5 layui-col-md-offset1">
+                    <label class="layui-form-label">关键字:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="keywords" value="${model.keywords!}"  autocomplete="off" class="layui-input" >
+                    </div>
+                </div>
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label">介绍:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="decText" value="${model.decText!}" autocomplete="off" class="layui-input " >
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline layui-col-md5 layui-col-md-offset1">
+                    <label class="layui-form-label">商户号售价:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="regPrice" value="${model.regPrice!}"  autocomplete="off" class="layui-input" >
+                    </div>
+                </div>
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label">网站名称:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="siteName" value="${model.siteName!}"  autocomplete="off" class="layui-input" >
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline layui-col-md5 layui-col-md-offset1">
+                    <label class="layui-form-label">首页群链接:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="qunUrl" value="${model.qunUrl!}"  autocomplete="off" class="layui-input" >
+                    </div>
+                </div>
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label">背景音乐链接:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="music" value="${model.music!}" autocomplete="off" class="layui-input " >
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline layui-col-md5 layui-col-md-offset1">
+                    <label class="layui-form-label">自动结算:</label>
+                    <div class="layui-input-inline">
+                        <select name="autoSett"  lay-filter="level1">
+                            <option value="1" <%if(model.autoSett!1 == 1 ){%>selected<%}%> >每天21:00结算</option>
+                            <option value="0" <%if(model.autoSett!1 == 0 ){%>selected<%}%> >关闭自动结算</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label">自动打款:</label>
+                    <div class="layui-input-inline">
+                        <select name="autoSettlePay"  lay-filter="level2">
+                            <option value="1" <%if(model.autoSettlePay!0 == 1 ){%>selected<%}%> >每天22:00打款</option>
+                            <option value="0" <%if(model.autoSettlePay!0 == 0 ){%>selected<%}%> >关闭自动打款</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline layui-col-md5 layui-col-md-offset1">
+                    <label class="layui-form-label">推广返利:</label>
+                    <div class="layui-input-inline">
+                        <select name="extenStatus"  lay-filter="level1">
+                            <option value="1" <%if(model.extenStatus!1 == 1 ){%>selected<%}%> >开启</option>
+                            <option value="0" <%if(model.extenStatus!1 == 0 ){%>selected<%}%> >关闭</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label">返利最低:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="extenMinMoney" value="${model.extenMinMoney!0.01}" autocomplete="off" class="layui-input " >
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline layui-col-md5 layui-col-md-offset1">
+                    <label class="layui-form-label">返利最高:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="extenMaxMoney" value="${model.extenMaxMoney!0.01}" autocomplete="off" class="layui-input " >
+                    </div>
+                </div>
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label">商品过滤:</label>
+                    <div class="layui-input-inline">
+                        <select name="orderFilter"  lay-filter="level1">
+                            <option value="1" <%if(model.orderFilter!1 == 1 ){%>selected<%}%> >开启</option>
+                            <option value="0" <%if(model.orderFilter!1 == 0 ){%>selected<%}%> >关闭</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline layui-col-md5 layui-col-md-offset1">
+                    <label class="layui-form-label">首页LOGO:</label>
+                    <div class="layui-input-inline">
+                        <img src="${model.homeLogo!}" alt="首页LOGO" width="160" height="50">
+                    </div>
+                </div>
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label"></label>
+                    <div class="layui-input-inline">
+                        <%if(model.homeLogo! ==null){%>
+                            <button class="layui-btn layui-col-md-offset4" id="fileselect1" >上传LOGO</button>
+                        <%}else{%>
+                            <button class="layui-btn layui-col-md-offset4" id="fileselect1" >更改LOGO</button>
+                        <%}%>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline layui-col-md5 layui-col-md-offset1">
+                    <label class="layui-form-label">首页二维码:</label>
+                    <div class="layui-input-inline">
+                        <img src="${model.homeQrcode!}" alt="首页二维码" width="150" height="150">
+                    </div>
+                </div>
+                <div class="layui-inline layui-col-md5">
+                    <label class="layui-form-label"></label>
+                    <div class="layui-input-inline">
+                        <%if(model.homeQrcode! ==null){%>
+                            <button class="layui-btn layui-col-md-offset4" id="fileselect2" >上传二维码</button>
+                        <%}else{%>
+                            <button class="layui-btn layui-col-md-offset4" id="fileselect2" >更改二维码</button>
+                        <%}%>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-form-item layui-form-text layui-col-md11">
+                    <label class="layui-form-label">禁售商品:</label>
+                    <div class="layui-input-block">
+                        <textarea name="disableShopPay" class="layui-textarea ">${model.disableShopPay!}</textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-form-item layui-form-text layui-col-md11">
+                    <label class="layui-form-label">支付协议:</label>
+                    <div class="layui-input-block">
+                        <textarea name="payReadme" class="layui-textarea ">${model.payReadme!}</textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-form-item layui-form-text layui-col-md11">
+                    <label class="layui-form-label">用户条款:</label>
+                    <div class="layui-input-block">
+                        <SCRIPT name="userDef" id="editor" type="text/plain" style="width:100%;height:200px;">${model.userDef!}</SCRIPT></div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn layui-col-md-offset4" onclick="cerfedewdcec()">保存修改</button>
+                </div>
+            </div>
+        </form>
+    </fieldset>
+</div>
+</body>
+
+</html>

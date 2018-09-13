@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>修改用户</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
+    <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="/static/css/font.css">
+    <link rel="stylesheet" href="/static/css/xadmin.css">
+    <script type="text/javascript" charset="utf-8" src="/static/js/jquery-1.11.3.min.js"></script>
+    <script src="/static/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/static/js/xadmin.js"></script>
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="x-body">
+    <form class="layui-form" id="add_cedew" onsubmit="return false;">
+        <input type="hidden" name="id" value="${model.id!}">
+        <div class="layui-form-item">
+            <label for="username" class="layui-form-label">
+                <span class="x-red">*</span>登录名
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="username" name="user" required=""
+                            autocomplete="off" value="${model.user!}" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux">
+                <span class="x-red">*</span>将会成为登入名
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="phone" class="layui-form-label">
+                <span class="x-red">*</span>手机
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="phone" name="phone" required=""
+                       autocomplete="off" value="${model.phone!}" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux">
+                <span class="x-red">*</span>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="phone" class="layui-form-label">
+                <span class="x-red">*</span>年龄
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="age" name="age" required=""
+                       autocomplete="off" value="${model.age!}" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux">
+                <span class="x-red">*</span>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="phone" class="layui-form-label">
+                <span class="x-red">*</span>真实姓名
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="showname" name="showname" required=""
+                       autocomplete="off" value="${model.showname!}" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux">
+                <span class="x-red">*</span>
+            </div>
+        </div>
+        <div class="layui-form-item" style="width: 300px;">
+            <label class="layui-form-label">性别</label>
+            <div class="layui-input-block">
+                <select name="sex">
+                    <option value="0" <%if(model.sex == 0){%>selected<%}%> >男</option>
+                    <option value="1" <%if(model.sex == 1){%>selected<%}%> >女</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="L_email" class="layui-form-label">
+                <span class="x-red">*</span>邮箱
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="L_email" name="email" required=""
+                       autocomplete="off" value="${model.email!}" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux">
+                <span class="x-red">*</span>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="L_email" class="layui-form-label">
+                <span class="x-red">*</span>账户余额
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="balnes" name="balnes" required=""
+                       autocomplete="off" class="layui-input" value="${model.balnes!0.00}">
+            </div>
+            <div class="layui-form-mid layui-word-aux">
+                <span class="x-red">*</span>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="L_email" class="layui-form-label">
+                <span class="x-red">*</span>网站域名
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="url" name="url" required=""
+                       autocomplete="off" class="layui-input" value="${model.url!}">
+            </div>
+            <div class="layui-form-mid layui-word-aux">
+                <span class="x-red">*</span>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label"><span class="x-red">*</span>角色</label>
+            <div class="layui-input-inline">
+                <select name="role" class="layui-input-block">
+                    <%for(o in roles!){%>
+                        <option value="${o.id!}" <%if(model.role! == o.id! ){%>selected<%}%> >${o.roleName!}</option>
+                    <%}%>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="L_email" class="layui-form-label">
+                <span class="x-red">*</span>交易费率
+            </label>
+            <div class="layui-input-inline">
+                <input type="text"  name="payStaff" required="" value="${model.payStaff!}"
+                       autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux">
+                <span class="x-red">*</span>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="L_email" class="layui-form-label">
+                <span class="x-red">*</span>提现费率
+            </label>
+            <div class="layui-input-inline">
+                <input type="text"  name="settStaff" required="" value="${model.settStaff!}"
+                       autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux">
+                <span class="x-red">*</span>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="L_email" class="layui-form-label">
+                <span class="x-red">*</span>VIP交易费率
+            </label>
+            <div class="layui-input-inline">
+                <input type="text"  name="vipPayStaff" required="" value="${model.vipPayStaff!}"
+                       autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux">
+                <span class="x-red">*</span>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="L_email" class="layui-form-label">
+                <span class="x-red">*</span>VIP提现费率
+            </label>
+            <div class="layui-input-inline">
+                <input type="text"  name="vipSettStaff" required="" value="${model.vipSettStaff!}"
+                       autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux">
+                <span class="x-red">*</span>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label"><span class="x-red">*</span>锁定账户</label>
+            <div class="layui-input-block">
+                <input type="radio" name="isLocked" value="1" lay-skin="primary" title="锁定" <%if(model.isLocked == 1){%> checked="checked" <%}%> >
+                <input type="radio" name="isLocked" value="2" lay-skin="primary" title="不锁定" <%if(model.isLocked == 2){%> checked="checked" <%}%> >
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label"><span class="x-red">*</span>微信支付</label>
+            <div class="layui-input-block">
+                <input type="radio" name="payWxpay" value="0" lay-skin="primary" title="官方接口" <%if(model.payWxpay == 0){%> checked="checked" <%}%> >
+                <input type="radio" name="payWxpay" value="1" lay-skin="primary" title="易支付接口" <%if(model.payWxpay == 1){%> checked="checked" <%}%> >
+                <input type="radio" name="payWxpay" value="2" lay-skin="primary" title="码支付接口" <%if(model.payWxpay == 2){%> checked="checked" <%}%> >
+                <input type="radio" name="payWxpay" value="-1" lay-skin="primary" title="关闭接口" <%if(model.payWxpay == -1){%> checked="checked" <%}%> >
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label"><span class="x-red">*</span>支付宝支付</label>
+            <div class="layui-input-block">
+                <input type="radio" name="payAlipay" value="0" lay-skin="primary" title="官方接口" <%if(model.payAlipay == 0){%> checked="checked" <%}%> >
+                <input type="radio" name="payAlipay" value="1" lay-skin="primary" title="易支付接口" <%if(model.payAlipay == 1){%> checked="checked" <%}%> >
+                <input type="radio" name="payAlipay" value="2" lay-skin="primary" title="码支付接口" <%if(model.payAlipay == 2){%> checked="checked" <%}%> >
+                <input type="radio" name="payAlipay" value="-1" lay-skin="primary" title="关闭接口" <%if(model.payAlipay == -1){%> checked="checked" <%}%> >
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label"><span class="x-red">*</span>QQ支付</label>
+            <div class="layui-input-block">
+                <input type="radio" name="payQqpay" value="0" lay-skin="primary" title="官方接口" <%if(model.payQqpay == 0){%> checked="checked" <%}%> >
+                <input type="radio" name="payQqpay" value="1" lay-skin="primary" title="易支付接口" <%if(model.payQqpay == 1){%> checked="checked" <%}%> >
+                <input type="radio" name="payQqpay" value="2" lay-skin="primary" title="码支付接口" <%if(model.payQqpay == 2){%> checked="checked" <%}%> >
+                <input type="radio" name="payQqpay" value="-1" lay-skin="primary" title="关闭接口" <%if(model.payQqpay == -1){%> checked="checked" <%}%> >
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="L_pass" class="layui-form-label">
+                <span class="x-red">*</span>密码
+            </label>
+            <div class="layui-input-inline">
+                <input type="password" id="L_pass" name="pwd" required=""
+                       autocomplete="off" value="${model.pwd!}" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux">
+                6到16个字符
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label for="L_pass" class="layui-form-label">
+            </label>
+            <button class="layui-btn" onclick="add_dwdwd()">
+                修改
+            </button>
+        </div>
+    </form>
+</div>
+<script>
+    layui.use(['form', 'layer'], function () {
+        $ = layui.jquery;
+    });
+
+    function add_dwdwd() {
+        var data = $("#add_cedew").serialize();
+        $.post("/admin/user/update",
+            data,
+            function (data) {
+                layer.alert(data.msg, {icon: 6}, function () {
+                    window.parent.location.reload();
+                    var index = parent.layer.getFrameIndex(window.name);
+                    parent.layer.close(index);
+                });
+            }, "json");
+    }
+
+
+</script>
+</body>
+</html>

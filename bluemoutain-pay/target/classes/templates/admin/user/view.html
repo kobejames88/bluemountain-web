@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> 查看用户</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
+    <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="/static/css/font.css">
+    <link rel="stylesheet" href="/static/css/xadmin.css">
+    <script type="text/javascript" charset="utf-8" src="/static/js/jquery-1.11.3.min.js"></script>
+    <script src="/static/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/static/js/xadmin.js"></script>
+</head>
+<body>
+<div class="x-body">
+    <table class="layui-table">
+        <tbody>
+        <tr>
+            <td>PID:</td>
+            <td>${model.id!}</td>
+        </tr>
+        <tr>
+            <td>用户名:</td>
+            <td>${model.user!}</td>
+        </tr>
+        <tr>
+            <td>密码:</td>
+            <td>${model.pwd!}</td>
+        </tr>
+        <tr>
+            <td>系统角色:</td>
+            <td><%if(model.role! == 2){%>普通用户<%}else{%>管理员<%}%></td>
+        </tr>
+        <tr>
+            <td>真实姓名:</td>
+            <td>${model.showname!}</td>
+        </tr>
+        <tr>
+            <td>注册邮件地址:</td>
+            <td>${model.email!}</td>
+        </tr>
+        <tr>
+            <td>联系电话:</td>
+            <td>${model.phone!}</td>
+        </tr>
+        <tr>
+            <td>年龄:</td>
+            <td>${model.age!}</td>
+        </tr>
+        <tr>
+            <td>性别:</td>
+            <td><%if(model.sex! == 0){%>男<%}else{%>女<%}%></td>
+        </tr>
+        <tr>
+            <td>注册时间:</td>
+            <td>${model.cresteTime!,dateFormat='yyyy-MM-dd HH:mm:ss'}</td>
+        </tr>
+        <tr>
+            <td>注册IP:</td>
+            <td>${model.createIp!}</td>
+        </tr>
+        <tr>
+            <td>上次登录时间:</td>
+            <td>${model.lastLoginTime!,dateFormat='yyyy-MM-dd HH:mm:ss'}</td>
+        </tr>
+        <tr>
+            <td>用户秘钥:</td>
+            <td>${model.appkey!}</td>
+        </tr>
+        <tr>
+            <td>用户余额:</td>
+            <td>${model.balnes!0.00}</td>
+        </tr>
+        <tr>
+            <td>交易费率:</td>
+            <td>${model.payStaff! * 100}%</td>
+        </tr>
+        <tr>
+            <td>提现费率:</td>
+            <td>${model.settStaff! * 100}%</td>
+        </tr>
+        <tr>
+            <td>结算真实姓名:</td>
+            <td>${model.zsname!}</td>
+        </tr>
+        <tr>
+            <td>结算账号:</td>
+            <td>${model.zspayid!}</td>
+        </tr>
+        <tr>
+            <td>提现方式:</td>
+            <td><%if(model.zspaytype! ==1){%>微信<%}else if(model.zspaytype! ==2){%>支付宝<%}else if(model.zspaytype! ==3){%>QQ钱包<%}else{%>银行卡<%}%></td>
+        </tr>
+        <%if(model.zspaytype! ==4){%>
+        <tr>
+            <td>开户银行:</td>
+            <td>${myutils.getBankName(model.cardBankCode!)}</td>
+        </tr>
+        <%}%>
+        <tr>
+            <td>用户状态:</td>
+            <td><%if(model.isLocked! == 1){%>已锁定,禁止交易和结算<%}else{%>未锁定,所有功能正常<%}%></td>
+        </tr>
+        <tr>
+            <td>微信支付:</td>
+            <td><%if(model.payWxpay! ==0 ){%>微信官方<%}else if(model.payWxpay! ==1 ){%>易支付<%} else if(model.payWxpay! ==2){%>码支付<%}else{%>无权限<%}%></td>
+        </tr>
+        <tr>
+            <td>支付宝支付:</td>
+            <td>
+                <%if(model.payAlipay! ==0 ){%>支付宝官方<%}else if(model.payAlipay! ==1 ){%>易支付<%} else if(model.payAlipay! ==2){%>码支付<%}else{%>无权限<%}%>
+            </td>
+        </tr>
+        <tr>
+            <td>QQ支付:</td>
+            <td>
+                <%if(model.payQqpay! ==0 ){%>QQ官方<%}else if(model.payQqpay! ==1 ){%>易支付<%} else if(model.payQqpay! ==2){%>码支付<%}else{%>无权限<%}%>
+            </td>
+        </tr>
+        <tr>
+            <td>用户类型:</td>
+            <td>${roleName!}</td>
+        </tr>
+        <tr>
+            <td>用户网站:</td>
+            <td>${model.url!}</td>
+        </tr>
+        <tr>
+            <td>用户订单数:</td>
+            <td>${order1!0}</td>
+        </tr>
+        <tr>
+            <td>已支付:</td>
+            <td>${order4!0}</td>
+        </tr>
+        <tr>
+            <td>未支付:</td>
+            <td>${order5!0}</td>
+        </tr>
+        <tr>
+            <td>已支付金额:</td>
+            <td>${moneyCount1!0.00}元</td>
+        </tr>
+        <tr>
+            <td>未支付金额:</td>
+            <td>${moneyCount2!0.00}</td>
+        </tr>
+        <tr>
+            <td>已退款:</td>
+            <td>${moneyCount3!0.00}</td>
+        </tr>
+        <tr>
+            <td>已结算金额:</td>
+            <td>${pay_count!0.00}</td>
+        </tr>
+        <tr>
+            <td>平台扣款:</td>
+            <td>${moneyCount1!0.00 - model.balnes!0.00 - pay_count!0.00}</td>
+        </tr>
+        <tr>
+            <td>是否已开通VIP:</td>
+            <td>
+                <%if(isEmpty(vip!)){%>
+                    等待中,剩余1分钟
+                <%}else{%>
+                    <%if(vip.status! == 1){%>
+                        已开通,到期:${vip.endTime!,dateFormat='yyyy-MM-dd HH:mm:ss'}
+                    <%}else{%>
+                        未开通,剩余体验次数:${vip.experienceNum!}
+                    <%}%>
+                <%}%>
+            </td>
+        </tr>
+        <tr>
+            <td>VIP交易费率:</td>
+            <td>${model.vipPayStaff! * 100}%</td>
+        </tr>
+        <tr>
+            <td>VIP提现费率:</td>
+            <td>${model.vipSettStaff! * 100}%</td>
+        </tr>
+    </table>
+    <div style="text-align: center;">
+        <button class="layui-btn " onclick="to_user_order_list('${model.id}')">查看用户订单</button>
+        <button class="layui-btn " onclick="re_mail_key(this,'${model.id}')">重置秘钥</button>
+        <button class="layui-btn " onclick="re_mail(this,'${model.id}')">重新发送邮件</button>
+        <button class="layui-btn layui-btn-warm" onclick="x_admin_close()">关&nbsp;&nbsp;闭</button>
+    </div>
+</div>
+</body>
+<script>
+    $(function () {
+        layui.use('laydate', function () {
+            var laydate = layui.laydate;
+            //执行一个laydate实例
+            laydate.render({
+                elem: '#start' //指定元素
+            });
+            //执行一个laydate实例
+            laydate.render({
+                elem: '#end' //指定元素
+            });
+        });
+    });
+
+    function re_mail(obj, id) {
+        $.post("/admin/user/re_email", {"uid": id}, function (data) {
+            layer.alert(data.msg, {icon: 6}, function () {
+                var index = parent.layer.getFrameIndex(window.name);
+                parent.layer.close(index);
+            });
+        }, "json");
+    }
+
+    function re_mail_key(obj, id) {
+        $.post("/admin/user/re_key", {"id": id}, function (data) {
+            layer.alert(data.msg, {icon: 6}, function () {
+                var index = parent.layer.getFrameIndex(window.name);
+                parent.layer.close(index);
+            });
+        }, "json");
+
+    }
+
+    function to_user_order_list(id) {
+        var index = parent.layer.getFrameIndex(window.name);
+        parent.layer.close(index);
+        window.parent.location.href = "/admin/order/list2?uid=" + id;
+    }
+
+</script>
+</html>

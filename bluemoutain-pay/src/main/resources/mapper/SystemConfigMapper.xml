@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.so206.mapper.SystemConfigMapper">
+  <resultMap id="BaseResultMap" type="com.so206.po.SystemConfig">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="sitename" jdbcType="VARCHAR" property="sitename" />
+    <result column="kfqq" jdbcType="VARCHAR" property="kfqq" />
+    <result column="ym" jdbcType="VARCHAR" property="ym" />
+    <result column="gg" jdbcType="VARCHAR" property="gg" />
+    <result column="music" jdbcType="VARCHAR" property="music" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.so206.po.SystemConfigWithBLOBs">
+    <result column="keywords" jdbcType="LONGVARCHAR" property="keywords" />
+    <result column="description" jdbcType="LONGVARCHAR" property="description" />
+    <result column="panel" jdbcType="LONGVARCHAR" property="panel" />
+    <result column="copy" jdbcType="LONGVARCHAR" property="copy" />
+    <result column="liuyan" jdbcType="LONGVARCHAR" property="liuyan" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, sitename, kfqq, ym, gg, music, uid
+  </sql>
+  <sql id="Blob_Column_List">
+    keywords, description, panel, copy, liuyan
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.so206.po.SystemConfigExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from system_config
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.so206.po.SystemConfigExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from system_config
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from system_config
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from system_config
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.so206.po.SystemConfigExample">
+    delete from system_config
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.so206.po.SystemConfigWithBLOBs">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      select LAST_INSERT_ID()
+    </selectKey>
+    insert into system_config (id, sitename, kfqq, 
+      ym, gg, music, uid, 
+      keywords, description, panel, 
+      copy, liuyan)
+    values (#{id,jdbcType=INTEGER}, #{sitename,jdbcType=VARCHAR}, #{kfqq,jdbcType=VARCHAR}, 
+      #{ym,jdbcType=VARCHAR}, #{gg,jdbcType=VARCHAR}, #{music,jdbcType=VARCHAR}, #{uid,jdbcType=INTEGER}, 
+      #{keywords,jdbcType=LONGVARCHAR}, #{description,jdbcType=LONGVARCHAR}, #{panel,jdbcType=LONGVARCHAR}, 
+      #{copy,jdbcType=LONGVARCHAR}, #{liuyan,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.so206.po.SystemConfigWithBLOBs">
+    insert into system_config
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="sitename != null">
+        sitename,
+      </if>
+      <if test="kfqq != null">
+        kfqq,
+      </if>
+      <if test="ym != null">
+        ym,
+      </if>
+      <if test="gg != null">
+        gg,
+      </if>
+      <if test="music != null">
+        music,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="keywords != null">
+        keywords,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="panel != null">
+        panel,
+      </if>
+      <if test="copy != null">
+        copy,
+      </if>
+      <if test="liuyan != null">
+        liuyan,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="sitename != null">
+        #{sitename,jdbcType=VARCHAR},
+      </if>
+      <if test="kfqq != null">
+        #{kfqq,jdbcType=VARCHAR},
+      </if>
+      <if test="ym != null">
+        #{ym,jdbcType=VARCHAR},
+      </if>
+      <if test="gg != null">
+        #{gg,jdbcType=VARCHAR},
+      </if>
+      <if test="music != null">
+        #{music,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="keywords != null">
+        #{keywords,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="panel != null">
+        #{panel,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="copy != null">
+        #{copy,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="liuyan != null">
+        #{liuyan,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.so206.po.SystemConfigExample" resultType="java.lang.Long">
+    select count(*) from system_config
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update system_config
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.sitename != null">
+        sitename = #{record.sitename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kfqq != null">
+        kfqq = #{record.kfqq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ym != null">
+        ym = #{record.ym,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gg != null">
+        gg = #{record.gg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.music != null">
+        music = #{record.music,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uid != null">
+        uid = #{record.uid,jdbcType=INTEGER},
+      </if>
+      <if test="record.keywords != null">
+        keywords = #{record.keywords,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.description != null">
+        description = #{record.description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.panel != null">
+        panel = #{record.panel,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.copy != null">
+        copy = #{record.copy,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.liuyan != null">
+        liuyan = #{record.liuyan,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update system_config
+    set id = #{record.id,jdbcType=INTEGER},
+      sitename = #{record.sitename,jdbcType=VARCHAR},
+      kfqq = #{record.kfqq,jdbcType=VARCHAR},
+      ym = #{record.ym,jdbcType=VARCHAR},
+      gg = #{record.gg,jdbcType=VARCHAR},
+      music = #{record.music,jdbcType=VARCHAR},
+      uid = #{record.uid,jdbcType=INTEGER},
+      keywords = #{record.keywords,jdbcType=LONGVARCHAR},
+      description = #{record.description,jdbcType=LONGVARCHAR},
+      panel = #{record.panel,jdbcType=LONGVARCHAR},
+      copy = #{record.copy,jdbcType=LONGVARCHAR},
+      liuyan = #{record.liuyan,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update system_config
+    set id = #{record.id,jdbcType=INTEGER},
+      sitename = #{record.sitename,jdbcType=VARCHAR},
+      kfqq = #{record.kfqq,jdbcType=VARCHAR},
+      ym = #{record.ym,jdbcType=VARCHAR},
+      gg = #{record.gg,jdbcType=VARCHAR},
+      music = #{record.music,jdbcType=VARCHAR},
+      uid = #{record.uid,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.so206.po.SystemConfigWithBLOBs">
+    update system_config
+    <set>
+      <if test="sitename != null">
+        sitename = #{sitename,jdbcType=VARCHAR},
+      </if>
+      <if test="kfqq != null">
+        kfqq = #{kfqq,jdbcType=VARCHAR},
+      </if>
+      <if test="ym != null">
+        ym = #{ym,jdbcType=VARCHAR},
+      </if>
+      <if test="gg != null">
+        gg = #{gg,jdbcType=VARCHAR},
+      </if>
+      <if test="music != null">
+        music = #{music,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="keywords != null">
+        keywords = #{keywords,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="panel != null">
+        panel = #{panel,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="copy != null">
+        copy = #{copy,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="liuyan != null">
+        liuyan = #{liuyan,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.so206.po.SystemConfigWithBLOBs">
+    update system_config
+    set sitename = #{sitename,jdbcType=VARCHAR},
+      kfqq = #{kfqq,jdbcType=VARCHAR},
+      ym = #{ym,jdbcType=VARCHAR},
+      gg = #{gg,jdbcType=VARCHAR},
+      music = #{music,jdbcType=VARCHAR},
+      uid = #{uid,jdbcType=INTEGER},
+      keywords = #{keywords,jdbcType=LONGVARCHAR},
+      description = #{description,jdbcType=LONGVARCHAR},
+      panel = #{panel,jdbcType=LONGVARCHAR},
+      copy = #{copy,jdbcType=LONGVARCHAR},
+      liuyan = #{liuyan,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.so206.po.SystemConfig">
+    update system_config
+    set sitename = #{sitename,jdbcType=VARCHAR},
+      kfqq = #{kfqq,jdbcType=VARCHAR},
+      ym = #{ym,jdbcType=VARCHAR},
+      gg = #{gg,jdbcType=VARCHAR},
+      music = #{music,jdbcType=VARCHAR},
+      uid = #{uid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>订单列表</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
+    <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="/static/css/font.css">
+    <link rel="stylesheet" href="/static/css/xadmin.css">
+    <script type="text/javascript" charset="utf-8" src="/static/js/jquery-1.11.3.min.js"></script>
+    <script src="/static/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/static/js/xadmin.js"></script>
+</head>
+
+<body>
+<div class="x-nav">
+      <span class="layui-breadcrumb">
+        <a href="/admin/welcomepage">首页</a>
+       <a href="javascript:window.location.reload();">
+          <cite>订单列表</cite>
+        </a>
+      </span>
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"
+       href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
+</div>
+<div class="x-body">
+    <blockquote class="layui-elem-quote">此处为系统订单管理功能,您可以操作订单比如退款,补单等操作,但是不能删除订单,以免影响系统结算或丢单!</blockquote>
+    <div class="layui-row">
+        <form class="layui-form layui-col-md12 x-so" action="/admin/order/list" method="get" id="ajaxForm">
+            <div class="layui-input-inline ">
+                <select name="status">
+                    <option value="" <%if(status! == null){%>selected<%}%> >支付状态</option>
+                    <option value="2" <%if(status! == 2){%>selected<%}%> >已支付</option>
+                    <option value="1" <%if(status! == 1){%>selected<%}%> >未支付</option>
+                    <option value="3" <%if(status! == 3){%>selected<%}%> >已退款</option>
+                </select>
+            </div>
+            <div class="layui-input-inline ">
+                <select name="payType">
+                    <option value="" <%if(payType! ==null){%>selected<%}%> >支付方式</option>
+                    <option value="2" <%if(payType! ==2){%>selected<%}%> >支付宝</option>
+                    <option value="1" <%if(payType! ==1){%>selected<%}%> >微信</option>
+                    <option value="3" <%if(payType! ==3){%>selected<%}%> >QQ钱包</option>
+                </select>
+            </div>
+            <div class="layui-input-inline ">
+                <select name="order_type">
+                    <option value="" <%if(order_type! ==null){%>selected<%}%> >订单类型</option>
+                    <option value="3" <%if(order_type! ==3){%>selected<%}%> >API创建订单</option>
+                    <option value="1" <%if(order_type! ==1){%>selected<%}%> >快捷付款订单</option>
+                    <option value="2" <%if(order_type! ==2){%>selected<%}%> >用户注册订单</option>
+                    <option value="4" <%if(order_type! ==4){%>selected<%}%> >充值订单</option>
+                </select>
+            </div>
+            <div class="layui-input-inline ">
+                <input type="text" name="outOrderId" value="${outOrderId!}" placeholder="商户订单号" autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-input-inline ">
+                <input type="text" name="oid" value="${oid!}" placeholder="系统订单号" autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-input-inline ">
+                <button class="layui-btn" type="submit"><i class="layui-icon">&#xe615;</i></button>
+            </div>
+        <span class="x-right" style="line-height:40px">共有数据：${bean.totalNum!0} 条</span>
+        </form>
+    </div>
+    <div id="dewdewfef">
+        <%#ajax pagenode:{%>
+        <table class="layui-table">
+            <thead>
+            <tr>
+                <th>系统单号</th>
+                <th>商户单号</th>
+                <th>应付金额</th>
+                <th>实付金额</th>
+                <th>支付方式</th>
+                <th>创建时间</th>
+                <th>订单状态</th>
+                <th>用户</th>
+                <th>操作</th>
+            </thead>
+            <tbody>
+            <%for(o in bean.items!){%>
+            <tr>
+                <td>${o.id!}</td>
+                <td>${o.outOrderId!}</td>
+                <td>${o.price!}</td>
+                <td>${o.paid!0.00}</td>
+                <td>
+                    <%if(o.payType! ==1){%>微信<%}else if(o.payType! ==2){%>支付宝<%}else{%>QQ<%}%>
+                </td>
+                <td>${o.createTime!,dateFormat='yyyy-MM-dd HH:mm:ss'}</td>
+                <td><%if(o.status! == 2){%>已支付<%}else if(o.status! == 3){%>已退款<%}else{%>未支付<%}%></td>
+                <td>${o.user!}</td>
+                <td class="td-manage">
+                    <a title="订单详情" onclick="x_admin_show('订单详情','/admin/order/view?id=${o.id!}')" href="javascript:void(0);">
+                        <i class="layui-icon">&#xe63c;</i>
+                    </a>
+                    <a title="删除" onclick="member_del(this,'${o.id!}')" href="javascript:void(0);">
+                        <i class="layui-icon">&#xe640;</i>
+                    </a>
+                </td>
+            </tr>
+            <%}%>
+            </tbody>
+        </table>
+        <div class="page">
+            <%include("/include/page.html",{context:'dewdewfef',action:'/admin/order/list',model:bean!}){}%>
+        </div>
+        <script>
+            $(function () {
+                layui.use('laydate', function () {
+                    var laydate = layui.laydate;
+                    //执行一个laydate实例
+                    laydate.render({
+                        elem: '#start' //指定元素
+                    });
+                    //执行一个laydate实例
+                    laydate.render({
+                        elem: '#end' //指定元素
+                    });
+                });
+            });
+
+            function member_del(obj, id) {
+                layer.confirm('确认要删除吗？', function (index) {
+                    $.post("/admin/order/delete",
+                        {"id":id},
+                    function (data) {
+                        if (data.code ==0){
+                            layer.msg(data.msg, {icon: 1, time: 800});
+                            $(obj).parents("tr").remove();
+                            window.location.reload();
+                        }else{
+                            layer.msg(data.msg, {icon: 2, time: 800});
+                        }
+                    },"json");
+                });
+            }
+        </script>
+        <%}%>
+    </div>
+</div>
+</body>
+</html>

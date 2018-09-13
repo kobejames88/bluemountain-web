@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>返利管理</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
+    <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="/static/css/font.css">
+    <link rel="stylesheet" href="/static/css/xadmin.css">
+    <script type="text/javascript" charset="utf-8" src="/static/js/jquery-1.11.3.min.js"></script>
+    <script src="/static/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/static/js/xadmin.js"></script>
+</head>
+
+<body>
+<div class="x-nav">
+      <span class="layui-breadcrumb">
+        <a href="/admin/welcomepage">首页</a>
+       <a href="javascript:window.location.reload();">
+          <cite>返利管理</cite>
+        </a>
+      </span>
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"
+       href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
+</div>
+<div class="x-body">
+    <blockquote class="layui-elem-quote">此处为系统返利推荐注册的管理,可以手动检查用户推荐注册信息是否真实,以防止被用户利用系统可能存在的BUG撸钱!</blockquote>
+    <div class="layui-row">
+        <form class="layui-form layui-col-md12 x-so" action="/admin/extension/list" method="get" id="ajaxForm">
+            <div class="layui-input-inline ">
+                <select name="status">
+                    <option value="" <%if(status! == null){%>selected<%}%> >当前状态</option>
+                    <option value="0" <%if(status! == 0){%>selected<%}%> >待审核</option>
+                    <option value="1" <%if(status! == 1){%>selected<%}%> >已提现</option>
+                    <option value="2" <%if(status! == 2){%>selected<%}%> >提现失败</option>
+                </select>
+            </div>
+            <div class="layui-input-inline ">
+                <input type="text" name="id" value="${id!}" placeholder="输入记录ID" autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-input-inline ">
+                <input type="text" name="e_id" value="${e_id!}" placeholder="输入推广人ID" autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-input-inline ">
+                <input type="text" name="r_id" value="${r_id!}" placeholder="输入注册人ID" autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-input-inline ">
+                <button class="layui-btn" type="submit"><i class="layui-icon">&#xe615;</i></button>
+            </div>
+        <span class="x-right" style="line-height:40px">共有数据：${bean.totalNum!0} 条</span>
+        </form>
+    </div>
+    <div id="dewdewfef">
+        <%#ajax pagenode:{%>
+        <table class="layui-table">
+            <thead>
+            <tr>
+                <th>编号</th>
+                <th>推广ID</th>
+                <th>推广用户</th>
+                <th>注册ID</th>
+                <th>注册用户</th>
+                <th>金额</th>
+                <th>状态</th>
+                <th>时间</th>
+                <th>操作</th>
+            </thead>
+            <tbody>
+            <%for(o in bean.items!){%>
+            <tr>
+                <td>${o.id!}</td>
+                <td>${o.eId!}</td>
+                <td>${o.eName!}</td>
+                <td>${o.rId!}</td>
+                <td>${o.rName!}</td>
+                <td>${o.money!}元</td>
+                <td><%if(o.status! == 0){%>待审核<%}else if(o.status! == 1){%>已提现<%}else{%>提现失败<%}%></td>
+                <td>${o.createTime!,dateFormat='yyyy-MM-dd HH:mm:ss'}</td>
+                <td class="td-manage">
+                    <a title="推广详情" onclick="x_admin_show('推广详情','/admin/extension/view?id=${o.id!}')" href="javascript:void(0);">
+                        <i class="layui-icon">&#xe63c;</i>
+                    </a>
+                    <a title="删除" onclick="member_del(this,'${o.id!}')" href="javascript:void(0);">
+                        <i class="layui-icon">&#xe640;</i>
+                    </a>
+                </td>
+            </tr>
+            <%}%>
+            </tbody>
+        </table>
+        <div class="page">
+            <%include("/include/page.html",{context:'dewdewfef',action:'/admin/extension/list',model:bean!}){}%>
+        </div>
+        <script>
+            $(function () {
+                layui.use('laydate', function () {
+                    var laydate = layui.laydate;
+                    //执行一个laydate实例
+                    laydate.render({
+                        elem: '#start' //指定元素
+                    });
+                    //执行一个laydate实例
+                    laydate.render({
+                        elem: '#end' //指定元素
+                    });
+                });
+            });
+
+            function member_del(obj, id) {
+                layer.confirm('确认要删除吗？', function (index) {
+                    $.post("/admin/extension/delete",
+                        {"id":id},
+                    function (data) {
+                        if (data.code ==0){
+                            layer.msg(data.msg, {icon: 1, time: 800});
+                            $(obj).parents("tr").remove();
+                            window.location.reload();
+                        }else{
+                            layer.msg(data.msg, {icon: 2, time: 800});
+                        }
+                    },"json");
+                });
+            }
+        </script>
+        <%}%>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <title>${config.siteName!}-支付协议</title>
+    <meta name="keywords" content="${config.keywords!}">
+    <meta name="description" content="${config.decText!}">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.9">
+    <link rel="stylesheet" type="text/css" href="/static/css/index.css">
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/static/js/jquery-1.11.3.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+</head>
+<body background="/static/images/bg1.jpg">
+<div class="container" style="padding-top:20px;">
+    <div class="col-xs-12 col-sm-10 col-lg-8 center-block" style="float: none;">
+        <div class="panel panel-primary">
+            <div class="panel-heading" style="background: linear-gradient(to right,#8ae68a,#5ccdde,#b221ff);">
+                <center>
+                    <font color="#000000">
+                        <b>用户支付前必看</b>
+                    </font>
+                </center>
+            </div>
+            <div class="panel-body">
+                <p style="font-size: 16px;color: blue;font-weight: bold;">
+                    ${config.payReadme!'未填写'}
+                </p>
+                <hr>
+                <center>
+                    <div class="center-block">
+                        <a href="javascript:void(0);" onclick="to_pay();"
+                           class="center-block btn btn-primary btn-success" style="width: 50%">我已了解,马上去支付!</a>
+                    </div>
+                </center>
+            </div>
+        </div>
+        <br>
+
+    </div>
+</div>
+</body>
+<script>
+
+    var url = '${url!}';
+
+    function to_pay() {
+        window.location = url + "&spm=" + new Date().getTime();
+    }
+</script>
+</html>
+
+
+
+
+
+

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> 查看订单</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
+    <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="/static/css/font.css">
+    <link rel="stylesheet" href="/static/css/xadmin.css">
+    <script type="text/javascript" charset="utf-8" src="/static/js/jquery-1.11.3.min.js"></script>
+    <script src="/static/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/static/js/xadmin.js"></script>
+</head>
+<body>
+<div class="x-body">
+    <table class="layui-table">
+        <thead>
+        <tr>
+            <th>标题</th>
+            <th>详情</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>系统订单号:</td>
+            <td>${model.id!}</td>
+        </tr>
+        <tr>
+            <td>商户订单号:</td>
+            <td>${model.outOrderId!}</td>
+        </tr>
+        <tr>
+            <td>应付金额:</td>
+            <td>${model.price!}</td>
+        </tr>
+        <tr>
+            <td>标题:</td>
+            <td>${model.title!}</td>
+        </tr>
+        <tr>
+            <td>下单IP地址:</td>
+            <td>${model.ipAddr!}</td>
+        </tr>
+        <tr>
+            <td>通知地址:</td>
+            <td>${model.notifyUrl!}</td>
+        </tr>
+        <tr>
+            <td>回跳地址:</td>
+            <td>${model.returnUrl!}</td>
+        </tr>
+        <tr>
+            <td>站点名称:</td>
+            <td>${model.siteName!}</td>
+        </tr>
+        <tr>
+            <td>内容:</td>
+            <td>${model.context!}</td>
+        </tr>
+        <tr>
+            <td>数量:</td>
+            <td>${model.chNum!}</td>
+        </tr>
+        <tr>
+            <td>实付金额:</td>
+            <td>${model.paid!0.00}</td>
+        </tr>
+        <tr>
+            <td>交易手续费:</td>
+            <td>${model.changeSett!0.00}</td>
+        </tr>
+        <tr>
+            <td>支付方式:</td>
+            <td><%if(model.payType! ==1){%>微信<%}else if(model.payType! ==2){%>支付宝<%}else{%>QQ<%}%></td>
+        </tr>
+        <tr>
+            <td>创建时间:</td>
+            <td>${model.createTime!,dateFormat='yyyy-MM-dd HH:mm:ss'}</td>
+        </tr>
+        <tr>
+            <td>订单状态:</td>
+            <td><%if(model.status! == 2){%>已支付<%}else if(model.status! == 3){%>已退款<%}else{%>未支付<%}%></td>
+        </tr>
+        <tr>
+            <td>支付时间:</td>
+            <td>${model.paidTime!,dateFormat='yyyy-MM-dd HH:mm:ss'}</td>
+        </tr>
+        <tr>
+            <td>流水ID:</td>
+            <td>${model.tradeNo!}</td>
+        </tr>
+        <tr>
+            <td>系统返回:</td>
+            <td>${model.tradeStatus!}</td>
+        </tr>
+        <tr>
+            <td>通知下级系统:</td>
+            <td><%if(model.isNotify!0 == 1 ){%>已通知<%}else{%>未通知<%}%></td>
+        </tr>
+        <tr>
+            <td>用户ID:</td>
+            <td>${user2.id!}</td>
+        </tr>
+        <tr>
+            <td>用户名:</td>
+            <td>${user2.user!}</td>
+        </tr>
+        <tr>
+            <td>订单类型:</td>
+            <td>
+                <%if(model.orderType! ==1){%>快捷收款页订单<%}else if(model.orderType! ==2){%>用户注册订单<%}else if(model.orderType!
+                ==3){%>API创建订单<%}else if(model.orderType! ==4){%>余额充值订单<%}%>
+            </td>
+        </tr>
+    </table>
+    <div style="text-align: center;">
+        <%if(model.orderType! ==3){%>
+        <button class="layui-btn layui-btn-normal" onclick="open_url('${model.id!}')">补&nbsp;&nbsp;单1</button>
+        <button class="layui-btn layui-btn-normal" onclick="open_url2('${model.id!}')">补&nbsp;&nbsp;单2</button>
+        <%}%>
+        <%if(model.status! == 2){%>
+        <%if(model.orderType! != 4 && model.orderType! != 2){%>
+        <button class="layui-btn layui-btn-normal" onclick="refund_money('${model.id!}');">退&nbsp;&nbsp;款</button>
+        <%}else{%>
+        <button class="layui-btn layui-btn-normal" onclick="open_url3('${model.outOrderId!}');">补充用户注册信息</button>
+        <%}%>
+        <%}%>
+        <button class="layui-btn layui-btn-warm" onclick="x_admin_close()">关&nbsp;&nbsp;闭</button>
+    </div>
+</div>
+</body>
+<script>
+    $(function () {
+        layui.use('laydate', function () {
+            var laydate = layui.laydate;
+            //执行一个laydate实例
+            laydate.render({
+                elem: '#start' //指定元素
+            });
+            //执行一个laydate实例
+            laydate.render({
+                elem: '#end' //指定元素
+            });
+        });
+    });
+
+    function htmlEncode(str) {
+        var ele = document.createElement('span');
+        ele.appendChild(document.createTextNode(str));
+        return ele.innerHTML;
+    }
+
+    function open_url(id) {
+        $.post("/admin/order/re_notify", {"id": id}, function (data) {
+            layer.alert(htmlEncode(data.msg), {icon: 6});
+        }, "json");
+    }
+
+    function open_url2(id) {
+        var width = Math.round((window.screen.width - 350) / 2);
+        var height = Math.round((window.screen.height - 350) / 2);
+        $.post("/admin/order/re_notify2", {"id": id}, function (data) {
+            window.open(data.url, '系统补单', 'height=450, width=350, top=' + height + ',left=' + width + ',toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no');
+        }, "json");
+    }
+
+    function refund_money(id) {
+        layer.confirm("将要给该订单退款,资金原路返回,确认要继续吗?,", {title: "退款确认"}, function (index) {
+            layer.close(index);
+            $.post("/admin/order/refund_order",
+                {"id": id},
+                function (data) {
+                    layer.alert(data.msg, {icon: 6}, function () {
+                        window.parent.location.reload();
+                        var index = parent.layer.getFrameIndex(window.name);
+                        parent.layer.close(index);
+                    });
+                }, "json");
+        });
+    }
+
+    function open_url3(id) {
+        window.open('/reg_check?out_trade_no=' + id + '&spm=' + new Date().getTime(), target = '_blank');
+    }
+
+</script>
+</html>

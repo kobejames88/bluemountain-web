@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.so206.mapper.ext.DomainCheckExtMapper">
+    <resultMap id="BaseResultMap" type="com.so206.po.ext.DomainCheckExtQuery">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="domain" jdbcType="VARCHAR" property="domain"/>
+        <result column="nature" jdbcType="VARCHAR" property="nature"/>
+        <result column="icp" jdbcType="VARCHAR" property="icp"/>
+        <result column="index_url" jdbcType="VARCHAR" property="indexUrl"/>
+        <result column="sitename" jdbcType="VARCHAR" property="sitename"/>
+        <result column="now_icp" jdbcType="VARCHAR" property="nowIcp"/>
+        <result column="name1" jdbcType="VARCHAR" property="name1"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="serach" jdbcType="VARCHAR" property="serach"/>
+        <result column="opt_time" jdbcType="TIMESTAMP" property="optTime"/>
+        <result column="uid" jdbcType="INTEGER" property="uid"/>
+        <result column="pay_show_info" jdbcType="INTEGER" property="payShowInfo"/>
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="BaseResultMap2" type="com.so206.po.ext.DomainCheckExtQuery">
+        <result column="user" jdbcType="VARCHAR" property="user"/>
+    </resultMap>
+
+    <select id="findList" resultMap="BaseResultMap2">
+        select d.*, u.user as user
+        from system_domain d
+        join system_user u on d.uid = u.id
+        where 1=1
+        <if test="pay_status != null">
+            and d.status = #{pay_status}
+        </if>
+        <if test="pay_show_info != null">
+            and d.pay_show_info = #{pay_show_info}
+        </if>
+        <if test="pid != null">
+            and d.uid = #{pid}
+        </if>
+        <if test="serach != null">
+            and d.serach = #{serach}
+        </if>
+        order by d.opt_time desc
+    </select>
+
+
+</mapper>
