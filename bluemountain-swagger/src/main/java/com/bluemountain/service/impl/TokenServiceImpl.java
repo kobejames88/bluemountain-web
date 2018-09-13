@@ -14,16 +14,16 @@
  * the License.
  */
 
-package service.impl;
+package com.bluemountain.service.impl;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 
 
-import dao.TokenDao;
-import entity.TokenEntity;
+import com.bluemountain.dao.TokenDao;
+import com.bluemountain.entity.TokenEntity;
+import com.bluemountain.service.TokenService;
 import org.springframework.stereotype.Service;
-import service.TokenService;
 
 import java.util.Date;
 import java.util.UUID;

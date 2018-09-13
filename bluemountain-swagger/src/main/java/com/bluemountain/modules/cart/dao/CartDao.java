@@ -1,7 +1,7 @@
-package modules.cart.dao;
+package com.bluemountain.modules.cart.dao;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
-import com.freeter.modules.cart.entity.CartEntity;
+import com.bluemountain.modules.cart.entity.CartEntity;
 
 /**
  * 购物车

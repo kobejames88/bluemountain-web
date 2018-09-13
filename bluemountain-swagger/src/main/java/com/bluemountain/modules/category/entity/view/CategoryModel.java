@@ -1,4 +1,4 @@
-package modules.category.entity.view;
+package com.bluemountain.modules.category.entity.view;
 
 import java.util.List;
 

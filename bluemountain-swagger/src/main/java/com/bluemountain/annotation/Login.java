@@ -14,7 +14,7 @@
  * the License.
  */
 
-package annotation;
+package com.bluemountain.annotation;
 
 import java.lang.annotation.*;
 

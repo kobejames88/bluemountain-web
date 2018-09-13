@@ -1,4 +1,4 @@
-package modules.address.service.impl;
+package com.bluemountain.modules.address.service.impl;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
@@ -6,9 +6,9 @@ import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 
 import com.bluemountain.common.utils.PageUtils;
 import com.bluemountain.common.utils.Query;
-import modules.address.dao.AddressDao;
-import modules.address.entity.AddressEntity;
-import modules.address.service.AddressService;
+import com.bluemountain.modules.address.dao.AddressDao;
+import com.bluemountain.modules.address.entity.AddressEntity;
+import com.bluemountain.modules.address.service.AddressService;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;

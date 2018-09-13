@@ -1,19 +1,8 @@
-package modules.cart.controller;
+package com.bluemountain.modules.cart.controller;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
-import com.freeter.common.utils.R;
-import com.freeter.modules.cart.entity.CartEntity;
-import com.freeter.modules.cart.entity.model.CartModel;
-import com.freeter.modules.cart.service.CartService;
-import com.freeter.modules.good.entity.CategorySpecEntity;
-import com.freeter.modules.good.entity.GoodEntity;
-import com.freeter.modules.good.entity.GoodSpecPriceEntity;
-import com.freeter.modules.good.entity.GoodSpecValueEntity;
-import com.freeter.modules.good.service.CategorySpecService;
-import com.freeter.modules.good.service.GoodService;
-import com.freeter.modules.good.service.GoodSpecPriceService;
-import com.freeter.modules.good.service.GoodSpecValueService;
+import com.bluemountain.modules.cart.entity.CartEntity;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

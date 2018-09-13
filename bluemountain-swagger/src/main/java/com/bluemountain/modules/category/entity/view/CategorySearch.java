@@ -1,4 +1,4 @@
-package modules.category.entity.view;
+package com.bluemountain.modules.category.entity.view;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

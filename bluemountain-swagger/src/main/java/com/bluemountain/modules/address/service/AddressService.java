@@ -1,8 +1,8 @@
-package modules.address.service;
+package com.bluemountain.modules.address.service;
 
 import com.baomidou.mybatisplus.service.IService;
 import com.bluemountain.common.utils.PageUtils;
-import modules.address.entity.AddressEntity;
+import com.bluemountain.modules.address.entity.AddressEntity;;
 
 
 import java.util.Map;

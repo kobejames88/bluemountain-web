@@ -14,10 +14,10 @@
  * the License.
  */
 
-package interceptor;
+package com.bluemountain.interceptor;
 
 
-import annotation.Login;
+import com.bluemountain.annotation.Login;
 import com.bluemountain.common.exception.RRException;
 import com.bluemountain.common.utils.JwtUtils;
 import io.jsonwebtoken.Claims;

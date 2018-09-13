@@ -1,4 +1,4 @@
-package modules.category.dao;
+package com.bluemountain.modules.category.dao;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import modules.category.entity.CategoryEntity;

@@ -1,10 +1,10 @@
-package modules.address.controller;
+package com.bluemountain.modules.address.controller;
 
 
-import annotation.Login;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 
+import com.bluemountain.annotation.Login;
 import com.bluemountain.common.utils.R;
 import com.bluemountain.common.validator.ValidatorUtils;
 import io.swagger.annotations.Api;

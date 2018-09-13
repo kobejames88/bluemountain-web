@@ -14,10 +14,10 @@
  * the License.
  */
 
-package service;
+package com.bluemountain.service;
 
 import com.baomidou.mybatisplus.service.IService;
-import entity.TokenEntity;
+import com.bluemountain.entity.TokenEntity;
 
 
 /**

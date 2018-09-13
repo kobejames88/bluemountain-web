@@ -1,12 +1,6 @@
-package modules.good.controller;
+package com.bluemountain.modules.good.controller;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.freeter.common.utils.R;
-import com.freeter.common.validator.ValidatorUtils;
-import com.freeter.modules.good.entity.GoodAttributeEntity;
-import com.freeter.modules.good.entity.model.GoodAttributeModel;
-import com.freeter.modules.good.entity.vo.GoodAttributeVO;
-import com.freeter.modules.good.service.GoodAttributeService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

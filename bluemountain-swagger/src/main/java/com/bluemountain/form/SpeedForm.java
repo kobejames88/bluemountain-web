@@ -1,4 +1,4 @@
-package form;
+package com.bluemountain.form;
 
 import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.validator.constraints.Length;

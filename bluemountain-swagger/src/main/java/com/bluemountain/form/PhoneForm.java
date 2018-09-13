@@ -14,7 +14,7 @@
  * the License.
  */
 
-package form;
+package com.bluemountain.form;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

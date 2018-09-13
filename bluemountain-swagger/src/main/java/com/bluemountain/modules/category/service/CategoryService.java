@@ -1,4 +1,4 @@
-package modules.category.service;
+package com.bluemountain.modules.category.service;
 
 import com.baomidou.mybatisplus.service.IService;
 import com.bluemountain.common.utils.PageUtils;

@@ -6,7 +6,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="bluemountain-api" />
+        <module name="bluemountain-common" />
+        <module name="bluemountain-coupon" />
+        <module name="bluemountain-db" />
+        <module name="bluemountain-generator" />
+        <module name="bluemountain-seckill" />
+        <module name="bluemountain-swagger" />
+        <module name="bluemountain-ueditor" />
         <module name="bluemountainweb" />
+        <module name="bluemoutain-admin" />
+        <module name="bluemoutain-core" />
+        <module name="bluemoutain-pay" />
       </profile>
     </annotationProcessing>
   </component>

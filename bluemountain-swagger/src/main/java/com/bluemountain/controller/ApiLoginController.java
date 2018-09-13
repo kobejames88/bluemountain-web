@@ -1,10 +1,10 @@
-package controller;
+package com.bluemountain.controller;
 
 
-import annotation.Login;
 import cn.hutool.core.lang.Assert;
 import cn.hutool.core.util.RandomUtil;
 
+import com.bluemountain.annotation.Login;
 import com.bluemountain.common.utils.R;
 import com.bluemountain.common.utils.RedisUtils;
 import com.bluemountain.common.validator.ValidatorUtils;

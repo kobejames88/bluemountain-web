@@ -1,4 +1,4 @@
-package util;
+package com.bluemountain.util;
 
 public class Constant {
 

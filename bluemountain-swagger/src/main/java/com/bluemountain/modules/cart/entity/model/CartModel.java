@@ -1,4 +1,4 @@
-package modules.cart.entity.model;
+package com.bluemountain.modules.cart.entity.model;
 
 
 import java.util.List;

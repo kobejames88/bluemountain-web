@@ -1,7 +1,7 @@
-package modules.cart.entity.view;
+package com.bluemountain.modules.cart.entity.view;
 
 import com.baomidou.mybatisplus.annotations.TableName;
-import com.freeter.modules.cart.entity.CartEntity;
+import com.bluemountain.modules.cart.entity.CartEntity;
 import io.swagger.annotations.ApiModel;
 import org.springframework.beans.BeanUtils;
 

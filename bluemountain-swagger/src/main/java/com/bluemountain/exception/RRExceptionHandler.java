@@ -14,7 +14,7 @@
  * the License.
  */
 
-package exception;
+package com.bluemountain.exception;
 
 
 import com.bluemountain.common.exception.RRException;

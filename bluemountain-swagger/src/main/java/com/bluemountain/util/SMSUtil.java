@@ -1,4 +1,4 @@
-package util;
+package com.bluemountain.util;
 
 import com.shcm.bean.SendResultBean;
 import com.shcm.send.DataApi;

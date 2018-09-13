@@ -1,4 +1,4 @@
-package modules.channel.service;
+package com.bluemountain.modules.channel.service;
 
 import com.baomidou.mybatisplus.service.IService;
 import com.bluemountain.common.utils.PageUtils;

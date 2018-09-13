@@ -1,7 +1,7 @@
-package modules.address.dao;
+package com.bluemountain.modules.address.dao;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
-import modules.address.entity.AddressEntity;
+import com.bluemountain.modules.address.entity.AddressEntity;
 
 
 /**

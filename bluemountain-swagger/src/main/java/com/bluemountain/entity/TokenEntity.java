@@ -14,7 +14,7 @@
  * the License.
  */
 
-package entity;
+package com.bluemountain.entity;
 
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;

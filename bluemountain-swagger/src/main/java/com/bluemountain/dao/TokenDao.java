@@ -14,10 +14,10 @@
  * the License.
  */
 
-package dao;
+package com.bluemountain.dao;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
-import entity.TokenEntity;
+import com.bluemountain.entity.TokenEntity;
 
 
 /**
