@@ -1,9 +1,9 @@
-package modules.order.entity.view;
+package com.bluemountain.modules.order.entity.view;
 
 import com.baomidou.mybatisplus.annotations.TableName;
 
 import io.swagger.annotations.ApiModel;
-import modules.order.entity.OrderGoodEntity;
+import com.bluemountain.modules.order.entity.OrderGoodEntity;
 import org.springframework.beans.BeanUtils;
 
 import java.io.Serializable;

@@ -2,7 +2,7 @@ package com.bluemountain.modules.category.entity.view;
 
 
 import io.swagger.annotations.ApiModel;
-import modules.category.entity.CategoryEntity;
+import com.bluemountain.modules.category.entity.CategoryEntity;
 import org.apache.commons.beanutils.BeanUtils;
 
 import java.io.Serializable;

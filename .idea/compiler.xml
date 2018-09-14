@@ -11,6 +11,7 @@
         <module name="bluemountain-coupon" />
         <module name="bluemountain-db" />
         <module name="bluemountain-generator" />
+        <module name="bluemountain-generator (1)" />
         <module name="bluemountain-seckill" />
         <module name="bluemountain-swagger" />
         <module name="bluemountain-ueditor" />
@@ -18,10 +19,6 @@
         <module name="bluemoutain-admin" />
         <module name="bluemoutain-core" />
         <module name="bluemoutain-pay" />
-        <module name="freeter-admin (2)" />
-        <module name="freeter-api (2)" />
-        <module name="freeter-common (2)" />
-        <module name="freeter-generator (2)" />
         <module name="prs-allocationSetting" />
         <module name="prs-depart" />
         <module name="prs-depart-test" />
@@ -32,10 +29,15 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="freeter-admin" target="1.8" />
+      <module name="freeter-admin (2)" target="1.8" />
       <module name="freeter-api" target="1.8" />
+      <module name="freeter-api (2)" target="1.8" />
       <module name="freeter-coding" target="1.8" />
+      <module name="freeter-coding (2)" target="1.8" />
       <module name="freeter-common" target="1.8" />
+      <module name="freeter-common (2)" target="1.8" />
       <module name="freeter-generator" target="1.8" />
+      <module name="freeter-generator (2)" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

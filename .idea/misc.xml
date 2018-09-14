@@ -15,6 +15,7 @@
         <option value="D:/prs/pom.xml" />
         <option value="D:/BaiduNetdiskDownload/xcOschina-freeter-admin-master/freeter-admin/freeter-coding/pom.xml" />
         <option value="D:/free-codeing/pom.xml" />
+        <option value="D:/bluemountain-genator/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
@@ -24,6 +25,9 @@
         <option value="D:/BaiduNetdiskDownload/xcOschina-freeter-admin-master/freeter-admin/freeter-coding/freeter-common/pom.xml" />
         <option value="D:/BaiduNetdiskDownload/xcOschina-freeter-admin-master/freeter-admin/freeter-coding/freeter-generator/pom.xml" />
         <option value="D:/BaiduNetdiskDownload/xcOschina-freeter-admin-master/freeter-admin/freeter-coding/pom.xml" />
+        <option value="D:/free-codeing/freeter-common/pom.xml" />
+        <option value="D:/free-codeing/freeter-generator/pom.xml" />
+        <option value="D:/free-codeing/pom.xml" />
       </set>
     </option>
   </component>

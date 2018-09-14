@@ -22,7 +22,7 @@ import org.springframework.stereotype.Component;
 public class RedisAspect {
     private Logger logger = LoggerFactory.getLogger(getClass());
     //是否开启redis缓存  true开启   false关闭
-    @Value("${freeter.redis.open: false}")
+    @Value("${bluemountain.redis.open: false}")
     private boolean open;
 
     @Around("execution(* com.bluemountain.common.utils.RedisUtils.*(..))")

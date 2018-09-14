@@ -8,7 +8,7 @@ import com.bluemountain.common.utils.PageUtils;
 import com.bluemountain.common.utils.Query;
 import com.bluemountain.modules.category.dao.CategoryDao;
 import com.bluemountain.modules.category.service.CategoryService;
-import modules.category.entity.CategoryEntity;
+import com.bluemountain.modules.category.entity.CategoryEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;

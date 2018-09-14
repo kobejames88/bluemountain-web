@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.freeter.modules.good.dao.CategoryGoodDao">
+<mapper namespace="com.bluemountain.modules.good.dao.CategoryGoodDao">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.freeter.modules.good.entity.CategoryGoodEntity" id="categoryGoodMap">
+    <resultMap type="com.bluemountain.modules.good.entity.CategoryGoodEntity" id="categoryGoodMap">
         <result property="categoryId" column="category_id"/>
         <result property="categoryName" column="category_name"/>
         <result property="goodId" column="good_id"/>
@@ -13,22 +13,22 @@
     </resultMap>
 
 	<select id="selectListVO"
-		resultType="com.freeter.modules.good.entity.vo.CategoryGoodVO" >
+		resultType="com.bluemountain.modules.good.entity.vo.CategoryGoodVO" >
 		SELECT * FROM cn_category_good as categoryGood <where> 1=1 ${ew.sqlSegment}</where>
 	</select>
 	
 	<select id="selectVO"
-		resultType="com.freeter.modules.good.entity.vo.CategoryGoodVO" >
+		resultType="com.bluemountain.modules.good.entity.vo.CategoryGoodVO" >
 		SELECT * FROM cn_category_good as categoryGood <where> 1=1 ${ew.sqlSegment}</where>
 	</select>
 
     <select id="selectListView"
-		resultType="com.freeter.modules.good.entity.view.CategoryGoodView" >
+		resultType="com.bluemountain.modules.good.entity.view.CategoryGoodView" >
 		SELECT  * FROM cn_category_good as categoryGood <where> 1=1 ${ew.sqlSegment}</where>
 	</select>
 	
 	<select id="selectView"
-		resultType="com.freeter.modules.good.entity.view.CategoryGoodView" >
+		resultType="com.bluemountain.modules.good.entity.view.CategoryGoodView" >
 		SELECT * FROM cn_category_good as categoryGood <where> 1=1 ${ew.sqlSegment}</where>
 	</select>
 </mapper>

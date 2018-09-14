@@ -1,4 +1,4 @@
-package modules.channel.entity.view;
+package com.bluemountain.modules.channel.entity.view;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

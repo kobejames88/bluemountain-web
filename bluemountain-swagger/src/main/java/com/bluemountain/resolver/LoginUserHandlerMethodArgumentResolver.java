@@ -16,8 +16,7 @@
 
 package com.bluemountain.resolver;
 
-
-import annotation.LoginUser;
+import com.bluemountain.annotation.LoginUser;
 import com.bluemountain.interceptor.AuthorizationInterceptor;
 import com.bluemountain.modules.user.entity.UserEntity;
 import com.bluemountain.modules.user.service.UserService;

@@ -1,11 +1,11 @@
 package com.bluemountain.controller;
 
-import annotation.LoginUser;
+import com.bluemountain.annotation.LoginUser;
 import com.bluemountain.annotation.Login;
 import com.bluemountain.common.utils.R;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import modules.user.entity.UserEntity;
+import com.bluemountain.modules.user.entity.UserEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RestController;

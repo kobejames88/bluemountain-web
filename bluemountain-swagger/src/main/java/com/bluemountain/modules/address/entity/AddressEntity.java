@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.annotations.TableName;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import modules.address.entity.view.AddressView;
+import com.bluemountain.modules.address.entity.view.AddressView;
 import org.springframework.beans.BeanUtils;
 
 import javax.validation.constraints.NotBlank;

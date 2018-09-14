@@ -1,3 +1,5 @@
+package com.bluemountain;
+
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,7 +8,7 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 
 
 @SpringBootApplication
-@MapperScan(basePackages = {"com.freeter.dao","com.freeter.modules.*.dao"})
+@MapperScan(basePackages = {"com.bluemountain.dao","com.bluemountain.modules.*.dao"})
 public class ApiApplication extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.freeter.modules.user.dao.UserDao">
+<mapper namespace="com.bluemountain.modules.user.dao.UserDao">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.freeter.modules.user.entity.UserEntity" id="userMap">
+    <resultMap type="com.bluemountain.modules.user.entity.UserEntity" id="userMap">
         <result property="userId" column="user_id"/>
         <result property="userNumber" column="user_number"/>
         <result property="phone" column="phone"/>
@@ -29,7 +29,7 @@
         <result property="updateBy" column="update_by"/>
     </resultMap>
 
-	<select id="queryUserLock" parameterType="com.freeter.modules.user.entity.UserEntity" resultType="com.freeter.modules.user.entity.UserEntity" >
+	<select id="queryUserLock" parameterType="com.bluemountain.modules.user.entity.UserEntity" resultType="com.bluemountain.modules.user.entity.UserEntity" >
 	select user_id from cn_user where phone = #{phone} for update
 	</select>
 

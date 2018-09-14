@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.freeter.modules.user.dao.UserDao">
+<mapper namespace="com.bluemountain.modules.user.dao.UserDao">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.freeter.modules.user.entity.UserEntity" id="userMap">
+    <resultMap type="com.bluemountain.modules.user.entity.UserEntity" id="userMap">
         <result property="userId" column="user_id"/>
         <result property="idCard" column="id_card"/>
         <result property="userNumber" column="user_number"/>
@@ -29,26 +29,26 @@
     </resultMap>
 
 	<select id="selectListVO"
-		resultType="com.freeter.modules.user.entity.vo.UserVO" >
+		resultType="com.bluemountain.modules.user.entity.vo.UserVO" >
 		SELECT * FROM cn_user  user         
         <where> 1=1 ${ew.sqlSegment}</where>
 	</select>
 	
 	<select id="selectVO"
-		resultType="com.freeter.modules.user.entity.vo.UserVO" >
+		resultType="com.bluemountain.modules.user.entity.vo.UserVO" >
 		SELECT  user.* FROM cn_user  user 	
  		<where> 1=1 ${ew.sqlSegment}</where>
 	</select>
 
     <select id="selectListView"
-		resultType="com.freeter.modules.user.entity.view.UserView" >
+		resultType="com.bluemountain.modules.user.entity.view.UserView" >
 
 		SELECT  user.* FROM cn_user  user 	        
         <where> 1=1 ${ew.sqlSegment}</where>
 	</select>
 	
 	<select id="selectView"
-		resultType="com.freeter.modules.user.entity.view.UserView" >
+		resultType="com.bluemountain.modules.user.entity.view.UserView" >
 		SELECT * FROM cn_user  user <where> 1=1 ${ew.sqlSegment}</where>
 	</select>
 </mapper>

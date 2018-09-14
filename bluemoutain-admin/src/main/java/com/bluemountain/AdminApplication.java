@@ -8,7 +8,7 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 
 
 @SpringBootApplication
-@MapperScan(basePackages = {"com.freeter.modules.*.dao"})
+@MapperScan(basePackages = {"com.bluemountain.modules.*.dao"})
 public class AdminApplication extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {

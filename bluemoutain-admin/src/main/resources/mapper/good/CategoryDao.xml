@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.freeter.modules.good.dao.CategoryDao">
+<mapper namespace="com.bluemountain.modules.good.dao.CategoryDao">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.freeter.modules.good.entity.CategoryEntity" id="categoryMap">
+    <resultMap type="com.bluemountain.modules.good.entity.CategoryEntity" id="categoryMap">
         <result property="categoryId" column="category_id"/>
         <result property="parentId" column="parent_id"/>
         <result property="name" column="name"/>
@@ -26,22 +26,22 @@
     </resultMap>
 
 	<select id="selectListVO"
-		resultType="com.freeter.modules.good.entity.vo.CategoryVO" >
+		resultType="com.bluemountain.modules.good.entity.vo.CategoryVO" >
 		SELECT category.*,(select name from cn_category p where p.category_id = category.parent_id) as category_parent_name FROM cn_category as category <where> 1=1 ${ew.sqlSegment}</where>
 	</select>
 	
 	<select id="selectListView"
-		resultType="com.freeter.modules.good.entity.view.CategoryView" >
+		resultType="com.bluemountain.modules.good.entity.view.CategoryView" >
 		SELECT category.*,(select name from cn_category p where p.category_id = category.parent_id)   category_parent_name, (select name from cn_channel p where p.channel_id = category.channel_id)   channelName FROM cn_category as category <where>  1=1 ${ew.sqlSegment}</where>
 	</select>
 	
 	<select id="selectVO"
-		resultType="com.freeter.modules.good.entity.vo.CategoryVO" >
+		resultType="com.bluemountain.modules.good.entity.vo.CategoryVO" >
 		SELECT * FROM cn_category as category <where> 1=1 ${ew.sqlSegment}</where>
 	</select>
 	
 	<select id="selectView"
-		resultType="com.freeter.modules.good.entity.view.CategoryView" >
+		resultType="com.bluemountain.modules.good.entity.view.CategoryView" >
 		SELECT category.* FROM cn_category as category <where> 1=1 ${ew.sqlSegment}</where>
 	</select>
 

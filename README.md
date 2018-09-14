@@ -199,7 +199,7 @@ j2cache-caffeine.properties 一级缓存
 **mapper 有外键自动生成多表关联语句：**
 
 `<select id="selectListView"  
-resultType="com.freeter.modules.pc.entity.view.StudentView"`>
+resultType="com.bluemountain.modules.pc.entity.view.StudentView"`>
 	
 SELECT  student.* FROM t_student  student 			   
         left join t_professional  professional on  professional.professional_id = student.professional_id 		   

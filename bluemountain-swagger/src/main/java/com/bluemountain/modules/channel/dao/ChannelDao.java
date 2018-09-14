@@ -1,7 +1,7 @@
-package modules.channel.dao;
+package com.bluemountain.modules.channel.dao;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
-import modules.channel.entity.ChannelEntity;
+import com.bluemountain.modules.channel.entity.ChannelEntity;
 
 
 /**

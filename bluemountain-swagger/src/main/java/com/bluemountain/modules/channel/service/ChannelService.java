@@ -2,7 +2,7 @@ package com.bluemountain.modules.channel.service;
 
 import com.baomidou.mybatisplus.service.IService;
 import com.bluemountain.common.utils.PageUtils;
-import modules.channel.entity.ChannelEntity;
+import com.bluemountain.modules.channel.entity.ChannelEntity;
 
 
 import java.util.Map;

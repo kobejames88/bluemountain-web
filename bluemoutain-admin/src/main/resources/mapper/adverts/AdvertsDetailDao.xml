@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.freeter.modules.adverts.dao.AdvertsDetailDao">
+<mapper namespace="com.bluemountain.modules.adverts.dao.AdvertsDetailDao">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.freeter.modules.adverts.entity.AdvertsDetailEntity" id="advertsDetailMap">
+    <resultMap type="com.bluemountain.modules.adverts.entity.AdvertsDetailEntity" id="advertsDetailMap">
         <result property="advertsDetailId" column="adverts_detail_id"/>
         <result property="name" column="name"/>
         <result property="advertsId" column="adverts_id"/>
@@ -25,26 +25,26 @@
     </resultMap>
 
 	<select id="selectListVO"
-		resultType="com.freeter.modules.adverts.entity.vo.AdvertsDetailVO" >
+		resultType="com.bluemountain.modules.adverts.entity.vo.AdvertsDetailVO" >
 		SELECT * FROM `cn_adverts_detail`  advertsDetail         
         <where> 1=1 ${ew.sqlSegment}</where>
 	</select>
 	
 	<select id="selectVO"
-		resultType="com.freeter.modules.adverts.entity.vo.AdvertsDetailVO" >
+		resultType="com.bluemountain.modules.adverts.entity.vo.AdvertsDetailVO" >
 		SELECT  advertsDetail.* FROM `cn_adverts_detail`  advertsDetail 	
  		<where> 1=1 ${ew.sqlSegment}</where>
 	</select>
 
     <select id="selectListView"
-		resultType="com.freeter.modules.adverts.entity.view.AdvertsDetailView" >
+		resultType="com.bluemountain.modules.adverts.entity.view.AdvertsDetailView" >
 
 		SELECT  advertsDetail.* FROM `cn_adverts_detail`  advertsDetail 	        
         <where> 1=1 ${ew.sqlSegment}</where>
 	</select>
 	
 	<select id="selectView"
-		resultType="com.freeter.modules.adverts.entity.view.AdvertsDetailView" >
+		resultType="com.bluemountain.modules.adverts.entity.view.AdvertsDetailView" >
 		SELECT * FROM `cn_adverts_detail`  advertsDetail <where> 1=1 ${ew.sqlSegment}</where>
 	</select>
 </mapper>

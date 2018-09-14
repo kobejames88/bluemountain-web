@@ -1,9 +1,9 @@
-package modules.address.entity.view;
+package com.bluemountain.modules.address.entity.view;
 
 import com.baomidou.mybatisplus.annotations.TableName;
 
 import io.swagger.annotations.ApiModel;
-import modules.address.entity.AddressEntity;
+import com.bluemountain.modules.address.entity.AddressEntity;
 import org.springframework.beans.BeanUtils;
 
 import java.io.Serializable;

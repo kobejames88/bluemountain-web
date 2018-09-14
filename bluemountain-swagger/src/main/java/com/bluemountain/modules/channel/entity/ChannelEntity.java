@@ -1,4 +1,4 @@
-package modules.channel.entity;
+package com.bluemountain.modules.channel.entity;
 
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;

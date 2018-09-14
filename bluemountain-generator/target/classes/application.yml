@@ -13,9 +13,9 @@ spring:
     datasource:
         type: com.alibaba.druid.pool.DruidDataSource
         driverClassName: com.mysql.jdbc.Driver
-        url: jdbc:mysql://localhost:3306/wkshop?useUnicode=true&characterEncoding=UTF-8
+        url: jdbc:mysql://localhost:3306/fsupa?useUnicode=true&characterEncoding=UTF-8
         username: root
-        password:
+        password: 123456
     jackson:
         time-zone: GMT+8
         date-format: yyyy-MM-dd HH:mm:ss

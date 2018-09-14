@@ -2,7 +2,7 @@ package com.bluemountain.modules.category.service;
 
 import com.baomidou.mybatisplus.service.IService;
 import com.bluemountain.common.utils.PageUtils;
-import modules.category.entity.CategoryEntity;
+import com.bluemountain.modules.category.entity.CategoryEntity;
 
 
 import java.util.Map;
