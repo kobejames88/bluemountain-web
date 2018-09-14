@@ -1,4 +1,4 @@
-package modules.pc.controller;
+package com.bluemountain.modules.pc.controller;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 
@@ -6,12 +6,12 @@ import com.bluemountain.common.utils.MPUtil;
 import com.bluemountain.common.utils.PageUtils;
 import com.bluemountain.common.utils.R;
 import com.bluemountain.common.validator.ValidatorUtils;
+import com.bluemountain.modules.pc.entity.StudentEntity;
+import com.bluemountain.modules.pc.entity.model.StudentModel;
+import com.bluemountain.modules.pc.entity.vo.StudentVO;
+import com.bluemountain.modules.pc.service.StudentService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import modules.pc.entity.StudentEntity;
-import modules.pc.entity.model.StudentModel;
-import modules.pc.entity.vo.StudentVO;
-import modules.pc.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

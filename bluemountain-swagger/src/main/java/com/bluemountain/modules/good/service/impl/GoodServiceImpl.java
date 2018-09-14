@@ -1,15 +1,15 @@
-package modules.good.service.impl;
+package com.bluemountain.modules.good.service.impl;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-import com.freeter.common.utils.PageUtils;
-import com.freeter.common.utils.Query;
-import com.freeter.modules.good.dao.GoodDao;
-import com.freeter.modules.good.entity.GoodEntity;
-import com.freeter.modules.good.entity.vo.GoodVO;
-import com.freeter.modules.good.service.GoodService;
+import com.bluemountain.common.utils.PageUtils;
+import com.bluemountain.common.utils.Query;
+import com.bluemountain.modules.good.dao.GoodDao;
+import com.bluemountain.modules.good.entity.GoodEntity;
+import com.bluemountain.modules.good.entity.vo.GoodVO;
+import com.bluemountain.modules.good.service.GoodService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,7 +30,7 @@ public class GoodServiceImpl extends ServiceImpl<GoodDao, GoodEntity> implements
     }
     
     @Override
-	public List<GoodVO> selectListVO( Wrapper<GoodEntity> wrapper) {
+	public List<GoodVO> selectListVO(Wrapper<GoodEntity> wrapper) {
  		return baseMapper.selectListVO(wrapper);
 	}
 	

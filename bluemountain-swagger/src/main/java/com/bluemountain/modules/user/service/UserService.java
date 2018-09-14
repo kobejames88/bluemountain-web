@@ -1,13 +1,13 @@
-package modules.user.service;
+package com.bluemountain.modules.user.service;
 
 
 import com.baomidou.mybatisplus.service.IService;
 import com.bluemountain.common.utils.PageUtils;
 import com.bluemountain.common.utils.R;
-import form.LoginForm;
-import form.PhoneForm;
-import form.RegisterForm;
-import modules.user.entity.UserEntity;
+import com.bluemountain.form.LoginForm;
+import com.bluemountain.form.PhoneForm;
+import com.bluemountain.form.RegisterForm;
+import com.bluemountain.modules.user.entity.UserEntity;
 
 import java.util.Map;
 

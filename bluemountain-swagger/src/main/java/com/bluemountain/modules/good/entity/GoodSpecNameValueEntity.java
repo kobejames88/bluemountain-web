@@ -1,4 +1,4 @@
-package modules.good.entity;
+package com.bluemountain.modules.good.entity;
 
 import java.util.List;
 import java.util.Map;

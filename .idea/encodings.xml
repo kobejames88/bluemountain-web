@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://D:/BaiduNetdiskDownload/xcOschina-freeter-admin-master/freeter-admin/freeter-coding" charset="UTF-8" />
+    <file url="file://D:/BaiduNetdiskDownload/xcOschina-freeter-admin-master/freeter-admin/freeter-coding/freeter-admin" charset="UTF-8" />
+    <file url="file://D:/BaiduNetdiskDownload/xcOschina-freeter-admin-master/freeter-admin/freeter-coding/freeter-api" charset="UTF-8" />
+    <file url="file://D:/BaiduNetdiskDownload/xcOschina-freeter-admin-master/freeter-admin/freeter-coding/freeter-common" charset="UTF-8" />
+    <file url="file://D:/BaiduNetdiskDownload/xcOschina-freeter-admin-master/freeter-admin/freeter-coding/freeter-generator" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/bluemountain-api" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/bluemountain-common" charset="UTF-8" />
@@ -13,5 +18,17 @@
     <file url="file://$PROJECT_DIR$/bluemoutain-admin" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/bluemoutain-core" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/bluemoutain-pay" charset="UTF-8" />
+    <file url="file://D:/free-codeing" charset="UTF-8" />
+    <file url="file://D:/free-codeing/freeter-admin" charset="UTF-8" />
+    <file url="file://D:/free-codeing/freeter-api" charset="UTF-8" />
+    <file url="file://D:/free-codeing/freeter-common" charset="UTF-8" />
+    <file url="file://D:/free-codeing/freeter-generator" charset="UTF-8" />
+    <file url="file://D:/prs" charset="UTF-8" />
+    <file url="file://D:/prs/prs-allocationSetting" charset="UTF-8" />
+    <file url="file://D:/prs/prs-depart" charset="UTF-8" />
+    <file url="file://D:/prs/prs-depart-test" charset="UTF-8" />
+    <file url="file://D:/prs/prs-menu" charset="UTF-8" />
+    <file url="file://D:/prs/prs-role" charset="UTF-8" />
+    <file url="file://D:/prs/prs-user" charset="UTF-8" />
   </component>
 </project>

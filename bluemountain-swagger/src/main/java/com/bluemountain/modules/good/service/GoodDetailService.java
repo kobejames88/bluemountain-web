@@ -1,10 +1,10 @@
-package modules.good.service;
+package com.bluemountain.modules.good.service;
 
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.service.IService;
-import com.freeter.common.utils.PageUtils;
-import com.freeter.modules.good.entity.GoodDetailEntity;
-import com.freeter.modules.good.entity.vo.GoodDetailVO;
+import com.bluemountain.common.utils.PageUtils;
+import com.bluemountain.modules.good.entity.GoodDetailEntity;
+import com.bluemountain.modules.good.entity.vo.GoodDetailVO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

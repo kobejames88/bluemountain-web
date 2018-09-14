@@ -1,7 +1,7 @@
-package modules.good.dao;
+package com.bluemountain.modules.good.dao;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
-import com.freeter.modules.good.entity.GoodSpecValueEntity;
+import com.bluemountain.modules.good.entity.GoodSpecValueEntity;
 
 /**
  * 

@@ -7,10 +7,10 @@ import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.bluemountain.annotation.Login;
 import com.bluemountain.common.utils.R;
 import com.bluemountain.common.validator.ValidatorUtils;
+import com.bluemountain.modules.address.entity.AddressEntity;
+import com.bluemountain.modules.address.service.AddressService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import modules.address.entity.AddressEntity;
-import modules.address.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

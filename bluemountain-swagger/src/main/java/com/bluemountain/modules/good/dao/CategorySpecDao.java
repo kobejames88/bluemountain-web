@@ -1,7 +1,7 @@
-package modules.good.dao;
+package com.bluemountain.modules.good.dao;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
-import modules.good.entity.CategorySpecEntity;
+import com.bluemountain.modules.good.entity.CategorySpecEntity;
 
 
 /**

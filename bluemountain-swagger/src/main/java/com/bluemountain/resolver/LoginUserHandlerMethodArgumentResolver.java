@@ -14,13 +14,13 @@
  * the License.
  */
 
-package resolver;
+package com.bluemountain.resolver;
 
 
 import annotation.LoginUser;
-import interceptor.AuthorizationInterceptor;
-import modules.user.entity.UserEntity;
-import modules.user.service.UserService;
+import com.bluemountain.interceptor.AuthorizationInterceptor;
+import com.bluemountain.modules.user.entity.UserEntity;
+import com.bluemountain.modules.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
 import org.springframework.stereotype.Component;

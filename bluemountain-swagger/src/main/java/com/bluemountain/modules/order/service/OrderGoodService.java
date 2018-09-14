@@ -1,8 +1,8 @@
-package modules.order.service;
+package com.bluemountain.modules.order.service;
 
 import com.baomidou.mybatisplus.service.IService;
 import com.bluemountain.common.utils.PageUtils;
-import modules.order.entity.OrderGoodEntity;
+import com.bluemountain.modules.order.entity.OrderGoodEntity;
 
 
 import java.util.Map;

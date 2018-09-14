@@ -1,10 +1,10 @@
-package modules.good.controller;
+package com.bluemountain.modules.good.controller;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
-import com.freeter.common.utils.R;
-import com.freeter.modules.good.entity.GoodSpecPriceEntity;
-import com.freeter.modules.good.service.GoodSpecPriceService;
+import com.bluemountain.common.utils.R;
+import com.bluemountain.modules.good.entity.GoodSpecPriceEntity;
+import com.bluemountain.modules.good.service.GoodSpecPriceService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

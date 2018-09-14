@@ -1,10 +1,10 @@
-package modules.good.service;
+package com.bluemountain.modules.good.service;
 
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.service.IService;
 import com.bluemountain.common.utils.PageUtils;
-import modules.good.entity.GoodEntity;
-import modules.good.entity.vo.GoodVO;
+import com.bluemountain.modules.good.entity.GoodEntity;
+import com.bluemountain.modules.good.entity.vo.GoodVO;
 
 
 import java.util.List;

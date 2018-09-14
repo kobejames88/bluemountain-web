@@ -1,4 +1,4 @@
-package modules.order.dao;
+package com.bluemountain.modules.order.dao;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import modules.order.entity.OrderGoodEntity;

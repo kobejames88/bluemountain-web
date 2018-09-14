@@ -1,7 +1,7 @@
-package modules.good.entity.view;
+package com.bluemountain.modules.good.entity.view;
 
 import com.baomidou.mybatisplus.annotations.TableName;
-import com.freeter.modules.good.entity.GoodEntity;
+import com.bluemountain.modules.good.entity.GoodEntity;
 import io.swagger.annotations.ApiModel;
 import org.apache.commons.beanutils.BeanUtils;
 

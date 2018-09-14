@@ -1,4 +1,4 @@
-package modules.order.entity.model;
+package com.bluemountain.modules.order.entity.model;
 
 
 import java.util.List;

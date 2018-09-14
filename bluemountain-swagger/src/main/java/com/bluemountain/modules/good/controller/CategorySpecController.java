@@ -5,11 +5,11 @@ import com.baomidou.mybatisplus.mapper.Wrapper;
 
 import com.bluemountain.common.utils.R;
 import com.bluemountain.common.validator.ValidatorUtils;
+import com.bluemountain.modules.good.entity.CategorySpecEntity;
+import com.bluemountain.modules.good.entity.view.CategorySpecSearch;
+import com.bluemountain.modules.good.service.CategorySpecService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import modules.good.entity.CategorySpecEntity;
-import modules.good.entity.view.CategorySpecSearch;
-import modules.good.service.CategorySpecService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

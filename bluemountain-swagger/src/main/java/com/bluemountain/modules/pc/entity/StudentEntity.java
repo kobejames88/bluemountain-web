@@ -1,4 +1,4 @@
-package modules.pc.entity;
+package com.bluemountain.modules.pc.entity;
 
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;

@@ -1,4 +1,4 @@
-package modules.order.controller;
+package com.bluemountain.modules.order.controller;
 
 
 import io.swagger.annotations.Api;

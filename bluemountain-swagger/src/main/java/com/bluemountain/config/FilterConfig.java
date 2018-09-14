@@ -1,4 +1,4 @@
-package config;
+package com.bluemountain.config;
 
 
 import com.bluemountain.common.xss.XssFilter;

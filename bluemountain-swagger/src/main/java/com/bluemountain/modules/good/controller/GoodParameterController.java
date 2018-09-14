@@ -1,11 +1,11 @@
-package modules.good.controller;
+package com.bluemountain.modules.good.controller;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.freeter.common.utils.R;
-import com.freeter.common.validator.ValidatorUtils;
-import com.freeter.modules.good.entity.GoodParameterEntity;
-import com.freeter.modules.good.entity.model.GoodParameterModel;
-import com.freeter.modules.good.service.GoodParameterService;
+import com.bluemountain.common.utils.R;
+import com.bluemountain.common.validator.ValidatorUtils;
+import com.bluemountain.modules.good.entity.GoodParameterEntity;
+import com.bluemountain.modules.good.entity.model.GoodParameterModel;
+import com.bluemountain.modules.good.service.GoodParameterService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +36,7 @@ public class GoodParameterController {
     @ApiOperation("查询商品参数表")
     public R Model(GoodParameterModel goodParameterModel){
 		ValidatorUtils.validateEntity(goodParameterModel);
-        EntityWrapper< GoodParameterEntity> ew = new EntityWrapper< GoodParameterEntity>();
+        EntityWrapper<GoodParameterEntity> ew = new EntityWrapper< GoodParameterEntity>();
 		GoodParameterEntity goodParameter = new  GoodParameterEntity( goodParameterModel);
 		ew.setEntity(goodParameter);
 		goodParameterService.selectList(ew);

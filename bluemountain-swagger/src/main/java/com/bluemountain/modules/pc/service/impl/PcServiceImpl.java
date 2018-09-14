@@ -1,4 +1,4 @@
-package modules.pc.service.impl;
+package com.bluemountain.modules.pc.service.impl;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
@@ -7,11 +7,11 @@ import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 
 import com.bluemountain.common.utils.PageUtils;
 import com.bluemountain.common.utils.Query;
-import modules.pc.dao.PcDao;
-import modules.pc.entity.PcEntity;
-import modules.pc.entity.view.PcView;
-import modules.pc.entity.vo.PcVO;
-import modules.pc.service.PcService;
+import com.bluemountain.modules.pc.dao.PcDao;
+import com.bluemountain.modules.pc.entity.PcEntity;
+import com.bluemountain.modules.pc.entity.view.PcView;
+import com.bluemountain.modules.pc.entity.vo.PcVO;
+import com.bluemountain.modules.pc.service.PcService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

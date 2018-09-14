@@ -1,6 +1,12 @@
 package com.bluemountain.modules.good.controller;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.bluemountain.common.utils.R;
+import com.bluemountain.common.validator.ValidatorUtils;
+import com.bluemountain.modules.good.entity.GoodAttributeEntity;
+import com.bluemountain.modules.good.entity.model.GoodAttributeModel;
+import com.bluemountain.modules.good.entity.vo.GoodAttributeVO;
+import com.bluemountain.modules.good.service.GoodAttributeService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +38,7 @@ public class GoodAttributeController {
     @ApiOperation("查询商品属性表")
     public R Model(GoodAttributeModel goodAttributeModel){
 		ValidatorUtils.validateEntity(goodAttributeModel);
-        EntityWrapper< GoodAttributeEntity> ew = new EntityWrapper< GoodAttributeEntity>();
+        EntityWrapper<GoodAttributeEntity> ew = new EntityWrapper< GoodAttributeEntity>();
 		GoodAttributeEntity goodAttribute = new  GoodAttributeEntity( goodAttributeModel);
 		ew.setEntity(goodAttribute);
 		GoodAttributeVO goodAttributeVO = goodAttributeService.selectVO(ew);

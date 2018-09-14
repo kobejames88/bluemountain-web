@@ -1,4 +1,4 @@
-package modules.pc.entity.model;
+package com.bluemountain.modules.pc.entity.model;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

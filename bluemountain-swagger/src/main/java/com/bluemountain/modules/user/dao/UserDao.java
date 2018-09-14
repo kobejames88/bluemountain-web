@@ -1,7 +1,7 @@
-package modules.user.dao;
+package com.bluemountain.modules.user.dao;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
-import modules.user.entity.UserEntity;
+import com.bluemountain.modules.user.entity.UserEntity;
 
 import java.util.List;
 

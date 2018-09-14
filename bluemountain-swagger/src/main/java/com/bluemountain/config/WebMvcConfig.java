@@ -1,13 +1,13 @@
-package config;
+package com.bluemountain.config;
 
 
-import interceptor.AuthorizationInterceptor;
+import com.bluemountain.interceptor.AuthorizationInterceptor;
+import com.bluemountain.resolver.LoginUserHandlerMethodArgumentResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import resolver.LoginUserHandlerMethodArgumentResolver;
 
 import java.util.List;
 

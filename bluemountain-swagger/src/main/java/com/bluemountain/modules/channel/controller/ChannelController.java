@@ -1,13 +1,13 @@
-package modules.channel.controller;
+package com.bluemountain.modules.channel.controller;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 
 import com.bluemountain.common.utils.R;
+import com.bluemountain.modules.channel.service.ChannelService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import modules.channel.entity.ChannelEntity;
 import modules.channel.entity.view.ChannelView;
-import modules.channel.service.ChannelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

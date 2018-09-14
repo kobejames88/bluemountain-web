@@ -1,4 +1,4 @@
-package modules.user.api.controller;
+package com.bluemountain.modules.user.api.controller;
 
 import cn.hutool.core.lang.Assert;
 import cn.hutool.core.util.RandomUtil;
@@ -7,18 +7,18 @@ import com.baomidou.mybatisplus.mapper.Wrapper;
 
 import com.bluemountain.common.utils.R;
 import com.bluemountain.common.utils.RedisUtils;
+import com.bluemountain.modules.user.entity.UserEntity;
+import com.bluemountain.modules.user.service.UserService;
+import com.bluemountain.util.Constant;
+import com.bluemountain.util.SMSUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import modules.user.entity.UserEntity;
-import modules.user.service.UserService;
 import org.apache.commons.fileupload.FileUploadException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import util.Constant;
-import util.SMSUtil;
 
 
 /**

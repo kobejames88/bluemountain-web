@@ -1,12 +1,12 @@
-package modules.good.controller;
+package com.bluemountain.modules.good.controller;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.freeter.common.utils.R;
-import com.freeter.common.validator.ValidatorUtils;
-import com.freeter.modules.good.entity.GoodDetailEntity;
-import com.freeter.modules.good.entity.model.GoodDetailModel;
-import com.freeter.modules.good.entity.vo.GoodDetailVO;
-import com.freeter.modules.good.service.GoodDetailService;
+import com.bluemountain.common.utils.R;
+import com.bluemountain.common.validator.ValidatorUtils;
+import com.bluemountain.modules.good.entity.GoodDetailEntity;
+import com.bluemountain.modules.good.entity.model.GoodDetailModel;
+import com.bluemountain.modules.good.entity.vo.GoodDetailVO;
+import com.bluemountain.modules.good.service.GoodDetailService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +38,7 @@ public class GoodDetailController {
     @ApiOperation("获取商品描述")
     public R getGoodDetail(GoodDetailModel goodDetailModel){
 		ValidatorUtils.validateEntity(goodDetailModel);
-        EntityWrapper< GoodDetailEntity> ew = new EntityWrapper< GoodDetailEntity>();
+        EntityWrapper<GoodDetailEntity> ew = new EntityWrapper< GoodDetailEntity>();
 		GoodDetailEntity goodDetail = new  GoodDetailEntity( goodDetailModel);
 		ew.setEntity(goodDetail);
 		GoodDetailVO goodDetailVO =goodDetailService.selectVO(ew);

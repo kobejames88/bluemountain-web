@@ -1,12 +1,12 @@
-package modules.pc.service;
+package com.bluemountain.modules.pc.service;
 
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.service.IService;
 
 import com.bluemountain.common.utils.PageUtils;
-import modules.pc.entity.PcEntity;
-import modules.pc.entity.view.PcView;
-import modules.pc.entity.vo.PcVO;
+import com.bluemountain.modules.pc.entity.PcEntity;
+import com.bluemountain.modules.pc.entity.view.PcView;
+import com.bluemountain.modules.pc.entity.vo.PcVO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

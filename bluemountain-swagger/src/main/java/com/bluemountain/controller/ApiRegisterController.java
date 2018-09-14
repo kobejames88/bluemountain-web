@@ -4,10 +4,10 @@ package com.bluemountain.controller;
 
 import com.bluemountain.common.utils.R;
 import com.bluemountain.common.validator.ValidatorUtils;
-import form.RegisterForm;
+import com.bluemountain.form.RegisterForm;
+import com.bluemountain.modules.user.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import modules.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

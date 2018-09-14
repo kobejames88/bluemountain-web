@@ -1,8 +1,7 @@
-package controller;
+package com.bluemountain.controller;
 
-
-import annotation.Login;
 import annotation.LoginUser;
+import com.bluemountain.annotation.Login;
 import com.bluemountain.common.utils.R;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

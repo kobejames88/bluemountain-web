@@ -1,9 +1,9 @@
-package modules.user.entity.view;
+package com.bluemountain.modules.user.entity.view;
 
 import com.baomidou.mybatisplus.annotations.TableName;
 
+import com.bluemountain.modules.user.entity.UserEntity;
 import io.swagger.annotations.ApiModel;
-import modules.user.entity.UserEntity;
 import org.apache.commons.beanutils.BeanUtils;
 
 import java.io.Serializable;

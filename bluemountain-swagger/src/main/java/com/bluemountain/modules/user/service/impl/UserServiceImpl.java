@@ -1,4 +1,4 @@
-package modules.user.service.impl;
+package com.bluemountain.modules.user.service.impl;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
@@ -9,18 +9,18 @@ import com.bluemountain.common.utils.JwtUtils;
 import com.bluemountain.common.utils.PageUtils;
 import com.bluemountain.common.utils.Query;
 import com.bluemountain.common.utils.R;
-import form.LoginForm;
-import form.PhoneForm;
-import form.RegisterForm;
-import modules.user.dao.UserDao;
-import modules.user.entity.UserEntity;
-import modules.user.service.UserService;
+import com.bluemountain.form.LoginForm;
+import com.bluemountain.form.PhoneForm;
+import com.bluemountain.form.RegisterForm;
+import com.bluemountain.modules.user.dao.UserDao;
+import com.bluemountain.modules.user.entity.UserEntity;
+import com.bluemountain.modules.user.service.UserService;
+import com.bluemountain.service.TokenService;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
-import service.TokenService;
 
 import java.util.Date;
 import java.util.HashMap;

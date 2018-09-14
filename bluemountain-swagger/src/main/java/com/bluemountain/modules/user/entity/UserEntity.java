@@ -1,4 +1,4 @@
-package modules.user.entity;
+package com.bluemountain.modules.user.entity;
 
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;

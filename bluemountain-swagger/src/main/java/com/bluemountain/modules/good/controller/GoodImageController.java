@@ -1,12 +1,12 @@
-package modules.good.controller;
+package com.bluemountain.modules.good.controller;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.freeter.common.utils.R;
-import com.freeter.common.validator.ValidatorUtils;
-import com.freeter.modules.good.entity.GoodImageEntity;
-import com.freeter.modules.good.entity.model.GoodImageModel;
-import com.freeter.modules.good.entity.vo.GoodImageVO;
-import com.freeter.modules.good.service.GoodImageService;
+import com.bluemountain.common.utils.R;
+import com.bluemountain.common.validator.ValidatorUtils;
+import com.bluemountain.modules.good.entity.GoodImageEntity;
+import com.bluemountain.modules.good.entity.model.GoodImageModel;
+import com.bluemountain.modules.good.entity.vo.GoodImageVO;
+import com.bluemountain.modules.good.service.GoodImageService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +40,7 @@ public class GoodImageController {
     @ApiOperation("获取商品图片")
     public R getGoodImage(GoodImageModel goodImageModel){
 		ValidatorUtils.validateEntity(goodImageModel);
-        EntityWrapper< GoodImageEntity> ew = new EntityWrapper< GoodImageEntity>();
+        EntityWrapper<GoodImageEntity> ew = new EntityWrapper< GoodImageEntity>();
 		GoodImageEntity goodImage = new  GoodImageEntity( goodImageModel);
 		ew.setEntity(goodImage);
 		goodImage.setStatus(1);

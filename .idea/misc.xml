@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://D:/BaiduNetdiskDownload/xcOschina-freeter-admin-master/freeter-admin/freeter-coding/freeter-api" />
+    <file type="web" url="file://D:/free-codeing/freeter-api" />
+  </component>
   <component name="JavaScriptSettings">
     <option name="languageLevel" value="ES6" />
   </component>
@@ -8,7 +12,19 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="D:/prs/pom.xml" />
+        <option value="D:/BaiduNetdiskDownload/xcOschina-freeter-admin-master/freeter-admin/freeter-coding/pom.xml" />
+        <option value="D:/free-codeing/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="D:/BaiduNetdiskDownload/xcOschina-freeter-admin-master/freeter-admin/freeter-coding/freeter-admin/pom.xml" />
+        <option value="D:/BaiduNetdiskDownload/xcOschina-freeter-admin-master/freeter-admin/freeter-coding/freeter-api/pom.xml" />
+        <option value="D:/BaiduNetdiskDownload/xcOschina-freeter-admin-master/freeter-admin/freeter-coding/freeter-common/pom.xml" />
+        <option value="D:/BaiduNetdiskDownload/xcOschina-freeter-admin-master/freeter-admin/freeter-coding/freeter-generator/pom.xml" />
+        <option value="D:/BaiduNetdiskDownload/xcOschina-freeter-admin-master/freeter-admin/freeter-coding/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">

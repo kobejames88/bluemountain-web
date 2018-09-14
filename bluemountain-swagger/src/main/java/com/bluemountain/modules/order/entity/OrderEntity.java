@@ -1,4 +1,4 @@
-package modules.order.entity;
+package com.bluemountain.modules.order.entity;
 
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;

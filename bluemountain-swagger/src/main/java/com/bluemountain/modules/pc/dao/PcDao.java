@@ -1,12 +1,11 @@
-package modules.pc.dao;
+package com.bluemountain.modules.pc.dao;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.plugins.pagination.Pagination;
-
-import modules.pc.entity.PcEntity;
-import modules.pc.entity.view.PcView;
-import modules.pc.entity.vo.PcVO;
+import com.bluemountain.modules.pc.entity.PcEntity;
+import com.bluemountain.modules.pc.entity.view.PcView;
+import com.bluemountain.modules.pc.entity.vo.PcVO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

@@ -2,7 +2,18 @@ package com.bluemountain.modules.cart.controller;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
+import com.bluemountain.common.utils.R;
 import com.bluemountain.modules.cart.entity.CartEntity;
+import com.bluemountain.modules.cart.entity.model.CartModel;
+import com.bluemountain.modules.cart.service.CartService;
+import com.bluemountain.modules.good.entity.CategorySpecEntity;
+import com.bluemountain.modules.good.entity.GoodEntity;
+import com.bluemountain.modules.good.entity.GoodSpecPriceEntity;
+import com.bluemountain.modules.good.entity.GoodSpecValueEntity;
+import com.bluemountain.modules.good.service.CategorySpecService;
+import com.bluemountain.modules.good.service.GoodService;
+import com.bluemountain.modules.good.service.GoodSpecPriceService;
+import com.bluemountain.modules.good.service.GoodSpecValueService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +55,7 @@ public class CartController {
      */
     @PostMapping("/add")
     @ApiOperation("加入购物车")
-    public R addCart(HttpServletRequest request,String userId){
+    public R addCart(HttpServletRequest request, String userId){
         CartEntity cartEntity=new CartEntity();
         Integer goodId=Integer.valueOf(request.getParameter("goodId"));
         Integer buyNumber=Integer.valueOf(request.getParameter("buyNumber"));

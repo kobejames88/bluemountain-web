@@ -8,18 +8,19 @@ import com.bluemountain.annotation.Login;
 import com.bluemountain.common.utils.R;
 import com.bluemountain.common.utils.RedisUtils;
 import com.bluemountain.common.validator.ValidatorUtils;
-import form.LoginForm;
-import form.PhoneForm;
-import form.SpeedForm;
+import com.bluemountain.form.LoginForm;
+import com.bluemountain.form.PhoneForm;
+import com.bluemountain.form.SpeedForm;
+import com.bluemountain.modules.user.service.UserService;
+import com.bluemountain.service.TokenService;
+import com.bluemountain.util.Constant;
+import com.bluemountain.util.SMSUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import modules.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import service.TokenService;
 import springfox.documentation.annotations.ApiIgnore;
-import util.Constant;
-import util.SMSUtil;
+
 
 import java.util.Map;
 

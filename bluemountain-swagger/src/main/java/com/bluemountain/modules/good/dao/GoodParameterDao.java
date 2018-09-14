@@ -1,9 +1,9 @@
-package modules.good.dao;
+package com.bluemountain.modules.good.dao;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
-import com.freeter.modules.good.entity.GoodParameterEntity;
-import com.freeter.modules.good.entity.vo.GoodParameterVO;
+import com.bluemountain.modules.good.entity.GoodParameterEntity;
+import com.bluemountain.modules.good.entity.vo.GoodParameterVO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

@@ -18,7 +18,24 @@
         <module name="bluemoutain-admin" />
         <module name="bluemoutain-core" />
         <module name="bluemoutain-pay" />
+        <module name="freeter-admin (2)" />
+        <module name="freeter-api (2)" />
+        <module name="freeter-common (2)" />
+        <module name="freeter-generator (2)" />
+        <module name="prs-allocationSetting" />
+        <module name="prs-depart" />
+        <module name="prs-depart-test" />
+        <module name="prs-menu" />
+        <module name="prs-role" />
+        <module name="prs-user" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="freeter-admin" target="1.8" />
+      <module name="freeter-api" target="1.8" />
+      <module name="freeter-coding" target="1.8" />
+      <module name="freeter-common" target="1.8" />
+      <module name="freeter-generator" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

@@ -1,4 +1,4 @@
-package modules.pc.entity.vo;
+package com.bluemountain.modules.pc.entity.vo;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
